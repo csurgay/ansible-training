@@ -1,0 +1,82 @@
+---
+- name: Install and run apache or nginx with webcontent template
+  hosts: all
+  gather_facts: no
+  tasks:
+
+    - name: Testing input parameter webserver
+      debug:
+        var: webserver
+
+    - name: Stop webservers on port 80
+      service:
+        name: "{{ item }}"
+        state: stopped
+      loop:
+        - httpd
+        - nginx
+
+    - name: Install webserver httpd or nginx
+      package:
+        name: "{{ webserver }}"
+        state: latest
+
+    - name: Start apache or nginx in foreground
+      service:
+        name: "{{ webserver }}"
+        state: started
+        enabled: true
+
+    - name: Set location for webcontent
+      set_fact:
+        weblocation: "/var/www/html/"
+      when: webserver == "httpd"
+    - set_fact:
+        weblocation: "/usr/share/nginx/html/"
+      when: webserver == "nginx"
+
+    - name: Create webcontent
+      template:
+        src: index.html.j2
+        dest: "{{ weblocation }}index.html"
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Bind eth0 to public zone
+      firewalld:
+        zone: public
+        interface: eth0
+        permanent: true
+        state: enabled
+
+    - name: Open HTTP service in public zone
+      firewalld:
+        zone: public
+        service: http
+        permanent: true
+        state: enabled
+
+    - name: Reload firewalld to apply changes
+      command: firewall-cmd --reload
+
+    - name: Check webcontent 200 status code from container
+      uri:
+        url: http://localhost
+        return_content: true
+      register: container_response
+
+    - name: Debug container response
+      debug:
+        var: container_response.content
+
+    - name: Check webcontent 200 status code from localhost
+      uri:
+        url: http://{{ ansible_host }}
+        return_content: true
+      register: localhost_response
+
+    - name: Debug localhost response
+      debug:
+        var: localhost_response.content
+
