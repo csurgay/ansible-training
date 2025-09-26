@@ -15,6 +15,7 @@
       loop:
         - httpd
         - nginx
+      ignore_errors: true
 
     - name: Install webserver httpd or nginx
       package:
