@@ -7,6 +7,8 @@ In this exercise the following steps will be cerried out:
 3.	Ansible will be installed and configured on the control node
 4.	Ansible will be tested to access control nodes by ad-hoc commands
 
+![Figure 1. Training lab environment](https://csurgay.com/ansible/ansible-labenv.png)
+
 # 1.	Launching the Ansible Training Environment
 ## Log into the builder environment
 1.	Log in to the Ansible Training virtual machine called “builder” as root
