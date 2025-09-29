@@ -2,10 +2,10 @@
 
 ### In this exercise the following steps will be cerried out:
 
-1.	Ansible control node and the managed hosts will be launched in containers
-2.	SSH keys will be set up so that ansible can access managed hosts 
-3.	Ansible will be installed and configured on the control node
-4.	Ansible will be tested to access control nodes by ad-hoc commands
+1.	Launh Ansible control node and three managed hosts in containers
+2.	Set up SSH keys so that Ansible can access managed hosts 
+3.	Install and configure Ansible in the control node container
+4.	Test Ansible to access managed hosts
 
 ### Ansible Training Environment
 
