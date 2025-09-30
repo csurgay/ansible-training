@@ -1,2 +1,2 @@
-podman build -t hostimage --layers=false .
+podman build -t managedhost --layers=false .
 

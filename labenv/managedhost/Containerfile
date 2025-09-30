@@ -1,4 +1,4 @@
-FROM fedora
+FROM controlnode
 
 # Install systemd, openssh-server, and useful tools
 RUN dnf -y install \
@@ -11,6 +11,8 @@ RUN dnf -y install \
         iproute \
         procps-ng \
         firewalld \
+        ip \
+        vim \
         python3 \
         python3-dnf \
     && dnf clean all \
