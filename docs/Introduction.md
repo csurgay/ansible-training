@@ -1,36 +1,40 @@
 ### Introduction to Automation
-## (Ansible, Infrastructure as Code, GitOps)
+
+## Ansible, Infrastructure as Code, GitOps
 
 ## Table of contents
 
-1.	Why Do We Automate?	1
-2.	Introduction to Ansible	2
-3.	Infrastructure as Code (IaC)	4
-4.	Combining Automation + Ansible + IaC	6
-5.	Benefits Summary	6
-6.	Next Steps for Learners	7
-7.	Visual Workflow	7
-8.	Suggested Training Flow	8
-9.	Recommended Tools	8
-10.	Summary	8
+1. Why Do We Automate?
+2. Introduction to Ansible
+3. Infrastructure as Code (IaC)
+4. Combining Automation + Ansible + IaC
+5. Benefits Summary
+6. Next Steps for Learners
+7. Visual Workflow
+8. Suggested Training Flow
+9. Recommended Tools
+10. Summary
 
 
 ## 1.	Why Do We Automate?
 
 # The Problem with Manual Work
+
 Traditionally, managing infrastructure and applications was done manually:
-•	Manually installing packages on servers.
-•	Editing configuration files by hand.
-•	Deploying updates by copying files via scp or rsync.
++ Manually installing packages on servers.
++ Editing configuration files by hand.
++ Deploying updates by copying files via scp or rsync.
 
 # Challenges of manual processes:
 
+-------------------------
 |Issue|Why It's a Problem|
-|Human error|Mistakes happen, especially when steps are complex or repetitive.|
-Inconsistent environments	"It works on my machine" because no two environments are configured the same way.
-Slow deployments	Manual setup can take hours or days.
-Poor scalability	Adding more servers increases manual workload linearly.
-Difficult to audit	Hard to track who did what and when.
+|Human error|Mistakes happen, especially when steps are complex or repetitive|
+|Inconsistent environments|"It works on my machine" because no two environments are configured the same way|
+|Slow deployments|Manual setup can take hours or days|
+|Poor scalability|Adding more servers increases manual workload linearly|
+|Difficult to audit|Hard to track who did what and when|
+--------------------------------------------------------
 
 Benefits of Automation
 Benefit	Description
@@ -212,4 +216,5 @@ Automation with Ansible and IaC transforms the way we manage infrastructure:
 The result is faster development cycles, scalable infrastructure, and reduced risk.
 
 Key takeaway: Treat infrastructure like code, automate everything possible, and use Ansible to enforce consistency and reliability across your environments.
+
 
