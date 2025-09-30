@@ -27,14 +27,13 @@ Traditionally, managing infrastructure and applications was done manually:
 
 # Challenges of manual processes:
 
--------------------------
 |Issue|Why It's a Problem|
+|-----|------------------|
 |Human error|Mistakes happen, especially when steps are complex or repetitive|
 |Inconsistent environments|"It works on my machine" because no two environments are configured the same way|
 |Slow deployments|Manual setup can take hours or days|
 |Poor scalability|Adding more servers increases manual workload linearly|
 |Difficult to audit|Hard to track who did what and when|
---------------------------------------------------------
 
 Benefits of Automation
 Benefit	Description
@@ -216,5 +215,6 @@ Automation with Ansible and IaC transforms the way we manage infrastructure:
 The result is faster development cycles, scalable infrastructure, and reduced risk.
 
 Key takeaway: Treat infrastructure like code, automate everything possible, and use Ansible to enforce consistency and reliability across your environments.
+
 
 
