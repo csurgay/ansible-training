@@ -15,7 +15,6 @@
 9. Recommended Tools
 10. Summary
 
-
 ## 1.	Why Do We Automate?
 
 ### The Problem with Manual Work
@@ -90,6 +89,7 @@ Imagine setting up 10 web servers:
 
 Here’s a simple playbook to install and start Nginx:
 
+#### setup-web.yml
 ```
 ---
 - name: Install and configure web server
@@ -107,9 +107,9 @@ Here’s a simple playbook to install and start Nginx:
         name: nginx
         state: started
         enabled: true
-Run it:
-ansible-playbook -i inventory.ini setup-web.yml
 ```
+#### Run it:
+`ansible-playbook -i inventory.ini setup-web.yml`
 
 ## 3. Infrastructure as Code (IaC)
 
@@ -185,34 +185,31 @@ Resilience	Recover from failures by re-applying playbooks.
 ## 6.	Next Steps for Learners
 
 1. Install Ansible:
-2. sudo dnf install ansible -y
-3. Set up an inventory file:
-4. [webservers]
-5. 192.168.1.10
-6. 192.168.1.11
-7.	Run your first command:
-8.	ansible all -i inventory.ini -m ping
-9.	Write your first playbook (install Nginx, as shown above).
-10.	Use Git to version-control your playbooks.
-11.	Explore advanced topics:
-o	Roles and collections
-o	Dynamic inventory
-o	AAP Controller for centralized management
-o	Execution Environments for encapsulated ansible dependencies
-o	Navigator for a one-shop tool set
-o	CI/CD integration
+   `sudo dnf install ansible -y`
+2. Set up an inventory file:
+   ```
+   [webservers]
+   192.168.1.10
+   192.168.1.11
+   ```
+3. Run your first command:
+   `ansible all -i inventory.ini -m ping`
+4.	Write your first playbook (install Nginx, as shown above).
+5.	Use Git to version-control your playbooks.
+6.	Explore advanced topics:
+    + Roles and collections
+    + Dynamic inventory
+    + AAP Controller for centralized management
+    + Execution Environments for encapsulated ansible dependencies
+    + Navigator for a one-shop tool set
+    + CI/CD integration
 
 ## 7.	Visual Workflow
 
-[Write Playbook]
-      ↓
-[Commit to Git]
-      ↓
-[CI/CD Pipeline]
-      ↓
-[Ansible Applies Changes]
-      ↓
-[Infrastructure Updated]
+```mermaid
+graph TD;
+[Write Playbook]-->[Commit to Git]-->[CI/CD Pipeline]-->[Ansible Applies Changes]-->[Infrastructure Updated];
+```
 
 ## 8. Suggested Training Flow
 
@@ -243,6 +240,7 @@ Automation with Ansible and IaC transforms the way we manage infrastructure:
 The result is faster development cycles, scalable infrastructure, and reduced risk.
 
 Key takeaway: Treat infrastructure like code, automate everything possible, and use Ansible to enforce consistency and reliability across your environments.
+
 
 
 
