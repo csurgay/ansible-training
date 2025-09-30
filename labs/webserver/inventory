@@ -1,5 +1,5 @@
-[servers]
-initbox1 ansible_host=10.88.0.46 web_port=8081
-initbox2 ansible_host=10.88.0.47 web_port=8082
-initbox3 ansible_host=10.88.0.48 web_port=8083
+[hosts]
+host1 web_port=8081
+host2 web_port=8082
+host3 web_port=8083
 
