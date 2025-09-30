@@ -208,7 +208,7 @@ Resilience	Recover from failures by re-applying playbooks.
 
 ```mermaid
 graph TD;
-[Write Playbook]-->[Commit to Git]-->[CI/CD Pipeline]-->[Ansible Applies Changes]-->[Infrastructure Updated];
+Write Playbook-->Commit to Git-->CI/CD Pipeline-->Ansible Applies Changes-->Infrastructure Updated;
 ```
 
 ## 8. Suggested Training Flow
@@ -240,6 +240,7 @@ Automation with Ansible and IaC transforms the way we manage infrastructure:
 The result is faster development cycles, scalable infrastructure, and reduced risk.
 
 Key takeaway: Treat infrastructure like code, automate everything possible, and use Ansible to enforce consistency and reliability across your environments.
+
 
 
 
