@@ -1,4 +1,4 @@
-### Introduction to Automation
+# Introduction to Automation
 
 ## Ansible, Infrastructure as Code, GitOps
 
@@ -18,57 +18,64 @@
 
 ## 1.	Why Do We Automate?
 
-# The Problem with Manual Work
+### The Problem with Manual Work
 
 Traditionally, managing infrastructure and applications was done manually:
 + Manually installing packages on servers.
 + Editing configuration files by hand.
 + Deploying updates by copying files via scp or rsync.
 
-# Challenges of manual processes:
+### Challenges of manual processes:
 
 |Issue|Why It's a Problem|
 |-----|------------------|
-|Human error|Mistakes happen, especially when steps are complex or repetitive|
-|Inconsistent environments|"It works on my machine" because no two environments are configured the same way|
-|Slow deployments|Manual setup can take hours or days|
-|Poor scalability|Adding more servers increases manual workload linearly|
-|Difficult to audit|Hard to track who did what and when|
+|**Human error**|Mistakes happen, especially when steps are complex or repetitive|
+|**Inconsistent environments**|"It works on my machine" because no two environments are configured the same way|
+|**Slow deployments**|Manual setup can take hours or days|
+|**Poor scalability**|Adding more servers increases manual workload linearly|
+|**Difficult to audit**|Hard to track who did what and when|
 
-Benefits of Automation
-Benefit	Description
-Consistency	Every server or environment is configured exactly the same way.
-Speed	Automated processes run in minutes instead of hours.
-Reliability	Reduces human error by removing repetitive manual steps.
-Scalability	Easily scale infrastructure to hundreds or thousands of nodes.
-Auditability	Automation scripts provide a clear record of changes.
-Agility	Quickly adapt to changes in business needs.
+### Benefits of Automation
 
-Real-World Example
+|Benefit|Description|
+|-------|-----------|
+|**Consistency**|Every server or environment is configured exactly the same way|
+|**Speed**|Automated processes run in minutes instead of hours|
+|**Reliability**|Reduces human error by removing repetitive manual steps|
+|**Scalability**|Easily scale infrastructure to hundreds or thousands of nodes|
+|**Auditability**|Automation scripts provide a clear record of changes|
+|**Agility**|Quickly adapt to changes in business needs|
+
+### Real-World Example
+
 Imagine setting up 10 web servers:
-•	Manual way: SSH into each server, install Nginx, configure it, open firewall rules → takes hours, error-prone.
-•	Automated way: Run one Ansible playbook → all servers are ready in minutes, identical, and logged.
 
-2.	Introduction to Ansible
-What is Ansible?
-Ansible is an open-source automation tool that helps you:
++ **Manual way**: SSH into each server, install Nginx, configure it, open firewall rules → takes hours, error-prone.
++ **Automated way**: Run one Ansible playbook → all servers are ready in minutes, identical, and logged.
+
+## 2.	Introduction to Ansible
+
+### Ansible is an open-source automation tool that helps you
+
 •	Provision servers
 •	Configure infrastructure
 •	Deploy applications
 •	Manage complex IT workflows
-Key Characteristics:
-•	Agentless → No special software needed on managed nodes, just SSH and Python.
-•	Declarative → You describe the desired state, and Ansible makes it happen.
-•	Idempotent → Running the same playbook multiple times won't break things.
 
-Ansible Core Concepts
-Concept	Explanation
-Inventory	A list of servers or devices you manage, written in a simple text file.
-Module	A unit of work Ansible can do (e.g., install a package, manage a service).
-Playbook	A YAML file describing tasks to run on hosts.
-Role	A structured way to organize playbooks, variables, and files.
-Task	A single action (e.g., "Install Nginx").
-Idempotence	Ensures running tasks repeatedly doesn’t cause unintended changes.
+### Key Characteristics
+
+•	**Agentless** → No special software needed on managed nodes, just SSH and Python.
+•	**Declarative** → You describe the desired state, and Ansible makes it happen.
+•	**Idempotent** → Running the same playbook multiple times won't break things.
+
+### Ansible Core Concepts
+
+|**Inventory**|A list of servers or devices you manage, written in a simple text file|
+Module	A unit of work Ansible can do (e.g., install a package, manage a service)|
+Playbook	A YAML file describing tasks to run on hosts|
+Role	A structured way to organize playbooks, variables, and files|
+|Task	A single action (e.g., "Install Nginx")|
+|Idempotence	Ensures running tasks repeatedly doesn’t cause unintended changes|
 
 How Ansible Works
 1.	You write a playbook describing the desired configuration.
@@ -215,6 +222,7 @@ Automation with Ansible and IaC transforms the way we manage infrastructure:
 The result is faster development cycles, scalable infrastructure, and reduced risk.
 
 Key takeaway: Treat infrastructure like code, automate everything possible, and use Ansible to enforce consistency and reliability across your environments.
+
 
 
 
