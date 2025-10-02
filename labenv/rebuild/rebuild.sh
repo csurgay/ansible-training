@@ -1,3 +1,10 @@
+log() {
+	printf("\n##############################\n")
+	prinff($1)
+	printf("\n##############################\n")
+	printf("\n")
+}
+
 log("### Rebuild sctipt starting")
 
 podman rmi -fa
@@ -75,10 +82,3 @@ log("### SSH key is copied into Managedhost containers")
 podman exec ansible ansible -i /root/ansible-training/labenv/inventory hosts -m ping
 
 log("### Ansible accessing Managedhosts is tested OK")
-
-log() {
-	printf("\n##############################\n")
-	prinff($1)
-	printf("\n##############################\n")
-	printf("\n")
-}
