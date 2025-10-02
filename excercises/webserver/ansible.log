@@ -1,0 +1,15 @@
+2025-10-02 10:08:48,518 p=244860 u=root n=ansible INFO| host3 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname host3: Name or service not known",
+    "unreachable": true
+}
+2025-10-02 10:08:48,519 p=244860 u=root n=ansible INFO| host2 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname host2: Name or service not known",
+    "unreachable": true
+}
+2025-10-02 10:08:48,519 p=244860 u=root n=ansible INFO| host1 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname host1: Name or service not known",
+    "unreachable": true
+}
