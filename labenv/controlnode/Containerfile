@@ -8,6 +8,7 @@ RUN dnf install -y \
     openssh-server \
     passwd \
     ip \
+    tree \
     vim \
     ping \
     sshpass \
