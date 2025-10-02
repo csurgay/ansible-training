@@ -20,11 +20,11 @@ flowchart TD
   end
   subgraph id2[SSH on control node]
     direction LR
-    id21(ssh) --> id22(ssh_config) --> id23(StrictHostkey)
+    id21(ssh) --> id22(ssh_config) --> id23(HostKey)
   end
   subgraph id3[SSHD on managed host]
     direction LR
-    id31(sshd) --> id32(sshd_config) --> id33(PermitRootLogin)
+    id31(sshd installed) --> id32(sshd started) --> id33(sshd config) --> id33(PermitRootLogin)
   end
   subgraph id4[Python on managed host]
     direction LR
@@ -40,5 +40,15 @@ flowchart TD
 | Failure point | Description | Test | Fix |
 |---------------|-------------|------|-----|
 | **Ansible** | Ansible is installed on Control node | **`ansible --version`** | **`dnf install -y ansible`** |
-| **ansible.cfg** | Ansible is installed on Control node | **`ansible --version`** | **`dnf install -y ansible`** |
+| **ansible.cfg** | Ansible config is in place | **`ansible --version`** | **`dnf install -y ansible`** |
+| **inventory** | Ansible inventory is in place | **`ansible-inventory -i inventory --list`** | Edit inventory |
+| **/etc/hosts** | Hosts file contains managed IPs | **`cat /etc/hosts`** | Edit /etc/hosts |
+| **ssh** | ssh is installed | see /usr/bin/ssh | **`dnf install openssh-clients`** |
+| **ssh config** | ssh config is in place | see /etc/ssh/ssh_config | **`cat /etc/ssh/ssh_config`** |
+| **HostKey** | of Managed hosts on Control node | see /etc/ssh/ssh_config for | **`StrictHostKeyChecking no`** | 
+| **sshd installed** | on all Managed hosts | **`systemctl status sshd`** | **`dnf install openssh`** |
+| **sshd started** | on all Managed hosts | **`systemctl status sshd`** | **`systemctl enable --now sshd`** |
+| **sshd config** | root login enabled | see /etc/ssh/sshd_config for | **`PermitRootLogin yes`** |
+| **python** | Python3 is installed on Managed hosts | see /usr/bin/python3 | **`dnf install python3`** |
+
 
