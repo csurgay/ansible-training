@@ -20,7 +20,7 @@ podman exec ansible dnf install -y git
 podman exec -w=/root ansible git clone https://github.com/csurgay/ansible-training.git
 podman exec ansible dnf install -y ansible
 
-podman exec ansible bash -c 'printf "[defaults]\ninterpreter_python=auto_silent\nlog_path=ansible.cfg\n" > /root/ansible-training/labenv/ansible.cfg'
+podman exec ansible bash -c 'printf "[defaults]\ninterpreter_python=auto_silent\nlog_path=ansible.log\n" > /root/ansible-training/labenv/ansible.cfg'
 
 podman exec ansible bash -c 'printf "[hosts]\nhost1\nhost2\nhost3\n" > /root/ansible-training/labenv/inventory'
 
