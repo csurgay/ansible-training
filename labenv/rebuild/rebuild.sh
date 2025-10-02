@@ -1,8 +1,8 @@
 log() {
-	printf("\n##############################\n")
+	printf "\n##############################\n"
 	prinff($1)
-	printf("\n##############################\n")
-	printf("\n")
+	printf "\n##############################\n"
+	printf "\n"
 }
 
 log("### Rebuild sctipt starting")
