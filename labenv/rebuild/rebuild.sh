@@ -57,11 +57,11 @@ podman exec ansible dnf install -y ansible
 
 log "### Ansible is installed in Controlnode container"
 
-podman exec ansible bash -c 'printf "[defaults]\ninterpreter_python=auto_silent\nlog_path=ansible.log)" > /root/ansible-training/labenv/ansible.cfg'
+podman exec ansible bash -c 'printf "[defaults]\ninterpreter_python=auto_silent\nlog_path=ansible.log\n" > /root/ansible-training/labenv/ansible.cfg'
 
 log "### Ansible config is saved in Controlnode container"
 
-podman exec ansible bash -c 'printf "[hosts]\nhost1\nhost2\nhost3)" > /root/ansible-training/labenv/inventory'
+podman exec ansible bash -c 'printf "[hosts]\nhost1\nhost2\nhost3\n" > /root/ansible-training/labenv/inventory'
 
 log "### Ansible Inventory is saved in Controlnode container"
 
