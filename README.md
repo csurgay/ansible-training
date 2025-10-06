@@ -2,9 +2,9 @@
 
 ## Ansible Training lab and exercises
 
-Date Created: 2025-09-01
-Last Modified: 2025-10-06
-Author: csurgay@gmail.com
+Date Created: 2025-09-01  
+Last Modified: 2025-10-06  
+Author: csurgay@gmail.com  
 
 Ansible bootcamp from ad-hoc, playbooks, and roles to galaxy, navigator and gitops.
 
