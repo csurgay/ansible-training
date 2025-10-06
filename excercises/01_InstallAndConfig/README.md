@@ -89,7 +89,7 @@ and suppress a python related warning for conveniance.
 [defaults]
 inventory=./hosts_inventory
 log_path=ansible.log
-interpreter_python=auto_silent
+interpreter_python=/usr/bin/python3
 ```
 
 ## 4. Test ansible access managed hosts
@@ -99,5 +99,3 @@ interpreter_python=auto_silent
 1.	Test that ansible can manage the hosts with the ping module as follows:
 2.	**`ansible myhosts -m ping`**
 3.	Check ansible output for all three pong responses
-
-
