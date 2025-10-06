@@ -27,5 +27,5 @@ podman exec -it ansible bash
 ### 3. Work in the ansible control node container
 
 ```
-podman exec -it ansible.bash
+podman exec -w /root/ansible-training/labenv -it ansible bash
 ```
