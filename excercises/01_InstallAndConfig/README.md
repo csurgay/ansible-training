@@ -67,18 +67,29 @@
 
 1.	Run **`dnf install -y ansible`** on control node “ansible” host as root
 2.	Test the installation with **`ansible –version`**
-3.	Suppress the python version warning with the command:
-4.	**`printf “[defaults]\ninterpreter_python=auto_silent\n” > ansible.cfg`**
-5.	Install Vim editor for coloring of playbooks **`dnf install -y vim`**
+3.	Install Vim editor for coloring of playbooks **`dnf install -y vim`**
 
-### Create inventory for the managed hosts
+### Configure Ansible
 
-1.	Create a textfile named **`inventory`** with the three IP addresses e.g. as follows:
+1.	Create a textfile named **`hosts_inventory`** with the three IP addresses e.g. as follows:
 ```
-[servers]
+[myhosts]
 10.88.0.11
 10.88.0.12
 10.88.0.13
+```
+
+2.	Create a textfile named **`ansible.cfg`**
+
+It will contain the reference for the default inventory,
+a reference for the log_path to log all ansible output to,
+and suppress a python related warning for conveniance.
+
+```
+[defaults]
+inventory=./hosts_inventory
+log_path=ansible.log
+interpreter_python=auto_silent
 ```
 
 ## 4. Test ansible access managed hosts
@@ -86,7 +97,7 @@
 ### Ad-hoc command for testing
 
 1.	Test that ansible can manage the hosts with the ping module as follows:
-2.	**`ansible -i inventory servers -m ping`**
+2.	**`ansible myhosts -m ping`**
 3.	Check ansible output for all three pong responses
 
 
