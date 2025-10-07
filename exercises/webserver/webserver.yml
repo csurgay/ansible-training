@@ -45,7 +45,7 @@
         mode: '0644'
 
     - name: Bind eth0 to public zone
-      firewalld:
+      ansible.posix.firewalld:
         zone: public
         interface: eth0
         permanent: true
