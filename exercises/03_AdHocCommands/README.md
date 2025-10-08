@@ -6,6 +6,7 @@
 > cd .../labenv/rootless/
 > ./run.sh
 > podman exet -it --user local ansible /bin/bash
+> cd /home/local/ansible-training/labenv/rootless/
 > ```
 
 ### In this exercise the following steps will be cerried out:
@@ -209,5 +210,6 @@ ansible all -m ping -f 10
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
