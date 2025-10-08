@@ -1,5 +1,13 @@
 # Exercise 3. Ansible Ad-Hoc Commands
 
+> [!IMPORTANT]
+> Use the rootless ansible training lab environment for this exercise
+> ```
+> cd .../labenv/rootless/
+> ./run.sh
+> podman exet -it --user local ansible /bin/bash
+> ```
+
 ### In this exercise the following steps will be cerried out:
 
 1. Testing Connectivity (`ping`)
@@ -201,4 +209,5 @@ ansible all -m ping -f 10
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
