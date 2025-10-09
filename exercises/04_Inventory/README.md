@@ -1,0 +1,40 @@
+# Exercise 4. Inventory
+
+### In this exercise the following steps will be cerried out:
+
+1. Static Inventory
+1. Host groups
+1. Testing Connectivity (`ping`)
+1. Running Commands (`command` and `shell`)
+
+---
+### Static Inventory
+
+The most simple way to specify an inventory for ansible is a flat list of hostnames one per lines:
+
+```
+webserver1
+192.168.0.2
+host1.samples.com
+```
+
+---
+### Host groups
+
+Hosts can be grouped under a host group name in brackets.  
+Hosts can be listed under multiple host groups.  
+Ungrouped hosts of course can also be listed as before.
+Ansible can than easily manage hosts of groups together.
+
+```
+192.168.0.2
+
+[hostgroup1]
+host1
+host2
+
+[webservers]
+host1
+server1.sample.com
+server2.sample.com
+```
