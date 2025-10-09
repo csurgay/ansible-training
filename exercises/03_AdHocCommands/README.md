@@ -107,7 +107,10 @@ ansible all --become --ask-become-pass -m shell -a whoami
 ```
 
 This will ask for the `sudo` password and use that on the managed hosts.  
-The reason why it's called "becomeˇ is that there can be other elevations than `sudo` (`--become-method`).
+
+> [!NOTE]
+> The reason why it's called "become" is that there can be other elevations than `sudo`.  
+> See `--become-method`
 
 **Exercise:**
 
@@ -252,6 +255,7 @@ ansible all -m ping -f 10
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
