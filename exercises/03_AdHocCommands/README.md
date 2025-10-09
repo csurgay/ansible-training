@@ -180,28 +180,46 @@ cat /tmp/hosts/*/ect/redhat-release
 ### Package Management (`package`, `yum` / `apt`)
 
 ```
-ansible all -m yum -a "name=git state=present"
-ansible all -m apt -a "name=nginx state=latest" --become
+ansible all -m yum -a "name=git state=present" --become --ask-become-pass
+ansible all -m yum -a "name=nginx state=latest" --become --ask-become-pass
 ```
 
 **Exercise:**
 
-* Install `git` on all hosts.
+* Install `git` on all hosts. (Note, that because of idempotency nothing changes.)
+
+```
+ansible all -m yum -a "name=git state=present" --become --ask-become-pass
+```
+
 * Remove `nginx` from a specific host.
+
+```
+ansible host1 -m yum -a "name=nginx state=absent" --become --ask-become-pass
+```
 
 ---
 
 ### Managing Services (`service` / `systemd`)
 
 ```
-ansible all -m service -a "name=nginx state=started"
-ansible all -m systemd -a "name=nginx enabled=yes state=stopped"
+ansible all -m service -a "name=nginx state=started" --become --ask-become-pass
+ansible all -m systemd -a "name=nginx enabled=yes state=stopped" --become --ask-become-pass
 ```
 
 **Exercise:**
 
 * Start `httpd` or `nginx` service on all hosts.
+
+```
+ansible all -m service -a "name=httpd state=started" --become --ask-become-pass
+```
+
 * Enable the service to auto-start on boot.
+
+```
+ansible all -m systemd -a "name=httpd enabled=yes" --become --ask-become-pass
+```
 
 ---
 
@@ -326,6 +344,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
