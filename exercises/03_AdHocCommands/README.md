@@ -11,17 +11,19 @@
 
 ### In this exercise the following steps will be cerried out:
 
+1. Checking the Inventory (`--list-hosts`)
 1. Testing Connectivity (`ping`)
-2. Running Commands (`command` and `shell`)
-3. File Transfer (`copy` and `fetch`)
-4. Package Management (`yum` / `apt`)
-5. Managing Services (`service` / `systemd`)
-6. User and Group Management (`user` / `group`)
-7. File Permissions (`file`)
-8. Gathering Facts (`setup`)
-9. Rebooting Hosts (`reboot`)
-10. Parallelism and Limits (`fork`)
-11. Final Exercise: Multi-Step Task
+1. Running Commands (`command` and `shell`)
+1. Elevated privileges (`--become` and `--ask-become-pass`)
+1. File Transfer (`copy` and `fetch`)
+1. Package Management (`yum` / `apt`)
+1. Managing Services (`service` / `systemd`)
+1. User and Group Management (`user` / `group`)
+1. File Permissions (`file`)
+1. Gathering Facts (`setup`)
+1. Rebooting Hosts (`reboot`)
+1. Parallelism and Limits (`fork`)
+1. Final Exercise: Multi-Step Task
 
 ## Ad-Hoc commands
 
@@ -31,18 +33,32 @@ Ansible **Ad-Hoc commands** are simple, one-liner commands that allow you to qui
 Ad-Hoc commands are executed with the **`ansible`** command-line tool and generally follow this structure:
 
 ```
-ansible <host-pattern> -m <module> -a "<module-options>"
+ansible <host-pattern> <options> -m <module> -a "<module-options>"
 ````
 
 * **`<host-pattern>`** → Specifies target hosts (from the inventory).
+* **`<options>`** → Options for ths ansible command (e.g., `--list-hosts`, `--user`, `--become`).
 * **`-m <module>`** → Defines the module to use (e.g., `ping`, `shell`, `copy`).
 * **`-a "<module-options>"`** → Provides arguments to the module.
 
 ---
 
-## Commonly Used Ansible Ad-Hoc Modules
+### Checking the Inventory (`--list-hosts`)
 
-### 1. Testing Connectivity (`ping`)
+```
+ansible all --list-hosts
+```
+
+Checks if hosts are reachable.
+
+**Exercise:**
+
+* Run the ping command on all hosts.
+* Run it on a specific group or host.
+
+---
+
+### Testing Connectivity (`ping`)
 
 ```
 ansible all -m ping
@@ -57,7 +73,7 @@ Checks if hosts are reachable.
 
 ---
 
-### 2. Running Commands (`command` and `shell`)
+### Running Commands (`command` and `shell`)
 
 * **`command` module** → Runs commands without using a shell.
 * **`shell` module** → Runs commands through a shell (`/bin/sh`).
@@ -74,7 +90,33 @@ ansible all -m shell -a "echo $HOME"
 
 ---
 
-### 3. File Transfer (`copy` and `fetch`)
+### Elevate privileges (`--become` and `--ask-become-pass`)
+
+* **Become root at managed host**:
+
+```
+ansible all --become -m shell -a whoami
+```
+
+This will return an error message because `local` cannot `sudo` without password.
+
+* **Ask to provide `sudo` password**:
+
+```
+ansible all --become --ask-become-pass -m shell -a whoami
+```
+
+This will ask for the `sudo` password and use that on the managed hosts.  
+The reason why it's called "becomeˇ is that there can be other elevations than `sudo` (`--become-method`).
+
+**Exercise:**
+
+* Try becoming `root` and using `shell` module to `whoami` on host1.
+* Try the same but with providing the `sudo` password for the managed host.
+
+---
+
+### File Transfer (`copy` and `fetch`)
 
 * **Copy files to remote hosts**:
 
@@ -95,7 +137,7 @@ ansible all -m fetch -a "src=/etc/hosts dest=/tmp/hosts"
 
 ---
 
-### 4. Package Management (`yum` / `apt`)
+### Package Management (`yum` / `apt`)
 
 ```
 ansible all -m yum -a "name=git state=present"
@@ -109,7 +151,7 @@ ansible all -m apt -a "name=nginx state=latest" --become
 
 ---
 
-### 5. Managing Services (`service` / `systemd`)
+### Managing Services (`service` / `systemd`)
 
 ```
 ansible all -m service -a "name=nginx state=started"
@@ -123,7 +165,7 @@ ansible all -m systemd -a "name=nginx enabled=yes state=stopped"
 
 ---
 
-### 6. User and Group Management (`user` / `group`)
+### User and Group Management (`user` / `group`)
 
 ```
 ansible all -m user -a "name=deploy state=present"
@@ -137,7 +179,7 @@ ansible all -m group -a "name=devops state=absent"
 
 ---
 
-### 7. File Permissions (`file`)
+### File Permissions (`file`)
 
 ```
 ansible all -m file -a "path=/tmp/testdir state=directory mode=0755"
@@ -150,7 +192,7 @@ ansible all -m file -a "path=/tmp/testdir state=directory mode=0755"
 
 ---
 
-### 8. Gathering Facts (`setup`)
+### Gathering Facts (`setup`)
 
 ```
 ansible all -m setup
@@ -164,7 +206,7 @@ ansible all -m setup -a "filter=ansible_distribution*"
 
 ---
 
-### 9. Rebooting Hosts (`reboot`)
+### Rebooting Hosts (`reboot`)
 
 ```
 ansible all -m reboot --become
@@ -177,7 +219,7 @@ ansible all -m reboot --become
 
 ---
 
-### 10. Parallelism and Limits (`fork`)
+### Parallelism and Limits (`fork`)
 
 * Run against **specific number of hosts**:
 
@@ -198,7 +240,7 @@ ansible all -m ping -f 10
 
 ---
 
-### 11. Final Exercise: Multi-Step Task
+### Final Exercise: Multi-Step Task
 
 1. Ping all hosts.
 2. Install `nginx` package.
@@ -210,6 +252,7 @@ ansible all -m ping -f 10
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
