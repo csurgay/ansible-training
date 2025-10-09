@@ -24,7 +24,7 @@
 1. File Permissions (`file`)
 1. Gathering Facts (`setup`)
 1. Rebooting Hosts (`reboot`)
-1. Limit Parallel Processes (`fork`)
+1. Limit and Control Parallel Processes (`limit` and `fork`)
 1. Final Exercise: Multi-Step Task
 
 ## Ad-Hoc commands
@@ -177,11 +177,19 @@ cat /tmp/hosts/*/ect/redhat-release
 
 ---
 
+> [!WARNING]
+> From here onwards let's set privilege escalation in `ansible.cfg` so that no `--become` option is necessary:
+> ```
+> [privilege_escalation]
+> become=true
+> become_ask_pass=true
+> ```
+
 ### Package Management (`package`, `yum` / `apt`)
 
 ```
-ansible all -m yum -a "name=git state=present" --become --ask-become-pass
-ansible all -m yum -a "name=nginx state=latest" --become --ask-become-pass
+ansible all -m yum -a "name=git state=present"
+ansible all -m yum -a "name=nginx state=latest"
 ```
 
 **Exercise:**
@@ -189,13 +197,13 @@ ansible all -m yum -a "name=nginx state=latest" --become --ask-become-pass
 * Install `git` on all hosts. (Note, that because of idempotency nothing changes.)
 
 ```
-ansible all -m yum -a "name=git state=present" --become --ask-become-pass
+ansible all -m yum -a "name=git state=present"
 ```
 
 * Remove `nginx` from a specific host.
 
 ```
-ansible host1 -m yum -a "name=nginx state=absent" --become --ask-become-pass
+ansible host1 -m yum -a "name=nginx state=absent"
 ```
 
 ---
@@ -203,8 +211,8 @@ ansible host1 -m yum -a "name=nginx state=absent" --become --ask-become-pass
 ### Managing Services (`service` / `systemd`)
 
 ```
-ansible all -m service -a "name=nginx state=started" --become --ask-become-pass
-ansible all -m systemd -a "name=nginx enabled=yes state=stopped" --become --ask-become-pass
+ansible all -m service -a "name=nginx state=started"
+ansible all -m systemd -a "name=nginx enabled=yes state=stopped"
 ```
 
 **Exercise:**
@@ -212,13 +220,13 @@ ansible all -m systemd -a "name=nginx enabled=yes state=stopped" --become --ask-
 * Start `httpd` or `nginx` service on all hosts.
 
 ```
-ansible all -m service -a "name=httpd state=started" --become --ask-become-pass
+ansible all -m service -a "name=httpd state=started"
 ```
 
 * Enable the service to auto-start on boot.
 
 ```
-ansible all -m systemd -a "name=httpd enabled=yes" --become --ask-become-pass
+ansible all -m systemd -a "name=httpd enabled=yes"
 ```
 
 ---
@@ -226,8 +234,8 @@ ansible all -m systemd -a "name=httpd enabled=yes" --become --ask-become-pass
 ### User and Group Management (`user` / `group`)
 
 ```
-ansible all -m user -a "name=deploy state=present" --become --ask-become-pass
-ansible all -m group -a "name=devops state=absent" --become --ask-become-pass
+ansible all -m user -a "name=deploy state=present"
+ansible all -m group -a "name=devops state=absent"
 ```
 
 **Exercise:**
@@ -235,13 +243,13 @@ ansible all -m group -a "name=devops state=absent" --become --ask-become-pass
 * Create a user `ansibleuser` on all hosts.
 
 ```
-ansible all -m user -a "name=ansibleuser state=present" --become --ask-become-pass
+ansible all -m user -a "name=ansibleuser state=present"
 ```
 
 * Delete the `devops` group from one host.
 
 ```
-ansible host1 -m group -a "name=devops state=absent" --become --ask-become-pass
+ansible host1 -m group -a "name=devops state=absent"
 ```
 
 ---
@@ -276,7 +284,7 @@ ansible all -m setup -a "filter=ansible_distribution*"
 ### Rebooting Hosts (`reboot`)
 
 ```
-ansible all -m reboot --become
+ansible all -m reboot
 ```
 
 **Exercise:**
@@ -284,11 +292,15 @@ ansible all -m reboot --become
 * Reboot all hosts and wait for them to come back.
 * Test if they are online with `ping`.
 
+> [!CAUTION]
+> Containers do not come back after reboot in default behaviour, so restart them:
+> `podman start host1 host2 host3`
+
 ---
 
-### Limit Parallel Processes (`fork`)
+### Limit and Control Parallel Processes (`limit` and `fork`)
 
-* Run against **specific number of hosts**:
+* Run against **specific subset (`--limit <host-pattern>`) of hosts**:
 
 ```
 ansible all -m ping --limit host1
@@ -353,6 +365,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
