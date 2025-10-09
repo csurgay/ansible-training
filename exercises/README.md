@@ -71,6 +71,8 @@ Imagine setting up 10 web servers:
 
 |Concept|Description|
 |------------|------------------------------------------|
+|**Control node**|A host where Ansible (and Python) is running playbooks|
+|**Managed hosts**|Servers that Ansible manages, configures, provisions; need no Ansible but Python|
 |**Inventory**|A list of servers or devices you manage, written in a simple text file|
 |**Module**|A unit of work Ansible can do (e.g., install a package, manage a service)|
 |**Playbook**|A YAML file describing tasks to run on hosts|
@@ -242,3 +244,4 @@ The result is faster development cycles, scalable infrastructure, and reduced ri
 > [!TIP]
 > Key takeaway: Treat infrastructure like code, automate everything possible,\
 > and use Ansible to enforce consistency and reliability across your environments.
+
