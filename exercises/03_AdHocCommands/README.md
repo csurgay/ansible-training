@@ -17,7 +17,7 @@
 1. Running Commands (`command` and `shell`)
 1. Elevated privileges (`--become` and `--ask-become-pass`)
 1. File Transfer (`copy` and `fetch`)
-1. Package Management (`yum` / `apt`)
+1. Package Management (`package`, `yum` / `apt`)
 1. Managing Services (`service` / `systemd`)
 1. User and Group Management (`user` / `group`)
 1. File Permissions (`file`)
@@ -66,7 +66,8 @@ Lists all hosts from the default configured inventory file.
 ### Specify Inventory for ansible (`--inventory <inventory-file>`)
 
 ```
-ansible all --list-hosts --inventory localhost_inventory
+printf "localhost\nhost1\" > inv2
+ansible all --list-hosts --inventory inv2
 ```
 
 Lists all hosts from a specific inventory file.
@@ -159,7 +160,7 @@ ansible all -m fetch -a "src=/etc/hosts dest=/tmp/hosts"
 
 ---
 
-### Package Management (`yum` / `apt`)
+### Package Management (`package`, `yum` / `apt`)
 
 ```
 ansible all -m yum -a "name=git state=present"
@@ -279,6 +280,7 @@ ansible all -m package -a "name=nginx state=present" --become --ask-become-pass
 3. Copy a custom index.html:
 
 ```
+printf "Webcontent\n" > index.html
 ansible all -m copy -a "src=index.html dest=/usr/share/nginx/html/index.html mode=0644" --become --ask-become-pass
 ```
 
@@ -307,6 +309,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
