@@ -96,6 +96,8 @@ interpreter_python=/usr/bin/python3
 
 ### Ad-hoc command for testing
 
+1.	Test python version on Control node:
+2.	**`ansible localhost -m setup | grep python_version`** 
 1.	Test that ansible can manage the hosts with the ping module as follows:
-2.	**`ansible myhosts -m ping`**
-3.	Check ansible output for all three pong responses
+1.	**`ansible myhosts -m ping`**
+1.	Check ansible output for all three pong responses
