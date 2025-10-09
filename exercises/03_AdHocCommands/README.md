@@ -226,14 +226,23 @@ ansible all -m systemd -a "name=httpd enabled=yes" --become --ask-become-pass
 ### User and Group Management (`user` / `group`)
 
 ```
-ansible all -m user -a "name=deploy state=present"
-ansible all -m group -a "name=devops state=absent"
+ansible all -m user -a "name=deploy state=present" --become --ask-become-pass
+ansible all -m group -a "name=devops state=absent" --become --ask-become-pass
 ```
 
 **Exercise:**
 
 * Create a user `ansibleuser` on all hosts.
+
+```
+ansible all -m user -a "name=ansibleuser state=present" --become --ask-become-pass
+```
+
 * Delete the `devops` group from one host.
+
+```
+ansible web1 -m group -a "name=devops state=absent" --become --ask-become-pass
+```
 
 ---
 
@@ -344,6 +353,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
