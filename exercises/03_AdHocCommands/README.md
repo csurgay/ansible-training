@@ -23,7 +23,7 @@
 1. File Permissions (`file`)
 1. Gathering Facts (`setup`)
 1. Rebooting Hosts (`reboot`)
-1. Parallelism and Limits (`fork`)
+1. Limit Parallel Processes (`fork`)
 1. Final Exercise: Multi-Step Task
 
 ## Ad-Hoc commands
@@ -241,39 +241,73 @@ ansible all -m reboot --become
 
 ---
 
-### Parallelism and Limits (`fork`)
+### Limit Parallel Processes (`fork`)
 
 * Run against **specific number of hosts**:
 
 ```
-ansible all -m ping --limit web1
+ansible all -m ping --limit host1
 ```
 
 * Control **parallelism** with `-f` (forks):
 
 ```
-ansible all -m ping -f 10
+ansible all -m ping -f 1
 ```
 
 **Exercise:**
 
 * Run a command on just 1 host.
-* Run `ping` on all hosts with `-f 2`.
+* Run `ping` on all hosts with `-f 1`.
 
 ---
 
 ### Final Exercise: Multi-Step Task
 
+1. Ping all hosts:
+
+```
+ansible all -m ping
+```
+
+2. Install `nginx`:
+
+```
+ansible all -m package -a "name=nginx state=present" --become --ask-become-pass
+```
+
+3. Copy a custom index.html:
+
+```
+ansible all -m copy -a "src=index.html dest=/usr/share/nginx/html/index.html mode=0644" --become --ask-become-pass
+```
+
+4. Start and enable `nginx`:
+
+```
+ansible all -m systemd -a "name=nginx state=started enabled=yes"
+```
+
+5. Verify service is running:
+
+```
+ansible all -m shell -a "curl -s localhost"
+```
+
+**Exercise:**
+
 1. Ping all hosts.
 2. Install `nginx` package.
 3. Copy a custom index.html to `/usr/share/nginx/html/`.
 4. Start and enable the `nginx` service.
-5. Verify service is running with `curl localhost`.
+5. Verify service is running with `curl -s localhost`.
+   `-s` is for silent mode to suppress statistics
 
 ---
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
