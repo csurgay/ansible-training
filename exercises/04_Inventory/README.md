@@ -1,6 +1,6 @@
 # Exercise 4. Inventory
 
-### In this exercise the following steps will be cerried out:
+### In this exercise the following subjects will be covered:
 
 1. Static Inventory
 1. Host groups
