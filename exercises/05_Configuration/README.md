@@ -13,6 +13,10 @@
 /etc/ansible/ansible.cfg
 ~/.ansible.cfg
 ./ansible.cfg
+export ANSIBLE_CONFIG=/home/local/ansible-training/labenv/rootless/ansible.cgf
 ```
 
+The last one is best practice and have the highest precedence over all the others.
+
 ---
+
