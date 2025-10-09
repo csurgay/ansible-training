@@ -156,8 +156,18 @@ ansible all -m fetch -a "src=/etc/hosts dest=/tmp/hosts"
 
 **Exercise:**
 
-* Copy a local script to `/usr/local/bin` on all hosts.
-* Fetch `/etc/os-release` from all hosts into `/tmp/`.
+* Copy a local script to `/usr/local/bin` on all hosts
+
+```
+echo "ls -la" > myscript.sh
+ansible all -m copy -a "src=myscript.sh dest=/usr/local/bin mode=0755" --become --ask-become-pass
+```
+
+* Fetch `/etc/os-release` from all hosts into into `/tmp/`:
+
+```
+ansible all -m fetch -a "src=/etc/os-release dest=/tmp/"
+```
 
 ---
 
@@ -310,6 +320,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
