@@ -1,6 +1,6 @@
 # Exercise 1. Provisioning the Training Lab
 
-### In this exercise the following subject will be covered:
+### In this exercise the following subjects will be covered:
 
 1.	Launh Ansible control node and three managed hosts in containers
 2.	Set up SSH keys so that Ansible can access managed hosts 
