@@ -293,7 +293,7 @@ ansible all -m reboot
 * Test if they are online with `ping`.
 
 > [!CAUTION]
-> Containers do not come back after reboot in default behaviour, so restart them:
+> Containers do not come back after reboot in default behaviour, so restart them:  
 > `podman start host1 host2 host3`
 
 ---
@@ -365,6 +365,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
