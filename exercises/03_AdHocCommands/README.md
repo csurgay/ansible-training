@@ -10,7 +10,7 @@
 > cd /home/local/ansible-training/labenv/rootless/
 > ```
 
-### In this exercise the following steps will be cerried out:
+### In this exercise the following subjects will be covered:
 
 1. Checking the Inventory (`--list-hosts`)
 1. Specify Inventory for ansible (`--inventory <inventory-file>`)
@@ -380,6 +380,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
