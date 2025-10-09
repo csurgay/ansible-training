@@ -12,6 +12,7 @@
 ### In this exercise the following steps will be cerried out:
 
 1. Checking the Inventory (`--list-hosts`)
+1. Specify Inventory for ansible (`--inventory <inventory-file>`)
 1. Testing Connectivity (`ping`)
 1. Running Commands (`command` and `shell`)
 1. Elevated privileges (`--become` and `--ask-become-pass`)
@@ -36,10 +37,15 @@ Ad-Hoc commands are executed with the **`ansible`** command-line tool and genera
 ansible <host-pattern> <options> -m <module> -a "<module-options>"
 ````
 
-* **`<host-pattern>`** → Specifies target hosts (from the inventory).
-* **`<options>`** → Options for ths ansible command (e.g., `--list-hosts`, `--user`, `--become`).
-* **`-m <module>`** → Defines the module to use (e.g., `ping`, `shell`, `copy`).
-* **`-a "<module-options>"`** → Provides arguments to the module.
+* **`<host-pattern>`** → Specifies target hosts (from the inventory)
+  * `all`
+  * `localhost`
+  * any hostgroups
+  * single hosts or IP addresses
+  * set of hosts, wildcards, regular expressions
+* **`<options>`** → Options for ths ansible command (e.g., `--list-hosts`, `--user`, `--become`)
+* **`-m <module>`** → Defines the module to use (e.g., `ping`, `shell`, `copy`)
+* **`-a "<module-options>"`** → Provides arguments to the module
 
 ---
 
@@ -49,12 +55,25 @@ ansible <host-pattern> <options> -m <module> -a "<module-options>"
 ansible all --list-hosts
 ```
 
-Checks if hosts are reachable.
+Lists all hosts from the default configured inventory file.
 
 **Exercise:**
 
-* Run the ping command on all hosts.
-* Run it on a specific group or host.
+* List hosts from default inventory.
+
+---
+
+### Specify Inventory for ansible (`--inventory <inventory-file>`)
+
+```
+ansible all --list-hosts --inventory localhost_inventory
+```
+
+Lists all hosts from a specific inventory file.
+
+**Exercise:**
+
+* List hosts from a specific inventory file.
 
 ---
 
@@ -255,6 +274,7 @@ ansible all -m ping -f 10
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
