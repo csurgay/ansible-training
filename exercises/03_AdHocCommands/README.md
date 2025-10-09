@@ -66,7 +66,7 @@ Lists all hosts from the default configured inventory file.
 ### Specify Inventory for ansible (`--inventory <inventory-file>`)
 
 ```
-printf "localhost\nhost1\" > inv2
+printf "localhost\nhost1\n" > inv2
 ansible all --list-hosts --inventory inv2
 ```
 
@@ -309,6 +309,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
