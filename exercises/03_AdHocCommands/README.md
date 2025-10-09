@@ -330,20 +330,20 @@ ansible all -m ping
 2. Install `nginx`:
 
 ```
-ansible all -m package -a "name=nginx state=present" --become --ask-become-pass
+ansible all -m package -a "name=nginx state=present"
 ```
 
 3. Copy a custom index.html:
 
 ```
 printf "Webcontent\n" > index.html
-ansible all -m copy -a "src=index.html dest=/usr/share/nginx/html/index.html mode=0644" --become --ask-become-pass
+ansible all -m copy -a "src=index.html dest=/usr/share/nginx/html/index.html mode=0644"
 ```
 
 4. Start and enable `nginx`:
 
 ```
-ansible all -m systemd -a "name=nginx state=started enabled=yes"
+ansible all -m systemd -a "name=nginx state=started enabled=true"
 ```
 
 5. Verify service is running:
@@ -365,6 +365,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
