@@ -6,7 +6,7 @@
 > podman rmi -fa
 > cd .../labenv/rootless/
 > ./run.sh
-> podman exec -it --user local -w /home/local/ansible-training/labenv/rootless/ ansible /bin/bash
+> podman exec -it --user local ansible /bin/bash
 > cd /home/local/ansible-training/labenv/rootless/
 > ```
 
@@ -127,7 +127,7 @@ This will return an error message because `local` cannot `sudo` without password
 ansible all --become --ask-become-pass -m shell -a whoami
 ```
 
-This will ask for the `sudo` password and use that on the managed hosts.  
+This will ask for the `sudo` password and use that on the managed hosts (passwd is `local`).  
 
 > [!NOTE]
 > The reason why it's called "become" is that there can be other elevations than `sudo`.  
@@ -308,8 +308,9 @@ ansible all -m shell -a "curl -s localhost"
 
 ---
 > [!TIP]
-> With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.
+> With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
