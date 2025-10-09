@@ -44,7 +44,15 @@ ansible <host-pattern> <options> -m <module> -a "<module-options>"
   * any hostgroups
   * single hosts or IP addresses
   * set of hosts, wildcards, regular expressions
-* **`<options>`** → Options for ths ansible command (e.g., `--list-hosts`, `--user`, `--become`)
+* **`<options>`** → Options for ths ansible command
+  * `-i`, `--inventory`: location of inventory file
+  * `--list-hosts`: list hosts from inventory
+  * `-u`, `--user`: ssh user
+  * `-b`, `--become`: become root on managed host
+  * `--become-user`: default is root, can be other user
+  * `-K`, `--ask-become-pass`: asks for sudo password on managed host
+  * `-f`, `--fork`: limits parallel processes
+  * `-l`, `--limit`: limit hosts to specified group or pattern
 * **`-m <module>`** → Defines the module to use (e.g., `ping`, `shell`, `copy`)
 * **`-a "<module-options>"`** → Provides arguments to the module
 
@@ -372,6 +380,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
