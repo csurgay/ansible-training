@@ -113,6 +113,9 @@ ansible all -m shell -a "echo $HOME"
 * Use `command` to display the system’s uptime.
 * Use `shell` to check the current user’s home directory.
 
+> [!WARNING]
+> Although Ansible is idempotent and reports changes through colored output, `shell` and `command` modules always report “changed”, because Ansible cannot determine actual effect of arbitrary operations on the system.
+
 ---
 
 ### Elevate privileges (`--become` and `--ask-become-pass`)
@@ -369,6 +372,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
