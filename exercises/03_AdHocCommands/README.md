@@ -48,6 +48,10 @@ ansible <host-pattern> <options> -m <module> -a "<module-options>"
 * **`-m <module>`** → Defines the module to use (e.g., `ping`, `shell`, `copy`)
 * **`-a "<module-options>"`** → Provides arguments to the module
 
+> [!TIP]
+> To avoid using the command `ansible` in the VM instead of the control node container by mistake,  
+> it might be good practice to create an alias in the VM shell for `ansible` to print a warning:  
+> `alias ansible='echo "This is not the control node!"'`
 ---
 
 ### Checking the Inventory (`--list-hosts`)
@@ -365,6 +369,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
