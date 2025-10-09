@@ -142,31 +142,37 @@ This will ask for the `sudo` password and use that on the managed hosts (passwd 
 
 ### File Transfer (`copy` and `fetch`)
 
-* **Copy files to remote hosts**:
+* **Copy files to remote hosts** and check results:
 
 ```
 ansible all -m copy -a "src=/etc/hosts dest=/tmp/hosts_backup"
+ansible all -m command -a "cat /tmp/hosts_backup"
 ```
 
-* **Fetch files from remote hosts**:
+* **Fetch files from remote hosts** and check results:
 
 ```
 ansible all -m fetch -a "src=/etc/hosts dest=/tmp/hosts"
+tree /tmp/hosts/
+cat /tmp/hosts/*/ect/hosts
 ```
 
 **Exercise:**
 
-* Copy a local script to `/usr/local/bin` on all hosts
+* Copy a local script to `/usr/local/bin` on all hosts and check results
 
 ```
 echo "ls -la" > myscript.sh
 ansible all -m copy -a "src=myscript.sh dest=/usr/local/bin mode=0755" --become --ask-become-pass
+ansible all -m command -a "cat /usr/local/bin/myscript.sh"
 ```
 
-* Fetch `/etc/os-release` from all hosts into into `/tmp/`:
+* Fetch `/etc/redhat-release` from all hosts into into `/tmp/hosts/`:
 
 ```
-ansible all -m fetch -a "src=/etc/os-release dest=/tmp/"
+ansible all -m fetch -a "src=/etc/redhat-release dest=/tmp/hosts"
+tree /tmp/hosts/
+cat /tmp/hosts/*/ect/redhat-release
 ```
 
 ---
@@ -320,6 +326,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
