@@ -15,6 +15,7 @@ A typical ansible configuration file:
 remote_user = local
 inventory = ./inventory
 ask_pass = false
+interpreter_python = /usr/bin/python3
 
 [privilege_escalation]
 become = true
@@ -34,6 +35,7 @@ Directives in the configuratin file above
 |become_method|sudo is the default, su also can be used|
 |become_user|Switch to this user on the managed host, default is root|
 |become_ask_pass|Asking for sudo password, only one for all hosts|
+|interpreter_python|Specifying exact location of python version suppresses warning in logs|
 
 
 ---
@@ -51,5 +53,6 @@ export ANSIBLE_CONFIG=/home/local/ansible-training/labenv/rootless/ansible.cgf
 The last one is best practice and have the highest precedence over all the others.
 
 ---
+
 
 
