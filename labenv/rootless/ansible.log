@@ -1,0 +1,116 @@
+2025-10-09 13:22:41,941 p=427242 u=root n=ansible INFO| Using /root/ansible-training/labenv/rootless/ansible.cfg as config file
+2025-10-09 13:22:42,079 p=427242 u=root n=ansible INFO| all:
+  children:
+    myhosts:
+      hosts:
+        host1: {}
+        host2: {}
+        host3: {}
+
+2025-10-09 13:25:29,843 p=427251 u=root n=ansible INFO| localhost | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-10-09 13:25:59,203 p=427269 u=root n=ansible INFO| Using /root/ansible-training/labenv/rootless/ansible.cfg as config file
+2025-10-09 13:25:59,329 p=427269 u=root n=ansible INFO| {
+    "_meta": {
+        "hostvars": {}
+    },
+    "all": {
+        "children": [
+            "ungrouped",
+            "myhosts"
+        ]
+    },
+    "myhosts": {
+        "hosts": [
+            "host1",
+            "host2",
+            "host3"
+        ]
+    }
+}
+2025-10-09 13:26:25,824 p=427274 u=root n=ansible INFO| {
+    "_meta": {
+        "hostvars": {}
+    },
+    "all": {
+        "children": [
+            "ungrouped",
+            "myhosts"
+        ]
+    },
+    "myhosts": {
+        "hosts": [
+            "host1",
+            "host2",
+            "host3"
+        ]
+    }
+}
+2025-10-09 13:26:33,933 p=427276 u=root n=ansible ERROR| ERROR! No action selected, at least one of --host, --graph or --list needs to be specified.
+2025-10-09 13:26:36,450 p=427278 u=root n=ansible INFO| {
+    "_meta": {
+        "hostvars": {}
+    },
+    "all": {
+        "children": [
+            "ungrouped",
+            "myhosts"
+        ]
+    },
+    "myhosts": {
+        "hosts": [
+            "host1",
+            "host2",
+            "host3"
+        ]
+    }
+}
+2025-10-09 13:26:44,659 p=427290 u=root n=ansible WARNING| [WARNING]: Unable to parse /root/ansible-training/labenv/rootless/inv2 as an inventory source
+
+2025-10-09 13:26:44,660 p=427290 u=root n=ansible WARNING| [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2025-10-09 13:26:44,663 p=427290 u=root n=ansible INFO| {
+    "_meta": {
+        "hostvars": {}
+    },
+    "all": {
+        "children": [
+            "ungrouped"
+        ]
+    }
+}
+2025-10-09 13:26:50,168 p=427292 u=root n=ansible WARNING| [WARNING]: Unable to parse /root/ansible-training/labenv/rootless/inv22 as an inventory source
+
+2025-10-09 13:26:50,168 p=427292 u=root n=ansible WARNING| [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2025-10-09 13:26:50,172 p=427292 u=root n=ansible INFO| {
+    "_meta": {
+        "hostvars": {}
+    },
+    "all": {
+        "children": [
+            "ungrouped"
+        ]
+    }
+}
+2025-10-09 13:27:31,810 p=427319 u=root n=ansible INFO| {
+    "_meta": {
+        "hostvars": {}
+    },
+    "all": {
+        "children": [
+            "ungrouped",
+            "myhosts"
+        ]
+    },
+    "myhosts": {
+        "hosts": [
+            "localhost",
+            "host1"
+        ]
+    }
+}
+2025-10-09 13:40:06,550 p=427421 u=root n=ansible ERROR|  [ERROR]: User interrupted execution
+
