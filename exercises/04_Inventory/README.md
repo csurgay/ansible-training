@@ -2,6 +2,7 @@
 
 ### In this exercise the following subjects will be covered:
 
+1. Inventory Content
 1. Inventory Locations
 1. Static Inventory
 1. Host groups
@@ -13,7 +14,7 @@
 1. Dynamic Inventory
 
 ---
-### Inventory Locations
+### Inventory Content
 
 Inventory is a textfile listing all hosts for Ansible to potentially manage as
 
@@ -24,6 +25,9 @@ Inventory is a textfile listing all hosts for Ansible to potentially manage as
 * host ranges
 
 and host specific variables.
+
+---
+### Inventory Locations
 
 Inventory can be places into the `/etc/ansible/hosts` file, or  
 into any file in the directories where we run Ansible.
