@@ -46,6 +46,8 @@ The sample Playbook below installs and starts an nginx service and tests it from
 
 You can use blank lines and comments anywhere to increase readability. Intendation however are handled rigorously: children have to be indented more than parents and siblings have to be intended exactly the same (much like in Python).
 
+The Playbook below is saved e.g. in the file `playbook.yml`. 
+
 ```
 ---
 # This is a comment in the sample Playbook
@@ -83,5 +85,9 @@ You can use blank lines and comments anywhere to increase readability. Intendati
 Inventory lists all hosts that Plays in a Playbook will potentially manage.
 
 The same rules and locations apply for Playbooks Inventory than for ad-hoc commands Inventory.
+
+Playbooks are run then with the command:
+
+`ansible-playbook -i ./inventory-file playbook.yml`
 
 
