@@ -5,8 +5,8 @@
 1. Playbooks Introduction
 1. YAML format
 1. Sample Playbook
-1. Configuration for Playbook
-1. Inventory for Playbook
+1. Configuration for Playbooks
+1. Inventory for Playbooks
 1. Running Playbook
 
 ---
@@ -86,12 +86,12 @@ The Playbook below is saved e.g. in the file `playbook.yml`.
 ```
 
 ---
-### Configuration for Playbook
+### Configuration for Playbooks
 
 `ansible.cfg` is the configuration for running Playbooks the same way as for ad-hoc commands.
 
 ---
-### Inventory for Playbook
+### Inventory for Playbooks
 
 Inventory lists all hosts that Plays in a Playbook will potentially manage.
 
@@ -108,5 +108,6 @@ Verbosity of output can be increased using the usual `-v`, `-vv`, `-vvv`, `-vvvv
 
 If you just want to check the syntax of your Playbook, use the `---syntax-check` option:  
 `ansible-playbook -i ./inventory-file ---syntax-check playbook.yml`
+
 
 
