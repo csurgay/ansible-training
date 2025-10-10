@@ -4,6 +4,7 @@
 
 1. Playbooks Introduction
 1. YAML format
+1. Sample Playbook
 
 ---
 ### Playbooks Introduction
@@ -18,19 +19,27 @@ Playbooks are written in **yaml** format, so let's go through it's basics firts.
 ### YAML format
 
 YAML is much like JSON in terms of 
+
 * key-value pairs
 * lists
-* complex constructs
+* dictionaries
+* complex (or nested) objects
 * comments
+
+the main difference being the rigorous use of tabulators.
 
 | Construct | JSON | YAML (__ is TAB) |
 | --------- | ---- | ---- |
 | key-value pair | "key": value | key: value |
 | list | ["a",1,"b"] | - "a"<br> - 1<br> - "b" |
 | dict | tags:{"A": 1, "B": 2, "C": 3} | tags:<br>__A: 1<br>__B: 2<br>__C: 3 |
+| nested objects | { "A": { "L": [ V1, V2 ], "K": 3 } } | A: <br> __"L": <br> __ __- V1 <br> __ __- V2 <br> __"K": 3 |
 | comment | // comment | # comment |
 
 A copmplete Playbook looks like the one below. `---` is the start of the Playbook: a list of Plays. Each Play starts with a dash `-` symbol to indicate list element (see table above). Similarly `tasks:` of a Play is list of Tasks, so each Task starts with the dash `-` symbol.
+
+---
+### Sample Playbook
 
 ```
 ---
@@ -42,7 +51,7 @@ A copmplete Playbook looks like the one below. `---` is the start of the Playboo
   gather_facts: false
 
   tasks:
-    - name: Firts Task is to install nginx
+    - name: First Task is to install nginx
       ansible.builtin.package:
         name: nginx
         state: latest
@@ -62,3 +71,4 @@ A copmplete Playbook looks like the one below. `---` is the start of the Playboo
     - name: Test nginx on one webserver
       ansible.builtin.command:
         cmd: curl http://webserver:80
+
