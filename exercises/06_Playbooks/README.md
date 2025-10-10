@@ -5,6 +5,7 @@
 1. Playbooks Introduction
 1. YAML format
 1. Sample Playbook
+1. Inventory for Playbook
 
 ---
 ### Playbooks Introduction
@@ -26,9 +27,9 @@ YAML is much like JSON in terms of
 * complex (or nested) objects
 * comments
 
-the main difference being the rigorous use of tabulators.
+the main difference being the rigorous use of intendation (like in Python).
 
-| Construct | JSON | YAML (__ is TAB) |
+| Construct | JSON | YAML (__ is space intendation) |
 | --------- | ---- | ---- |
 | key-value pair | "key": value | key: value |
 | list | ["a",1,"b"] | - "a"<br> - 1<br> - "b" |
@@ -40,6 +41,10 @@ A copmplete Playbook looks like the one below. `---` is the start of the Playboo
 
 ---
 ### Sample Playbook
+
+The sample Playbook below installs and starts an nginx service and tests it from the Control Node. Control Node is referred to as `localhost` because that is where the Playbook is run by Ansible.
+
+You can use blank lines and comments anywhere to increase readability. Intendation however are handled rigorously: children have to be indented more than parents and siblings have to be intended exactly the same (much like in Python).
 
 ```
 ---
@@ -71,4 +76,12 @@ A copmplete Playbook looks like the one below. `---` is the start of the Playboo
     - name: Test nginx on one webserver
       ansible.builtin.command:
         cmd: curl http://webserver:80
+
+---
+### Inventory for Playbook
+
+Inventory lists all hosts that Plays in a Playbook will potentially manage.
+
+The same rules and locations apply for Playbooks Inventory than for ad-hoc commands Inventory.
+
 
