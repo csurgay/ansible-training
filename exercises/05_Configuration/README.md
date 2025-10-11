@@ -5,6 +5,7 @@
 1. Ansible Configuration (`ansible.cfg`)
 1. Location of `ansible.cfg`
 1. Ansible Log
+1. Exercise: The `ansible-config` tool
 
 ---
 ### Ansible Configuration (`ansible.cfg`)
@@ -62,5 +63,14 @@ Ansible prints verbose output to the terminal screen, but that is hard to follow
 Good practice is to specify the `log_path=./ansible.log` in the configuration so that all output is appended into a file that can later be studied, searched for, etc.
 
 ---
+### Exercise: The `ansible-config` tool
 
+* locate and study `/etc/ansible/ansible.cfg`
+* try `ansible-config list`
+* try `ansible-config list | grep -i inventory`
+* try `ansible-config dump`
+* try `ansible-config dump | grep -i inventory`
+* try `ansible-config view`
+* try `ansible-config validate`
+* try `ansible-config init > /tmp/ansible.cfg`
 
