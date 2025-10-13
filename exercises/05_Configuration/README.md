@@ -1,6 +1,6 @@
-# Exercise 5. Configuration
+# Section 5. Configuration
 
-### In this exercise the following subjects will be covered:
+### In this section the following subjects will be covered:
 
 1. Ansible Configuration (`ansible.cfg`)
 1. Location of `ansible.cfg`
@@ -73,4 +73,5 @@ Good practice is to specify the `log_path=./ansible.log` in the configuration so
 * try `ansible-config view`
 * try `ansible-config validate`
 * try `ansible-config init > /tmp/ansible.cfg`
+
 
