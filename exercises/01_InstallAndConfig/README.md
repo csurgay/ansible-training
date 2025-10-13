@@ -1,4 +1,4 @@
-# Exercise 1. Provisioning the Training Lab
+# Section 1. Provisioning the Training Lab
 
 ### In this exercise the following subjects will be covered:
 
