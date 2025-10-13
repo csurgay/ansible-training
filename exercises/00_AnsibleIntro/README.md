@@ -1,4 +1,4 @@
-# Section 1. Ansible Introduction
+# Section 0. Ansible Introduction
 
 ### In this section the following subjects will be covered:
 
@@ -56,4 +56,5 @@ Here are the main ideas and terms you’ll come across when learning about Ansib
 * **YAML:** A simple, human-friendly text format that Ansible uses to define playbooks and configuration files
 
 ---
+
 
