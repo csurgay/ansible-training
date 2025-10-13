@@ -1,6 +1,6 @@
-# Exercise 7. Ansible Documentation
+# Section 7. Ansible Documentation
 
-In this exercise the following subjects will be covered:
+### In this section the following subjects will be covered:
 
 1. Search for Modules
 1. Module Usage Template
@@ -88,3 +88,4 @@ local@builder:~$ ansible-doc -s firewalld
 Follow this link for a comprehensive documentation on Ansible:
 
 https://docs.ansible.com/ansible/latest/collections/index_module.html
+
