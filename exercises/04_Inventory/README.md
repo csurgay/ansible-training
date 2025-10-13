@@ -1,6 +1,6 @@
-# Exercise 4. Inventory
+# Section 4. Inventory
 
-### In this exercise the following subjects will be covered:
+### In this section the following subjects will be covered:
 
 1. Inventory Content
 1. Inventory Locations
