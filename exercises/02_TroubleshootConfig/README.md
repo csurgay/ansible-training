@@ -1,6 +1,6 @@
-# Exercise 2. Troubleshooting Ansible Configuration
+# Section 2. Troubleshooting Ansible Configuration
 
-### In this exercise the following subjects will be covered:
+### In this section the following subjects will be covered:
 
 1. Participants are instructed to form group of pairs
 2. One member shall introduce some failure to the Ansible configuration
