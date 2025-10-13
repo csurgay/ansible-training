@@ -1,6 +1,6 @@
-# Exercise 6. Playbooks
+# Section 6. Playbooks
 
-### In this exercise the following subjects will be covered:
+### In this section the following subjects will be covered:
 
 1. Playbooks Introduction
 1. YAML format
@@ -108,6 +108,7 @@ Verbosity of output can be increased using the usual `-v`, `-vv`, `-vvv`, `-vvvv
 
 If you just want to check the syntax of your Playbook, use the `---syntax-check` option:  
 `ansible-playbook -i ./inventory-file ---syntax-check playbook.yml`
+
 
 
 
