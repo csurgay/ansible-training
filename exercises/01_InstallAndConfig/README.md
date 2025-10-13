@@ -1,8 +1,8 @@
 # Section 1. Provisioning the Training Lab
 
-### In this exercise the following subjects will be covered:
+### In this section the following subjects will be covered:
 
-1.	Launh Ansible control node and three managed hosts in containers
+1.	Launch Ansible control node and three managed hosts in containers
 2.	Set up SSH keys so that Ansible can access managed hosts 
 3.	Install and configure Ansible in the control node container
 4.	Test Ansible to access managed hosts
