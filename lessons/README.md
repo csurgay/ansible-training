@@ -13,7 +13,7 @@
 9. Recommended Tools
 10. Summary
 
-## 1.	Why Do We Automate?
+## Why Do We Automate?
 
 ### The Problem with Manual Work
 
@@ -50,7 +50,7 @@ Imagine setting up 10 web servers:
 + **Manual way**: SSH into each server, install Nginx, configure it, open firewall rules → takes hours, error-prone.
 + **Automated way**: Run one Ansible playbook → all servers are ready in minutes, identical, and logged.
 
-## 2.	Introduction to Ansible
+## Introduction to Ansible
 
 ### Ansible is an open-source automation tool that helps you
 
@@ -111,7 +111,7 @@ Here’s a simple playbook to install and start Nginx:
 #### Run it:
 `ansible-playbook -i inventory.ini setup-web.yml`
 
-## 3. Infrastructure as Code (IaC)
+## Infrastructure as Code (IaC)
 
 ### What is IaC?
 
@@ -152,7 +152,7 @@ Install web server	SSH + dnf install	Automated task
 Document steps	Wiki page	Code is the documentation
 Repeat for 10 servers	10x manual work	Run once, scale to 10
 
-## 4. Combining Automation + Ansible + IaC
+## Combining Automation + Ansible + IaC
 
 ### When you use Ansible for IaC, you get a powerful, unified approach:
 
@@ -171,7 +171,7 @@ Application deployment	Zero-downtime rolling updates of a web application
 Security compliance	Enforce password policies, firewall rules, and auditing settings
 Disaster recovery	Quickly rebuild production from code
 
-## 5. Benefits Summary
+## Benefits Summary
 
 ### Category	Benefit
 
@@ -182,7 +182,7 @@ Scalability	Manage 10 or 10,000 servers the same way.
 Collaboration	Infrastructure changes reviewed like software code.
 Resilience	Recover from failures by re-applying playbooks.
 
-## 6.	Next Steps for Learners
+## Next Steps for Learners
 
 1. Install Ansible:
    `sudo dnf install ansible -y`
@@ -204,14 +204,14 @@ Resilience	Recover from failures by re-applying playbooks.
     + Navigator for a one-shop tool set
     + CI/CD integration
 
-## 7.	Visual Workflow
+## Visual Workflow
 
 ```mermaid
 flowchart TD;
   id1[Write Playbook] --> id2[(Commit to Git)] --> id3((CI/CD Pipeline))  --> id4[[Ansible Applies Changes]] --> id5([Infrastructure Updated]);
 ```
 
-## 8. Suggested Training Flow
+## Suggested Training Flow
 
 ### Module	Topic	Hands-On Exercise
 
@@ -222,14 +222,14 @@ flowchart TD;
 5. Real-World Scenario	Deploy a multi-tier app using Ansible
 6. Wrap-Up	Review benefits and next steps
 
-## 9. Recommended Tools
+## Recommended Tools
 
 + Ansible → Core automation tool
 + Git → Version control for playbooks
 + Podman/Docker → For local test environments
 + VS Code → Editing YAML files with syntax highlighting
 
-## 10. Summary
+## Summary
 
 Automation with Ansible and IaC transforms the way we manage infrastructure:
 
@@ -242,6 +242,7 @@ The result is faster development cycles, scalable infrastructure, and reduced ri
 > [!TIP]
 > Key takeaway: Treat infrastructure like code, automate everything possible,\
 > and use Ansible to enforce consistency and reliability across your environments.
+
 
 
 
