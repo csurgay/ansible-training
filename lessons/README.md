@@ -1,6 +1,6 @@
 # Introduction to Automation
 
-## Ansible, Infrastructure as Code, GitOps
+## Ansible - IaC - GitOps
 
 ## Table of contents
 
@@ -244,4 +244,5 @@ The result is faster development cycles, scalable infrastructure, and reduced ri
 > [!TIP]
 > Key takeaway: Treat infrastructure like code, automate everything possible,\
 > and use Ansible to enforce consistency and reliability across your environments.
+
 
