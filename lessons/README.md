@@ -1,8 +1,6 @@
-# Introduction to Automation
+# Automation (Ansible - IaC - GitOps)
 
-## Ansible - IaC - GitOps
-
-## Table of contents
+### In this section the following subjects will be covered:
 
 1. Why Do We Automate?
 2. Introduction to Ansible
@@ -244,5 +242,6 @@ The result is faster development cycles, scalable infrastructure, and reduced ri
 > [!TIP]
 > Key takeaway: Treat infrastructure like code, automate everything possible,\
 > and use Ansible to enforce consistency and reliability across your environments.
+
 
 
