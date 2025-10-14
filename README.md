@@ -17,7 +17,7 @@ On the other hand, pre-designed environments for different exercises can also be
 ---
 # Usage
 
-### 1. Clone and build the Training Lab Exvirment
+### 1. Clone and build the Training Lab
 
 Log in to any Red Hat based linux or VM as root, then:
 
