@@ -49,10 +49,11 @@ host1.samples.com
 ---
 ### Host groups
 
-Hosts can be grouped under a host group name in brackets.  
-Hosts can be listed under multiple host groups.  
-Ungrouped hosts of course can also be listed as before.
-Ansible can than easily manage hosts of groups together.
++ Hosts can be grouped under a host group name in brackets  
++ Hosts can be listed under multiple host groups
++ Ungrouped hosts of course can also be listed, before the host group definitions
++ Grouping allows Ansible to easily manage hosts or groups together
++ There are two gourps always present `all` and `ungrouped`
 
 ```
 192.168.0.2
