@@ -1,8 +1,9 @@
-# Section 8. Variable Precedence
+# Section 8. Variables
 
 ---
 ### In this section the following subjects will be covered
 
+1. Variuable names
 1. Precedence of locations (selected)
 1. Tips for variable locations
 1. Magic variables
@@ -13,6 +14,40 @@
 
 > [!TIP]
 > Keep it simple. Define variables in only one place, thus avoid Ansible Precedence.
+
+---
+### Variable names
+
++ Only letters, numbers and unserscores
++ Cannot redifine keywords and internal variables
++ Cannot start with number
+
+---
+### Usage
+
+#### Define
+
+```
+my_var: 123
+other: "string with spaces"
+path_variable: /etc/ansible/hosts
+list_var:
+  - first
+  - second
+  - third
+dictionary:
+  name: John
+  born: 1970
+```
+
+#### Reference (Jinja2 syntax)
+
+```
+msg: Value of other is {{ other }}.
+quoted_if_starts_with: "{{ my_var }}"
+list_item: "{{ list_var[0] }}"
+str: "{{ dictionary['name'] }}:{{ dictionary['born'] }}"  # John:1970
+```
 
 ---
 ### Precedence of locations (selected)
@@ -81,3 +116,4 @@ ansible host1     -m debug -a 'var=group_names'
 ansible localhost -m debug -a 'var=groups'
 ansible host1     -m debug -a 'var=inventory_hostname'
 ```
+
