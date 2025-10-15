@@ -282,17 +282,20 @@ another: 1234
 #### Precedence of variable locations
 
 1. Role defaults
+1. Inventory file group_vars
 1. Inventory group_vars
 1. Playbook group_vars
+1. Inventory file host_vars
 1. Inventory host_vars
 1. Playbook host_vars
 1. Play vars
+1. Play vars_files
 1. Role vars
 1. Task vars
 1. Include_vars
 1. Registered vars and set_facts
 1. Role params
-1. Extra vars (e.g. command line: -e "user=my_user")
+1. Runtime extra vars (--extra-vars "var1=John var2=123")
 
 ```
 ansible_project/
@@ -303,15 +306,19 @@ ansible_project/
 |  |  └─ **host_vars**
 │  ├─ test.ini
 │  └─ dev.ini
-├─ **group_vars**
+├─ Playbook **group_vars**
 |  └─ myhosts
-├─ **host_vars**
+├─ Playbook **host_vars**
 |   ├─ host1
 |   └─ host2
-├─ setup-playbook.yml - **play_vars, task_vars, include_vars, facts, registered_vars**
-|     ├─ **group_vars**
-|     └─ **host_vars**
 ├─ playbook1.yml
+|   ├─ Play **vars**
+|   ├─ Play **vars_files**
+|   ├─ Block **vars**
+|   ├─ Task **vars**
+|   ├─ Include **vars**
+|   ├─ Registered **vars**
+|   └─ set_facts **vars**
 ├─ playbook2.yml
 └─ roles/ - **role_params**
    ├─ mariadb/
@@ -330,7 +337,7 @@ ansible_project/
 > The above directory layout is best practice, where Playbooks are mappings of a set Roles to a set of Inventory.
 
 > [!WARNING]
-> Still, the sheer number of locations for Variable definitions are impossible keep track of.
+> The sheer number of locations for Variable definitions are impossible keep track of.
 
 > [!TIP]
 > Avoid Precedence conflicts by planning Variable placement and name Variables differently if possible.
@@ -359,6 +366,7 @@ ansible host1     -m debug -a 'var=group_names'
 ansible localhost -m debug -a 'var=groups'
 ansible host1     -m debug -a 'var=inventory_hostname'
 ```
+
 
 
 
