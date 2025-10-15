@@ -22,20 +22,31 @@ On the other hand, pre-designed environments for different exercises can also be
 Log in to any Red Hat based linux or VM as root, then:
 
 ```
+# Install Git and Podman
 dnf install -y git podman
+
+# Clone the Git repo on the Host VM
 git clone https://github.com/csurgay/ansible-training.git
-cd ansible-training/labenv/rebuild
-./rebuild.sh
-podman exec -it -u local -w /home/local/ansible-training/labenv ansible /bin/bash
+
+# Run the Lab Containers and enter the Control Node (ansible)
+cd ansible-training/labenv/rootless
+./run.sh
 ```
 
-### 2. Read lessons material
+### 2. Test the Training Lab
+
+On the Control Node (ansible)
+```
+ansible all -m ping
+```
+
+### 3. Read and follow the lessons material
 
 Numbered GitHub lesson directories under `ansible-training/lessons`
 
-### 3. Hands-on exercises
+### 4. Hands-on exercises
 
-Work in the Ansible Control node Container
+Enter the Ansible Control Node Container (ansible) and run the exercise commands and playbooks
 
 ```
 podman exec -it -u local -w /home/local/ansible-training/labenv ansible /bin/bash
