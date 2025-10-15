@@ -306,8 +306,8 @@ ansible_project/
 ├─ setup-playbook.yml - **play_vars, task_vars, include_vars, facts, registered_vars**
 |     ├─ **group_vars**
 |     └─ **host_vars**
-├─ func1-playbook.yml
-├─ func2-playbook.yml
+├─ playbook1.yml
+├─ playbook2.yml
 └─ roles/ - **role_params**
    ├─ mariadb/
    |  ├─ **defaults/main.yml**
@@ -320,6 +320,9 @@ ansible_project/
       ├─ templates/main.yml
       └─ tasks/main.yml
 ```
+
+> [!NOTE]
+> The above directory layout is best practice, where Playbooks are mappings of a set Roles to a set of Inventory.
 
 ---
 ### Magic variables
@@ -345,6 +348,7 @@ ansible host1     -m debug -a 'var=group_names'
 ansible localhost -m debug -a 'var=groups'
 ansible host1     -m debug -a 'var=inventory_hostname'
 ```
+
 
 
 
