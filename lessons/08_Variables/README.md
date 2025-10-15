@@ -43,10 +43,15 @@ dictionary:
 #### Reference (Jinja2 syntax)
 
 ```
-msg: Value of other is {{ other }}.
+message: Value of other is {{ other }}.
 quoted_if_starts_with: "{{ my_var }}"
 list_item: "{{ list_var[0] }}"
-str: "{{ dictionary['name'] }}:{{ dictionary['born'] }}"  # John:1970
+str: "{{ dictionary['name'] }}:{{ dictionary['born'] }}"
+
+# Value of other is string with spaces.
+# 123
+# first
+# John:1970
 ```
 
 ---
@@ -116,4 +121,5 @@ ansible host1     -m debug -a 'var=group_names'
 ansible localhost -m debug -a 'var=groups'
 ansible host1     -m debug -a 'var=inventory_hostname'
 ```
+
 
