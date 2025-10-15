@@ -64,8 +64,8 @@ Output of an Ansible Task can saved into variables (registering into variables).
 ```
 - name: Illustration of register
   ansible.builtin.command:
-    cmd: getenforce
-  register: se_result
+    cmd: date
+  register: date_result
 ```
 
 ---
@@ -135,6 +135,7 @@ ansible host1     -m debug -a 'var=group_names'
 ansible localhost -m debug -a 'var=groups'
 ansible host1     -m debug -a 'var=inventory_hostname'
 ```
+
 
 
 
