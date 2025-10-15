@@ -380,3 +380,4 @@ ansible host1     -m debug -a 'var=inventory_hostname'
 
 
 
+
