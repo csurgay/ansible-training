@@ -1,4 +1,4 @@
-# Automation (Ansible - IaC - GitOps)
+# Introduction to Ansible - IaC - GitOps
 
 ### In this section the following subjects will be covered:
 
@@ -242,6 +242,7 @@ The result is faster development cycles, scalable infrastructure, and reduced ri
 > [!TIP]
 > Key takeaway: Treat infrastructure like code, automate everything possible,\
 > and use Ansible to enforce consistency and reliability across your environments.
+
 
 
 
