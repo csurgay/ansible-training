@@ -8,5 +8,7 @@
       ansible.builtin.debug:
         msg:
           - Dictionary format un-nesting {{ ansible_facts['eth0']['ipv4']['address'] }}
+          - Object format un-nesting {{ ansible_facts.interfaces }}
           - Object format un-nesting {{ ansible_facts.eth0.ipv4.address }}
+          - Object format un-nesting {{ ansible_facts.python.version.major }}
 
