@@ -6,13 +6,14 @@
 1. Variuable names
 1. Usage
 1. Registered variables
+1. Nested (complex) variables
 1. Precedence of locations (selected)
 1. Tips for variable locations
 1. Magic variables
 
 ---
 > [!WARNING]
-> Variables with the same name can be defined in 20+ different places of the Ansible ecosystem. They will override each other according to their location, aka Variable Precedence.
+> Variables with the same name can be defined in 20+ different places of the Ansible ecosystem. They will override each other according to their location, according to Variable Precedence.
 
 > [!TIP]
 > Keep it simple. Define variables in only one place, thus avoid Ansible Precedence.
@@ -69,7 +70,69 @@ Output of an Ansible Task can saved into variables (registering into variables).
 ```
 
 ---
-### Precedence of locations (selected)
+### Nested (complex) varaibles
+
+If a query or calculation returns nested (complex) object in a variable, the structure can be unnested if two ways:
+
++ Bracket notation (`ansible_facts['python']['version']['major']`)
++ Dot notation (`ansible_facts.python.version.major`)
+
+---
+### Variable Precedence
+
+Variables can be defined in several places, e.g:
+
++ Roles
++ Inventory
++ Playbooks/Plays
++ Include files
++ Command line
+
+Ansible will load each and override the ones with the same names, thus Precedence is applied.
+
+#### Inventory variables
+
+Precedence from lowest to highest:
+
+- `all`
+- parent group
+- child group
+- host
+
+```
+[france]
+paris myvar:host_highest
+
+[germany]
+hamburg
+hannover
+
+[europe:children]
+france
+germany
+
+[europe:vars]
+myvar: child_group
+
+[china]
+beijing
+shanghai
+
+[asia:children]
+chine
+
+[world:children]
+europe
+asia
+
+[world:vars]
+myvar: parent_group
+
+[all:vars]
+myvar: all_lowest
+```
+
+#### Precedence of variable locations
 
 1. Role defaults
 1. Inventory group_vars
@@ -83,7 +146,7 @@ Output of an Ansible Task can saved into variables (registering into variables).
 1. Registered vars and set_facts
 1. Role params
 1. include params
-1. Extra vars (for example, -e "user=my_user")
+1. Extra vars (e.g. command line: -e "user=my_user")
 
 ```
 project/
@@ -104,12 +167,6 @@ project/
       ├─ vars/main.yml
       └─ tasks/main.yml
 ```
-
-
----
-### Tips for variable locations
-
-- Set variables in inventory that deal with geography or behavior
 
 ---
 ### Magic variables
@@ -135,6 +192,7 @@ ansible host1     -m debug -a 'var=group_names'
 ansible localhost -m debug -a 'var=groups'
 ansible host1     -m debug -a 'var=inventory_hostname'
 ```
+
 
 
 
