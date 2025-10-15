@@ -303,6 +303,11 @@ ansible_project/
 |  |  └─ **host_vars**
 │  ├─ test.ini
 │  └─ dev.ini
+├─ **group_vars**
+|  └─ myhosts
+├─ **host_vars**
+|   ├─ host1
+|   └─ host2
 ├─ setup-playbook.yml - **play_vars, task_vars, include_vars, facts, registered_vars**
 |     ├─ **group_vars**
 |     └─ **host_vars**
@@ -348,6 +353,7 @@ ansible host1     -m debug -a 'var=group_names'
 ansible localhost -m debug -a 'var=groups'
 ansible host1     -m debug -a 'var=inventory_hostname'
 ```
+
 
 
 
