@@ -7,8 +7,7 @@
 1. Usage
 1. Registered variables
 1. Nested (complex) variables
-1. Precedence of locations (selected)
-1. Tips for variable locations
+1. Variable Precedence
 1. Magic variables
 
 ---
@@ -79,7 +78,6 @@ If a query or calculation returns nested (complex) object in a variable, the str
 > [!TIP]
 > Keep it simple. Define variables in only one place, thus avoid Ansible Precedence.
 
----
 
 Variables can be defined in several places, e.g:
 
@@ -306,6 +304,7 @@ ansible host1     -m debug -a 'var=group_names'
 ansible localhost -m debug -a 'var=groups'
 ansible host1     -m debug -a 'var=inventory_hostname'
 ```
+
 
 
 
