@@ -101,6 +101,8 @@ Precedence from lowest to highest:
 - host
 
 ```
+washington
+
 [france]
 paris myvar:host_highest
 
@@ -120,7 +122,7 @@ beijing
 shanghai
 
 [asia:children]
-chine
+china
 
 [world:children]
 europe
@@ -131,6 +133,117 @@ myvar: parent_group
 
 [all:vars]
 myvar: all_lowest
+```
+
+#### In yaml format
+
+`ansible-inventory -i ./world_inventory --list --yaml`
+
+```
+all:
+  children:
+    ungrouped:
+      hosts:
+        washington:
+          myvar: all_lowest
+    world:
+      children:
+        asia:
+          children:
+            china:
+              hosts:
+                beijing:
+                  myvar: parent_group
+                shanghai:
+                  myvar: parent_group
+        europe:
+          children:
+            france:
+              hosts:
+                paris:
+                  myvar: host_highest
+            germany:
+              hosts:
+                hamburg:
+                  myvar: child_group
+                hannover:
+                  myvar: child_group
+```
+
+#### In JSON format
+
+`ansible-inventory -i ./world_inventory --list`
+
+```
+{
+    "_meta": {
+        "hostvars": {
+            "beijing": {
+                "myvar": "parent_group"
+            },
+            "hamburg": {
+                "myvar": "child_group"
+            },
+            "hannover": {
+                "myvar": "child_group"
+            },
+            "paris": {
+                "myvar": "host_highest"
+            },
+            "shanghai": {
+                "myvar": "parent_group"
+            },
+            "washington": {
+                "myvar": "all_lowest"
+            }
+        }
+    },
+    "all": {
+        "children": [
+            "ungrouped",
+            "world"
+        ]
+    },
+    "asia": {
+        "children": [
+            "china"
+        ]
+    },
+    "china": {
+        "hosts": [
+            "beijing",
+            "shanghai"
+        ]
+    },
+    "europe": {
+        "children": [
+            "france",
+            "germany"
+        ]
+    },
+    "france": {
+        "hosts": [
+            "paris"
+        ]
+    },
+    "germany": {
+        "hosts": [
+            "hamburg",
+            "hannover"
+        ]
+    },
+    "ungrouped": {
+        "hosts": [
+            "washington"
+        ]
+    },
+    "world": {
+        "children": [
+            "europe",
+            "asia"
+        ]
+    }
+}
 ```
 
 #### Precedence of variable locations
@@ -193,6 +306,7 @@ ansible host1     -m debug -a 'var=group_names'
 ansible localhost -m debug -a 'var=groups'
 ansible host1     -m debug -a 'var=inventory_hostname'
 ```
+
 
 
 
