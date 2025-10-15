@@ -3,7 +3,7 @@
 ---
 ### In this section the following subjects will be covered
 
-1. Variuable names
+1. Variable names
 1. Usage
 1. Registered variables
 1. Nested (complex) variables
@@ -244,6 +244,41 @@ all:
 }
 ```
 
+#### Play variables
+
+```
+---
+- name: Play variable illustration
+  hosts: all
+  gather_facts: false
+  vars:
+    myvariable: "Something for this Play only"
+    another: 1234
+```
+
+#### Included variables
+
+```
+---
+- name: Include vars_files illustration
+  hosts: all
+  gather_facts: false
+  vars:
+    hardcoded: "here"
+  vars_files:
+    - /vars/reusable_variables.yml
+    - /vars/another_varfile.yml
+```
+
+#### Format of var_files
+
+```
+---
+# Variables for use in multiple Plays
+myvariable: "Reusable string"
+another: 1234
+```
+
 #### Precedence of variable locations
 
 1. Role defaults
@@ -304,6 +339,7 @@ ansible host1     -m debug -a 'var=group_names'
 ansible localhost -m debug -a 'var=groups'
 ansible host1     -m debug -a 'var=inventory_hostname'
 ```
+
 
 
 
