@@ -4,6 +4,8 @@
 ### In this section the following subjects will be covered
 
 1. Variuable names
+1. Usage
+1. Registered variables
 1. Precedence of locations (selected)
 1. Tips for variable locations
 1. Magic variables
@@ -52,6 +54,18 @@ str: "{{ dictionary['name'] }}:{{ dictionary['born'] }}"
 # 123
 # first
 # John:1970
+```
+
+---
+### Registered variables
+
+Output of an Ansible Task can saved into variables (registering into variables). The `register: <var>` keyword is used. These newly created variables can later be tested for the success or the result of a Task's execution.
+
+```
+- name: Illustration of register
+  ansible.builtin.command:
+    cmd: getenforce
+  register: se_result
 ```
 
 ---
@@ -121,5 +135,6 @@ ansible host1     -m debug -a 'var=group_names'
 ansible localhost -m debug -a 'var=groups'
 ansible host1     -m debug -a 'var=inventory_hostname'
 ```
+
 
 
