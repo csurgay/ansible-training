@@ -14,6 +14,10 @@ First of all, it can be set up and run in a singe host or VM, because the Contro
 
 On the other hand, pre-designed environments for different exercises can also be quickly set up as containers. This further simplifies the bootcamp setup. There is no need for pre-exercise "lab scripts". Participants can also compare or work on multiple lessons at the same time, as they are lightweight Container environments.
 
+### Container based Ansible Training Lab
+
+<img width="674" height="332" alt="ansible-labenv" src="https://github.com/user-attachments/assets/aba470de-6a9a-409c-996d-b90dbf5fa05c" />
+
 ---
 # Usage
 
