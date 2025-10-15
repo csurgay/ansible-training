@@ -289,29 +289,35 @@ another: 1234
 1. Play vars
 1. Role vars
 1. Task vars
-1. include_vars
+1. Include_vars
 1. Registered vars and set_facts
 1. Role params
-1. include params
 1. Extra vars (e.g. command line: -e "user=my_user")
 
 ```
-project/
+ansible_project/
+├─ ansible.cfg
 ├─ inventory/
-│  ├─ hosts.ini
-│  ├─ group_vars/
-│  │  └─ webservers.yml
-│  └─ host_vars/
-│     └─ host1.example.com.yml
-├─ playbook.yml
-├─ play_group_vars/
-│  └─ webservers.yml        # "Playbook group_vars" example
-├─ play_host_vars/
-│  └─ host1.example.com.yml # "Playbook host_vars" example
-└─ roles/
-   └─ myrole/
+│  ├─ prod.ini
+|  |  ├─ **group_vars**
+|  |  └─ **host_vars**
+│  ├─ test.ini
+│  └─ dev.ini
+├─ setup-playbook.yml - **play_vars, task_vars, include_vars, facts, registered_vars**
+|     ├─ **group_vars**
+|     └─ **host_vars**
+├─ func1-playbook.yml
+├─ func2-playbook.yml
+└─ roles/ - **role_params**
+   ├─ mariadb/
+   |  ├─ **defaults/main.yml**
+   |  ├─ **vars/main.yml**
+   |  ├─ templates/main.yml
+   |  └─ tasks/main.yml
+   └─ nginx/
       ├─ defaults/main.yml
       ├─ vars/main.yml
+      ├─ templates/main.yml
       └─ tasks/main.yml
 ```
 
@@ -339,6 +345,7 @@ ansible host1     -m debug -a 'var=group_names'
 ansible localhost -m debug -a 'var=groups'
 ansible host1     -m debug -a 'var=inventory_hostname'
 ```
+
 
 
 
