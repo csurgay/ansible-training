@@ -36,7 +36,7 @@ the main difference being the rigorous use of intendation (like in Python).
 | key-value pair | "key": value | key: value |
 | list | ["a",1,"b"] | - "a"<br> - 1<br> - "b" |
 | dict | tags:{"A": 1, "B": 2, "C": 3} | tags:<br>__A: 1<br>__B: 2<br>__C: 3 |
-| nested objects | { "A": { "L": [ V1, V2 ], "K": 3 } } | A: <br> __"L": <br> __ __- V1 <br> __ __- V2 <br> __"K": 3 |
+| nesting  (complex objects) | { "A": { "L": [ V1, V2 ], "K": 3 } } | A: <br> __"L": <br> __ __- V1 <br> __ __- V2 <br> __"K": 3 |
 | comment | // comment | # comment |
 | multiline strings | N/A | \| <br> multi <br> line <br> string |
 
@@ -108,6 +108,7 @@ Verbosity of output can be increased using the usual `-v`, `-vv`, `-vvv`, `-vvvv
 
 If you just want to check the syntax of your Playbook, use the `---syntax-check` option:  
 `ansible-playbook -i ./inventory-file ---syntax-check playbook.yml`
+
 
 
 
