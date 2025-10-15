@@ -12,13 +12,6 @@
 1. Magic variables
 
 ---
-> [!WARNING]
-> Variables with the same name can be defined in 20+ different places of the Ansible ecosystem. They will override each other according to their location, according to Variable Precedence.
-
-> [!TIP]
-> Keep it simple. Define variables in only one place, thus avoid Ansible Precedence.
-
----
 ### Variable names
 
 + Only letters, numbers and unserscores
@@ -79,6 +72,14 @@ If a query or calculation returns nested (complex) object in a variable, the str
 
 ---
 ### Variable Precedence
+
+> [!WARNING]
+> Variables with the same name can be defined in 20+ different places of the Ansible ecosystem. They will override each other according to their location, according to Variable Precedence.
+
+> [!TIP]
+> Keep it simple. Define variables in only one place, thus avoid Ansible Precedence.
+
+---
 
 Variables can be defined in several places, e.g:
 
@@ -192,6 +193,7 @@ ansible host1     -m debug -a 'var=group_names'
 ansible localhost -m debug -a 'var=groups'
 ansible host1     -m debug -a 'var=inventory_hostname'
 ```
+
 
 
 
