@@ -329,6 +329,12 @@ ansible_project/
 > [!NOTE]
 > The above directory layout is best practice, where Playbooks are mappings of a set Roles to a set of Inventory.
 
+> [!WARNING]
+> Still, the sheer number of locations for Variable definitions are impossible keep track of.
+
+> [!TIP]
+> Avoid Precedence conflicts by planning Variable placement and name Variables differently if possible.
+
 ---
 ### Magic variables
 
@@ -353,6 +359,7 @@ ansible host1     -m debug -a 'var=group_names'
 ansible localhost -m debug -a 'var=groups'
 ansible host1     -m debug -a 'var=inventory_hostname'
 ```
+
 
 
 
