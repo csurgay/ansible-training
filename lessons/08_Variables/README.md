@@ -300,15 +300,20 @@ another: 1234
 ```
 ansible_project/
 ├─ ansible.cfg
+├─ inventory_file
+│  ├─ **group_vars**
+│  ├─ **host_vars**
 ├─ inventory/
+│  ├─ **group_vars/**
+│  ├─ **host_vars/**
 │  ├─ prod.ini
 |  |  ├─ **group_vars**
 |  |  └─ **host_vars**
 │  ├─ test.ini
 │  └─ dev.ini
-├─ Playbook **group_vars**
+├─ **group_vars/** (Playbook)
 |  └─ myhosts
-├─ Playbook **host_vars**
+├─ **host_vars/** (Playbook)
 |   ├─ host1
 |   └─ host2
 ├─ playbook1.yml
@@ -366,6 +371,7 @@ ansible host1     -m debug -a 'var=group_names'
 ansible localhost -m debug -a 'var=groups'
 ansible host1     -m debug -a 'var=inventory_hostname'
 ```
+
 
 
 
