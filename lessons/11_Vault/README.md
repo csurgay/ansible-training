@@ -48,9 +48,10 @@ ansible-vault view --vault-password-file=vault-pass.yml mysecret.yml
 
 In Playbook the variables from Vault can be used as usual by `vars_files: mysecret.yml` and providing the master password.
 
-`ansible-playbook --ask-vault-pass test.yml`
-
-`ansible-playbook --vault-pass-file=vault-pass.yml test.yml`
+  * `ansible-playbook --vault-id=@prompt test.yml`
+  * (`ansible-playbook --ask-vault-pass test.yml`)
+  * `ansible-playbook --vault-id=@vault-pass.yml test.yml`
+  * (`ansible-playbook --vault-pass-file=vault-pass.yml test.yml`)
 
 `test.yml`
 ```
@@ -67,6 +68,6 @@ In Playbook the variables from Vault can be used as usual by `vars_files: mysecr
           - "password: {{ password }}"
       # no_log: true # would prevents open secret being logged
 
-
 ```
+
 
