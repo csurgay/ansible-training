@@ -45,16 +45,20 @@ In most cases, all you need is a **terminal** to run commands and a **text edito
 # Ansible Concepts
 Here are the main ideas and terms you’ll come across when learning about Ansible:
 
-* **Host:** A remote computer managed by Ansible
-* **Group:** A set of hosts that share something in common
-* **Inventory:** A list of all the hosts and groups that Ansible manages. It can be a simple static file or a dynamic list pulled from external sources like cloud providers
-* **Module:** A small piece of code that Ansible runs on the remote machines to perform specific actions
-* **Task:** A single action in Ansible that calls a module with certain options
-* **Playbook:** A file that contains one or multiple Plays
-* **Play:** A list of tasks, describing step-by-step how a system should be configured
-* **Role:** A reusable and shareable way to organize playbooks, tasks, and files for easier automation
-* **YAML:** A simple, human-friendly text format that Ansible uses to define playbooks and configuration files
+| Concept | Description |
+|---------|-------------|
+| **Host** | A remote computer managed by Ansible |
+| **Group** | A set of hosts that share something in common |
+| **Inventory** | A list of all the hosts and groups that Ansible manages. It can be a simple static file or a dynamic list pulled from external sources like cloud providers |
+| **Module** | A small piece of code that Ansible runs on the remote machines to perform specific actions |
+| **Task** | A single action in Ansible that calls a module with certain options |
+| **Handler** | A special Task executed only if notified by previous Tasks |
+| **Playbook** | A file that contains one or multiple Plays |
+| **Play** | A list of tasks, describing step-by-step how a system should be configured |
+| **Role** | A reusable and shareable way to organize playbooks, tasks, and files for easier automation |
+| **YAML** | A simple, human-friendly text format that Ansible uses to define playbooks and configuration files |
 
 ---
+
 
 
