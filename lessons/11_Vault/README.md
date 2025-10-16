@@ -34,7 +34,10 @@ password: local
 
 `ansible-vault encrypt mysecret.yml`
 `ansible-vault view mysecret.yml`
+`ansible-vault edit mysecret.yml`
 `ansible-vault decrypt mysecret.yml`
+`ansible-vault decrypt mysecret.yml --output=mysecret-decrypted.yml`
+`ansible-vault rekey mysecret.yml`
 
 Master password for Vault can be stored in a textfile too, with appropriate access control of course.
 
@@ -43,16 +46,27 @@ echo vaultmasterpass > vault-pass.yml
 ansible-vault view --vault-password-file=vault-pass.yml mysecret.yml
 ```
 
-In Playbook the variables from Vault can be used as usual.
+In Playbook the variables from Vault can be used as usual by `vars_files: mysecret.yml` and providing the master password.
 
+`ansible-playbook --ask-vault-pass test.yml`
+
+`ansible-playbook --vault-pass-file=vault-pass.yml test.yml`
+
+`test.yml`
 ```
 - name: Vault Variable illustration
   hosts: host1
   gather_facts: false
+  vars_files:
+    - mysecret.yml
   tasks:
     - name: Print encrypted variables from Vault
       ansible.builtin.debug:
-        var:
-          username
-          password
+        msg:
+          - "username: {{ username }}"
+          - "password: {{ password }}"
+      # no_log: true # would prevents open secret being logged
+
+
 ```
+
