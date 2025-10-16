@@ -93,7 +93,7 @@ dbserver2
 ```
 
 ---
-### Host ranges
+### Host ranges and patterns
 
 Using the special range syntax `[begin:end]` many hosts can be specified in a single entry.
 
@@ -102,6 +102,15 @@ server_[01:12]
 [a:d].sample.com
 192.168.0.[2:254]
 ```
+
+```
+myhosts:!host1 # exclusion
+ungrouped:myhosts # union
+ungrouped:&myhosts # intersection
+myhosts:!{{ not_this }} # runtime variable
+```
+
+`ansible -e not_this=host3 'myhosts:!{{ not_this }}' -m ping`
 
 ---
 ### Testing Inventories
