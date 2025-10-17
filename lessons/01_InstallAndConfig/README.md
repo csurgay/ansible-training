@@ -149,6 +149,8 @@ A few typical uses of the other CLI tools:
     ```
 - `ansible-doc debug`
 - `ansible-doc --snippet debug`
+- `ansible-galaxy role install system`
+- `ansible-galaxy role list`
 - `ansible-inventory --list --vars`
 - `ansible-inventory --graph`
 - `ansible-playbook --inventory targethosts --become --aks-become-pass myplaybook.yml`
