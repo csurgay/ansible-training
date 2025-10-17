@@ -5,13 +5,15 @@
 1.	Launch Ansible control node and three managed hosts in containers
 2.	Set up SSH keys so that Ansible can access managed hosts 
 3.	Install and configure Ansible in the control node container
-4.	Test Ansible to access managed hosts
+4.	Smoke test Ansible to access managed hosts
+5.	CLI Toolset
 
 ### Ansible Training Environment
 
 ![Figure 1. Training lab environment](https://csurgay.com/ansible/ansible-labenv.png)
 
-## 1. Launching the Ansible Training Environment
+---
+## Launching the Ansible Training Environment
 
 ### Log into the builder environment
 
@@ -46,7 +48,8 @@
 3.	Make note of the 3 IP addresses, we will need them later (e.g. 10.88.0.11, 12, 13)
 4.	Check the running containers with the command **`podman ps -a`**
 
-## 2. Setting up SSH keys
+---
+## Setting up SSH keys
 
 ### Generate SSH keys on “controlnode”
 
@@ -61,7 +64,8 @@
 3.	Type in root password **`root`** when requested
 4.	Repeat 2 and 3 for the other two magaged host containers as well
 
-## 3. Install and configure Ansible on control node
+---
+## Install and configure Ansible on control node
 
 ### Install ansible and vim
 
@@ -92,7 +96,8 @@ log_path=ansible.log
 interpreter_python=/usr/bin/python3
 ```
 
-## 4. Test ansible access managed hosts
+---
+## Smoke test ansible access managed hosts
 
 ### Ad-hoc command for testing
 
@@ -101,3 +106,22 @@ interpreter_python=/usr/bin/python3
 1.	Test that ansible can manage the hosts with the ping module as follows:
 1.	**`ansible myhosts -m ping`**
 1.	Check ansible output for all three pong responses
+
+---
+## CLI toolset
+
+There are other CLI tools than `ansible` installed from the package, see the list below. Some
+of them can also be used for smoke testing or quickly query or manage a single aspect of target 
+hosts without writing a full Playbook.
+
+| CLI tool | Purpose |
+|----------|---------|
+| ansible | Runs single Task on managed hosts (aka ad-hoc command ) |
+| ansible-config | View, init, validate an Ansible Configuration |
+| ansible-console | Interactive Ansible command interpreter |
+| ansible-doc | Modules and Plugins documentation tool (snippet|
+| ansible-galaxy | Roles and Collections related operations |
+| ansible-inventory | View actual Inventory groups, hosts, and variables |
+| ansible-playbook | Run Playbook on managed hosts |
+| ansible-pull | Pulls Playbook from git repo and runs on managed hosts |
+| ansible-vault | Secret variable and file encryption automatism for Playbooks |
