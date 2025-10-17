@@ -6,6 +6,7 @@
 1. Logical operators
 1. Loops
 1. Delegation
+1. Blocks
 
 ---
 ## Conditions
@@ -177,6 +178,9 @@ when:
 ---
 ## Delegation
 
+Tasks can be delegated for execution to another target host than the current one visited by the Playbook.
+E.g. you want to execute something on the localhost which is the Control Node, instead of the actual Managed Host.
+
 ```
 - name: Download nginx to Control Node and install on Managed Hosts
   hosts: all
@@ -200,5 +204,44 @@ when:
         disable_gpg_check: true
 ```
 
+---
+## Blocks
 
+A number of Tasks can be grouped into a Block, so that Conditions, Loops, Delegation would apply to them all in the same Block.
+
+```
+---
+- name: Block of Tasks
+  hosts: all
+  gather_facts: true
+
+  tasks:
+
+   - name: Install, configure, and start Apache
+     block:
+
+       - name: Install httpd and memcached
+         ansible.builtin.dnf:
+           name:
+           - httpd
+           - memcached
+           state: present
+
+       - name: Apply the foo config template
+         ansible.builtin.template:
+           src: templates/src.j2
+           dest: /etc/foo.conf
+
+       - name: Start service bar and enable it
+         ansible.builtin.service:
+           name: bar
+           state: started
+           enabled: True
+
+     become: true
+     become_user: root
+     ignore_errors: true
+     when: ansible_facts['distribution'] == 'CentOS'
+     # end of Block here
+```
 
