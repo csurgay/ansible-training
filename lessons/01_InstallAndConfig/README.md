@@ -125,3 +125,32 @@ hosts without writing a full Playbook.
 | ansible-playbook | Run Playbook on managed hosts |
 | ansible-pull | Pulls Playbook from git repo and runs on managed hosts |
 | ansible-vault | Secret variable and file encryption automatism for Playbooks |
+
+### Testing the tools
+
+A few typical uses of the other CLI tools:
+
+- `ansible-config view`
+- `ansible-config validate`
+- `ansible-config list | grep -A6 LOG_PATH`
+- `ansible-console all`
+  - ```
+    list
+    list goups
+    ping
+    help ansible.builtin.debug
+    command date
+    command hostname
+    become true
+    dnf name=sl state=present
+    gather_facts
+    set_fact alma=2kg
+    debug var=alma
+    ```
+- `ansible-doc debug`
+- `ansible-doc --snippet debug`
+- `ansible-inventory --list --vars`
+- `ansible-inventory --graph`
+- `ansible-playbook --inventory targethosts --become --aks-become-pass myplaybook.yml`
+- `ansible-pull -U https://github.com/user/myansible myplaybook.yml`
+- `ansible-vault view --vault-id=@prompt mysecret.yml`
