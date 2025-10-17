@@ -169,7 +169,8 @@ when:
 ---
 - name: Loop through Inventory
   ansible.builtin.debug:
-    msg: "{{ item }}"
+    msg: "{{ item }} : {{ hostvars[item].group_names[0] }}"
   loop: "{{ groups['all'] }}"
 ```
+
 
