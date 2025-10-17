@@ -75,6 +75,7 @@
 
 ### Roles Conditions
 ```
+---
 - name: Roles Conditions
   hosts: all
   roles:
@@ -108,22 +109,25 @@
 
 ### Combining Loops and Conditions
 ```
+---
 - name: Combining Loops and Conditions
   hosts: all # webservers and databases
   vars:
-    environment: staging
     apps:
       - name: httpd
         hostgroups: ['webservers']
       - name: mariadb
-        hostgroups: ['databeses']
+        hostgroups: ['databases']
       - name: git
         hostgroups: ['webservers', 'databases']
+
   tasks:
+
     - name: Deploy packages based on hostgroup
       package:
         name: "{{ item.name }}"
         state: latest
-      when: hostgroup in item.hostgroups
+      when: group_names[0] in item.hostgroups
       loop: "{{ apps }}"
 ```
+
