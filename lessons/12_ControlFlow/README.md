@@ -3,6 +3,7 @@
 ### In this section the following subjects will be covered:
 
 1. Conditions
+1. Loops
 
 ---
 ## Conditions
@@ -70,4 +71,59 @@
         name: nginx
         state: restarted
       when: install_nginx_result.changed
+```
+
+### Roles Conditions
+```
+- name: Roles Conditions
+  hosts: all
+  roles:
+    - role: nginx
+      when: "'webservers' in group_names"
+    - role: mariadb
+      when: "'databases' in group_names"
+```
+
+---
+## Loops
+
+### Variable list Loops
+```
+---
+- name: Variable list Loops
+  hosts: host1
+  become: true
+
+  tasks:
+
+    - name: Install list of packages
+      ansible.builtin.package:
+        name: “{{ item }}”
+        state: present
+      loop:
+        - git
+        - podman
+        - vim
+```
+
+### Combining Loops and Conditions
+```
+- name: Combining Loops and Conditions
+  hosts: all # webservers and databases
+  vars:
+    environment: staging
+    apps:
+      - name: httpd
+        hostgroups: ['webservers']
+      - name: mariadb
+        hostgroups: ['databeses']
+      - name: git
+        hostgroups: ['webservers', 'databases']
+  tasks:
+    - name: Deploy packages based on hostgroup
+      package:
+        name: "{{ item.name }}"
+        state: latest
+      when: hostgroup in item.hostgroups
+      loop: "{{ apps }}"
 ```
