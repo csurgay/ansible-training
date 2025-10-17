@@ -7,6 +7,7 @@
 1. Loops
 1. Delegation
 1. Blocks
+1. Handlers
 
 ---
 ## Conditions
@@ -245,3 +246,82 @@ A number of Tasks can be grouped into a Block, so that Conditions, Loops, Delega
      # end of Block here
 ```
 
+Blocks can also be used for error handling.
+```
+---
+- name: Error handling with Blocks
+  hosts: all
+  gather_facts: false
+
+  tasks:
+
+   - name: Attempt and graceful roll back demo
+     block:
+       - name: Print a message
+         ansible.builtin.debug:
+           msg: 'I execute normally'
+
+       - name: Force a failure
+         ansible.builtin.command: /bin/false
+
+       - name: Never print this
+         ansible.builtin.debug:
+           msg: 'I never execute, due to the above task failing, :-('
+
+     rescue:
+       - name: Print when errors
+         ansible.builtin.debug:
+           msg: 'I caught an error'
+
+       - name: Force a failure in middle of recovery! >:-)
+         ansible.builtin.command: /bin/false
+
+       - name: Never print this
+         ansible.builtin.debug:
+           msg: 'I also never execute :-('
+
+     always:
+       - name: Always do this
+         ansible.builtin.debug:
+           msg: "This always executes"
+```
+
+---
+## Handlers
+
+Tasks can notify Handlers to execute at the end, so that restarting type of operations run only once if needed.
+```
+---
+- name: Verify apache installation
+  hosts: webservers
+  become: true
+  vars:
+    http_port: 80
+    max_clients: 200
+
+  tasks:
+    - name: Apache is updated
+      ansible.builtin.yum:
+        name: httpd
+        state: latest
+
+    - name: Write apache config
+      ansible.builtin.template:
+        src: /srv/httpd.j2
+        dest: /etc/httpd.conf
+      notify:
+        - Restart apache
+
+    - name: Run Apache
+      ansible.builtin.service:
+        name: httpd
+        state: started
+
+    # If apache is already running, a restart is needed
+
+  handlers:
+    - name: Restart apache
+      ansible.builtin.service:
+        name: httpd
+        state: restarted
+```
