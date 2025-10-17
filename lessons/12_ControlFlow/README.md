@@ -3,6 +3,7 @@
 ### In this section the following subjects will be covered:
 
 1. Conditions
+1. Logical operators
 1. Loops
 
 ---
@@ -86,6 +87,38 @@
 ```
 
 ---
+## Logical operators
+
+### AND, OR, NOT
+
+```
+when: one is "1" and two is "2"
+```
+
+```
+when:
+  - one is "1"
+  - two is "2"
+```
+
+```
+- name: Illustration for NOT operator
+  hosts: all
+  tasks:
+    - name: Check mountpoint exists
+      stat:
+        path: "{{ mountpoint }}"
+      register: mountpoint_stat
+
+    - name: Create mountpoint
+      file:
+        path: "{{ mountpoint }}"
+        state: directory
+        mode: 755
+      when: not mountpoint_stat.stat.exists
+```
+
+---
 ## Loops
 
 ### Variable list Loops
@@ -129,5 +162,14 @@
         state: latest
       when: group_names[0] in item.hostgroups
       loop: "{{ apps }}"
+```
+
+### Loop through Inventory
+```
+---
+- name: Loop through Inventory
+  ansible.builtin.debug:
+    msg: "{{ item }}"
+  loop: "{{ groups['all'] }}"
 ```
 
