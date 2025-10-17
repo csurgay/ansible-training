@@ -5,6 +5,7 @@
 1. Conditions
 1. Logical operators
 1. Loops
+1. Delegation
 
 ---
 ## Conditions
@@ -172,5 +173,32 @@ when:
     msg: "{{ item }} : {{ hostvars[item].group_names[0] }}"
   loop: "{{ groups['all'] }}"
 ```
+
+---
+## Delegation
+
+```
+- name: Download nginx to Control Node and install on Managed Hosts
+  hosts: all
+  tasks:
+    - name: Download the nginx locally to Control Node
+      get_url:
+        url: "https://nginx.org/packages/rhel/8/x86_64/RPMS/nginx-1.28.0-1.el8.ngx.x86_64.rpm"
+        dest: "/tmp/nginx_1.28.rpm"
+      delegate_to: localhost
+      run_once: true
+
+    - name: Copy package to Managed Hosts
+      copy:
+        src: "/tmp/nginx_1.28.rpm"
+        dest: "/tmp/"
+
+    - name: Install nginx on Managed Hosts
+      ansible.builtin.dnf:
+        name: "/tmp/nginx_1.28.rpm"
+        state: present
+        disable_gpg_check: true
+```
+
 
 
