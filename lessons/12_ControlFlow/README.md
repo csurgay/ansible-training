@@ -218,29 +218,27 @@ A number of Tasks can be grouped into a Block, so that Conditions, Loops, Delega
 
   tasks:
 
-   - name: Install, configure, and start Apache
+   - name: Install, configure and start Apache
      block:
 
-       - name: Install httpd and memcached
+       - name: Install httpd
          ansible.builtin.dnf:
            name:
            - httpd
-           - memcached
            state: present
 
-       - name: Apply the foo config template
+       - name: Apply template
          ansible.builtin.template:
-           src: templates/src.j2
-           dest: /etc/foo.conf
+           src: templates/http.conf.j2
+           dest: /etc/httpd/http.conf
 
-       - name: Start service bar and enable it
+       - name: Start and enable service
          ansible.builtin.service:
-           name: bar
+           name: httpd
            state: started
-           enabled: True
+           enabled: true
 
      become: true
-     become_user: root
      ignore_errors: true
      when: ansible_facts['distribution'] == 'CentOS'
      # end of Block here
@@ -255,30 +253,30 @@ Blocks can also be used for error handling.
 
   tasks:
 
-   - name: Attempt and graceful roll back demo
+   - name: Catching errors
      block:
        - name: Print a message
          ansible.builtin.debug:
-           msg: 'I execute normally'
+           msg: 'I execute this normally'
 
        - name: Force a failure
          ansible.builtin.command: /bin/false
 
        - name: Never print this
          ansible.builtin.debug:
-           msg: 'I never execute, due to the above task failing, :-('
+           msg: 'I never execute, due to the above failure'
 
      rescue:
        - name: Print when errors
          ansible.builtin.debug:
            msg: 'I caught an error'
 
-       - name: Force a failure in middle of recovery! >:-)
+       - name: Force a failure in middle of recovery!
          ansible.builtin.command: /bin/false
 
        - name: Never print this
          ansible.builtin.debug:
-           msg: 'I also never execute :-('
+           msg: 'I also never execute'
 
      always:
        - name: Always do this
@@ -325,3 +323,4 @@ Tasks can notify Handlers to execute at the end, so that restarting type of oper
         name: httpd
         state: restarted
 ```
+
