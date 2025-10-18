@@ -8,6 +8,7 @@
 | Control Node | Containerized Ansible execution environment on a host or VM |
 | Managed Hosts | Dozens of containerized Linux servers on the same sigle host |
 | Training Lab | Fully automated setup and real playbook exercises |
+| Versions | Ansible core 2.18, Python 3.13, Jinja 3.1, Podman 5.4, Git 2.51, Fedora 42, Linux 6.14 |
 | Date Created | 2025-09-01 |
 | Last Modified | 2025-10-24 |
 | Contact | csurgay@gmail.com |
