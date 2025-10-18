@@ -9,6 +9,7 @@
 1. Nested (complex) variables
 1. Variable Precedence
 1. Magic variables
+1. Prompt variables
 
 ---
 ### Variable names
@@ -372,8 +373,35 @@ ansible localhost -m debug -a 'var=groups'
 ansible host1     -m debug -a 'var=inventory_hostname'
 ```
 
+---
+### Prompt variables
 
+```
+---
+- name: Prompt variables
+  hosts: host1
+  gather_facts: false
+  vars_prompt:
+    - name: username
+      prompt: What is your username?
+      private: false
+    - name: password
+      prompt: What is your password?
+    - name: packagename
+      prompt: What would you like to install?
+      private: false
 
+  tasks:
+
+    - name: Print a message
+      ansible.builtin.debug:
+        msg: 'Logging in as {{ username }}'
+
+    - name: Install packagename
+      ansible.builtin.dnf:
+        name: "{{ packagename }}"
+        state: present
+```
 
 
 
