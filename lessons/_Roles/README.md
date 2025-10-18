@@ -1,9 +1,10 @@
-# Section 12. Control Flow
+# Section ??. Roles
 
 ### In this section the following subjects will be covered:
 
 1. Introduction to Roles
 1. Roles Directory Structure
+1. Roles Locatinos
 
 ---
 ## Introduction to Roles
@@ -14,25 +15,32 @@ Roles can be called from your Playbooks, and can be given parameters specific to
 
 ---
 ## Roles Directory Structure
-
+```
 roles/
-    myrole/               # this hierarchy represents a "role"
+    myrole1/              # this hierarchy represents a "role"
         tasks/            #
-            main.yml      #  <-- tasks file can include smaller files if warranted
+            main.yml      #  <-- tasks, can include other task files
         handlers/         #
             main.yml      #  <-- handlers file
-        templates/        #  <-- files for use with the template resource
+        templates/        #  <-- files for template module
             ntp.conf.j2   #  <------- templates end in .j2
         files/            #
-            bar.txt       #  <-- files for use with the copy resource
-            foo.sh        #  <-- script files for use with the script resource
+            mytext.txt    #  <-- files to copy
+            myscript.sh   #  <-- script files for use with the script resource
         vars/             #
-            main.yml      #  <-- variables associated with this role
+            main.yml      #  <-- variables for this role
         defaults/         #
-            main.yml      #  <-- default lower priority variables for this role
+            main.yml      #  <-- default variables for this role, low precedence
         meta/             #
             main.yml      #  <-- role dependencies
-        library/          # roles can also include custom modules
-        module_utils/     # roles can also include custom module_utils
-        lookup_plugins/   # or other types of plugins, like lookup in this case
+```
+
+---
+### Roles Locations
+
+Roles can be placed in the `roles/` subdirctory relative to the Playbook file, or at the `roles_path` config key locations with it's default values:
+
+- `~/.ansible/roles`
+- `/usr/share/ansible/roles`
+- `/etc/ansible/roles`
 
