@@ -5,15 +5,16 @@
 | Purpose | Single host full Ansible training lab (lessons and exercises) |
 | Audience | Future DevOps engineers new to Ansible |
 | Prerequisites | Linux, any scripting experience |
-| Control Node | Containerized Ansible execution environment |
-| Managed Hosts | Dozens of Containerized linux servers on a sigle host |
+| Control Node | Containerized Ansible execution environment on a host or VM |
+| Managed Hosts | Dozens of containerized Linux servers on the same sigle host |
+| Training Lab | Fully automated setup and real playbook exercises |
 | Date Created | 2025-09-01 |
 | Last Modified | 2025-10-24 |
 | Contact | csurgay@gmail.com |
 
-This is the first complete Ansible traning laboratory where Containers are managed instead of resource consuming VMs.
+In the first complete Containerized Ansible Traning Lab there are lightweight Containers for both the Ansible Control Node, and the dozens of Managed Host Linux servers. This is new to earlier Labs, where heavyweight VMs were used and only a few fix hosts were available to be managed by exercises. This containerized approach allows for a high degree of flexibility. Both the Control Node and Managed Hosts can be preconfigured for the execrcises learning goals. Recontainerization is seamless for participants and all the benefits of containerization contribute to a steeper learning curve. These benefints are exclusive environments for different exercise subjects, encapsulation of required dependencies, portability on operating systems, isolated exercise testing, easier management.
 
-It is not uncommon for Ansible to run in a container based Control Node. But to manage Containers as Managed hosts is a different matter. Not to mention that Playbooks of the usual Ansible training materials are not easy to run in Containers. Pre-requisites include the ability to `ssh` into the Managed Host Containers. Also, Ansible system and service modules require `systemd` to run inside the Managed Host Containers.
+For the Control Node to run in a container is not uncommon. But to manage containers as Managed Hosts is a different matter. Exercise Playbooks to be executed on Containerized Managed Hosts have unobvious conditions. These include e.g. the ability to `ssh` into the Managed Host Containers. Also, Ansible system and service modules require `systemd` to run inside the Managed Host Containers.
 
 ### Benefits of a Container based Ansible bootcamp
 
