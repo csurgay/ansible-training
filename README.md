@@ -1,8 +1,15 @@
-# Container based Ansible bootcamp
+# Containerized Ansible Training Lab
 
-Date Created: 2025-09-01  
-Last Modified: 2025-10-14  
-Contact: csurgay@gmail.com  
+|           |            |
+|-----------|------------|
+| Purpose | Single host full Ansible training lab (lessons and exercises) |
+| Audience | Future DevOps engineers new to Ansible |
+| Prerequisites | Linux, any scripting experience |
+| Control Node | Containerized Ansible execution environment |
+| Managed Hosts | Dozens of Containerized linux servers on a sigle host |
+| Date Created | 2025-09-01 |
+| Last Modified | 2025-10-24 |
+| Contact | csurgay@gmail.com |
 
 This is the first complete Ansible traning laboratory where Containers are managed instead of resource consuming VMs.
 
