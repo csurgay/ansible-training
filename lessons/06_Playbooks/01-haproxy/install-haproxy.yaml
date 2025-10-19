@@ -8,6 +8,11 @@
         name: haproxy
         state: latest
 
+    - name: Create path for haproxy confing
+      ansible.builtin.file:
+        path: /etc/haproxy
+        state: directory
+
     - name: Copy haproxy configuration to node
       ansible.builtin.copy:
         src: haproxy.conf.sample
