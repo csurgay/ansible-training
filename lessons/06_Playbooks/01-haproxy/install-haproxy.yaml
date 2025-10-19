@@ -1,0 +1,25 @@
+---
+- name: Install Haproxy Package
+  hosts: host1
+  become: true
+  tasks:
+    - name: Ensure haproxy package is installed
+      ansible.builtin.dnf:
+        name: haproxy
+        state: latest
+
+    - name: Copy haproxy configuration to node
+      ansible.builtin.copy:
+        src: haproxy.conf.sample
+        dest: /etc/haproxy/haproxy.conf
+        mode: 644
+        owner: root
+        group: root
+    
+    - name: Enable and start chrony Service
+      ansible.builtin.systemd:
+        name: haproxy
+        state: started
+        enabled: yes
+        masked: no
+
