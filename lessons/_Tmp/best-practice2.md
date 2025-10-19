@@ -1,10 +1,21 @@
-# Ansible Project Operation and Configuration Guide
+# Section xx: Ansible Best Practice
 
-This document summarizes clean and practical conventions for structuring, maintaining, and securing Ansible projects.
+### In this section the following subject will be covered
 
+1. General Principles
+1. Recommended Project Structure
+1. Inventory Management
+1. Playbooks and Task Design
+1. Variable Management
+1. Module Usage
+1. Roles
+1. Execution and Deployment
+1. Security Practices
+1. Additional Notes
+1. References
+   
 ---
-
-## 1. General Principles
+## General Principles
 
 - Use **YAML** instead of JSON for readability.
 - Maintain **consistent indentation** and spacing.
@@ -16,10 +27,9 @@ This document summarizes clean and practical conventions for structuring, mainta
 - **Start simple** and expand with experience.
 
 ---
+## Recommended Project Structure
 
-## 2. Recommended Project Structure
-
-```bash
+```
 inventory/
   production
   staging
@@ -56,15 +66,14 @@ roles/
     handlers/main.yml
 ```
 
-Use:
+To generate a role skeleton:
+
 ```bash
-ansible-galaxy init <role_name>
+ansible-galaxy role init <role_name>
 ```
-to generate a role skeleton.
 
 ---
-
-## 3. Inventory Management
+## Inventory Management
 
 - Group hosts logically (by function, environment, location).
 - Separate inventories per environment (e.g., `production`, `staging`).
@@ -92,8 +101,7 @@ Then use conditional plays:
 ```
 
 ---
-
-## 4. Playbooks and Task Design
+## Playbooks and Task Design
 
 - Always **declare the desired state** explicitly.
 - Use **one argument per line** for clarity.
@@ -148,8 +156,7 @@ handlers:
 ```
 
 ---
-
-## 5. Variable Management
+## Variable Management
 
 - Define **defaults** in `roles/<role>/defaults/main.yml`.
 - Use `group_vars` and `host_vars` for clarity.
@@ -166,8 +173,7 @@ database_port: 5432
 - Avoid overcomplicating variable logic.
 
 ---
-
-## 6. Module Usage
+## Module Usage
 
 - Place custom modules in `./library`.
 - Prefer **idempotent** modules over `shell` or `command`.
@@ -187,8 +193,7 @@ Example:
 ```
 
 ---
-
-## 7. Roles
+## Roles
 
 - Follow **Ansible Galaxy** structure.
 - Keep roles **focused** and **loosely coupled**.
@@ -196,8 +201,7 @@ Example:
 - Validate and store external roles locally.
 
 ---
-
-## 8. Execution and Deployment
+## Execution and Deployment
 
 - Test in **staging** before production.
 - Limit execution scope with `--limit` or `--tags`.
@@ -211,8 +215,7 @@ Example:
 - Explore [execution strategies](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_strategies.html).
 
 ---
-
-## 9. Security Practices
+## Security Practices
 
 - Use **Ansible Vault** or external secrets managers.
 - Limit `become` usage to where necessary.
@@ -221,8 +224,7 @@ Example:
 - Log and monitor Ansible executions centrally.
 
 ---
-
-## 10. Additional Notes
+## Additional Notes
 
 - Ensure **idempotency** across all tasks.
 - Use **role dependencies** judiciously.
@@ -230,7 +232,6 @@ Example:
 - Combine provisioning and configuration when possible.
 
 ---
-
 ## References
 
 - [Ansible Inventory Guide](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html)  
