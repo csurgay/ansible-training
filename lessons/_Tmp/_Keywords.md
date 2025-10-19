@@ -142,317 +142,321 @@ list of variables to prompt for.
 ---
 ## Role Keywords
 
-any_errors_fatal
+#### any_errors_fatal
 Force any un-handled task errors on any host to propagate to all hosts and end the play.
 
-become
+#### become
 Boolean that controls if privilege escalation is used or not on Task execution. Implemented by the become plugin. See Become plugins.
 
-become_exe
+#### become_exe
 Path to the executable used to elevate privileges. Implemented by the become plugin. See Become plugins.
 
-become_flags
+#### become_flags
 A string of flag(s) to pass to the privilege escalation program when become is True.
 
-become_method
+#### become_method
 Which method of privilege escalation to use (such as sudo or su).
 
-become_user
+#### become_user
 User that you ‘become’ after using privilege escalation. The remote/login user must have permissions to become this user.
 
-check_mode
+#### check_mode
 A boolean that controls if a task is run normally or avoids changes to the target and tries to report what it would have done (check mode/dry run). See Validating tasks: check mode and diff mode.
 
-collections
+#### collections
 List of collection namespaces to search for modules, plugins, and roles. See Using collections in a playbook
 
 Note
 
 Tasks within a role do not inherit the value of collections from the play. To have a role search a list of collections, use the collections keyword in meta/main.yml within a role.
 
-connection
+#### connection
 Allows you to change the connection plugin used for tasks to execute on the target. See Using connection plugins.
 
-debugger
+#### debugger
 Enable debugging tasks based on the state of the task result. See Debugging tasks.
 
-delegate_facts
+#### delegate_facts
 Boolean that allows you to apply facts to a delegated host instead of inventory_hostname.
 
-delegate_to
+#### delegate_to
 Host to execute task instead of the target (inventory_hostname). Connection vars from the delegated host will also be used for the task.
 
-diff
+#### diff
 Toggle to make tasks return ‘diff’ information or not.
 
-environment
+#### environment
 A dictionary that gets converted into environment vars to be provided for the task upon execution. This can ONLY be used with modules. This is not supported for any other type of plugins nor Ansible itself nor its configuration, it just sets the variables for the code responsible for executing the task. This is not a recommended way to pass in confidential data.
 
-ignore_errors
+#### ignore_errors
 Boolean that allows you to ignore task failures and continue with play. It does not affect connection errors.
 
-ignore_unreachable
+#### ignore_unreachable
 Boolean that allows you to ignore task failures due to an unreachable host and continue with the play. This does not affect other task errors (see ignore_errors) but is useful for groups of volatile/ephemeral hosts.
 
-module_defaults
+#### module_defaults
 Specifies default parameter values for modules.
 
-name
+#### name
 Identifier. Can be used for documentation, or in tasks/handlers.
 
-no_log
+#### no_log
 Boolean that controls information disclosure.
 
-port
+#### port
 Used to override the default port used in a connection.
 
-remote_user
+#### remote_user
 User used to log into the target via the connection plugin.
 
-run_once
+#### run_once
 Boolean that will bypass the host loop, forcing the task to attempt to execute on the first host available and afterward apply any results and facts to all active hosts in the same batch.
 
-tags
+#### tags
 Tags applied to the task or included tasks, this allows selecting subsets of tasks from the command line.
 
-throttle
+#### throttle
 Limit the number of concurrent task runs on task, block and playbook level. This is independent of the forks and serial settings, but cannot be set higher than those limits. For example, if forks is set to 10 and the throttle is set to 15, at most 10 hosts will be operated on in parallel.
 
-timeout
+#### timeout
 Time limit for the task action to execute in, if exceeded, Ansible will interrupt the process. Timeout does not include templating or looping.
 
-vars
+#### vars
 Dictionary/map of variables
 
-when
+#### when
 Conditional expression, determines if an iteration of a task is run or not.
 
-Block
-always
+---
+## Block Keywords
+
+#### always
 List of tasks, in a block, that execute no matter if there is an error in the block or not.
 
-any_errors_fatal
+#### any_errors_fatal
 Force any un-handled task errors on any host to propagate to all hosts and end the play.
 
-become
+#### become
 Boolean that controls if privilege escalation is used or not on Task execution. Implemented by the become plugin. See Become plugins.
 
-become_exe
+#### become_exe
 Path to the executable used to elevate privileges. Implemented by the become plugin. See Become plugins.
 
-become_flags
+#### become_flags
 A string of flag(s) to pass to the privilege escalation program when become is True.
 
-become_method
+#### become_method
 Which method of privilege escalation to use (such as sudo or su).
 
-become_user
+#### become_user
 User that you ‘become’ after using privilege escalation. The remote/login user must have permissions to become this user.
 
-block
+#### block
 List of tasks in a block.
 
-check_mode
+#### check_mode
 A boolean that controls if a task is run normally or avoids changes to the target and tries to report what it would have done (check mode/dry run). See Validating tasks: check mode and diff mode.
 
-collections
+#### collections
 List of collection namespaces to search for modules, plugins, and roles. See Using collections in a playbook
 
 Note
 
 Tasks within a role do not inherit the value of collections from the play. To have a role search a list of collections, use the collections keyword in meta/main.yml within a role.
 
-connection
+#### connection
 Allows you to change the connection plugin used for tasks to execute on the target. See Using connection plugins.
 
-debugger
+#### debugger
 Enable debugging tasks based on the state of the task result. See Debugging tasks.
 
-delegate_facts
+#### delegate_facts
 Boolean that allows you to apply facts to a delegated host instead of inventory_hostname.
 
-delegate_to
+#### delegate_to
 Host to execute task instead of the target (inventory_hostname). Connection vars from the delegated host will also be used for the task.
 
-diff
+#### diff
 Toggle to make tasks return ‘diff’ information or not.
 
-environment
+#### environment
 A dictionary that gets converted into environment vars to be provided for the task upon execution. This can ONLY be used with modules. This is not supported for any other type of plugins nor Ansible itself nor its configuration, it just sets the variables for the code responsible for executing the task. This is not a recommended way to pass in confidential data.
 
-ignore_errors
+#### ignore_errors
 Boolean that allows you to ignore task failures and continue with play. It does not affect connection errors.
 
-ignore_unreachable
+#### ignore_unreachable
 Boolean that allows you to ignore task failures due to an unreachable host and continue with the play. This does not affect other task errors (see ignore_errors) but is useful for groups of volatile/ephemeral hosts.
 
-module_defaults
+#### module_defaults
 Specifies default parameter values for modules.
 
-name
+#### name
 Identifier. Can be used for documentation, or in tasks/handlers.
 
-no_log
+#### no_log
 Boolean that controls information disclosure.
 
-notify
+#### notify
 List of handlers to notify when the task returns a ‘changed=True’ status.
 
-port
+#### port
 Used to override the default port used in a connection.
 
-remote_user
+#### remote_user
 User used to log into the target via the connection plugin.
 
-rescue
+#### rescue
 List of tasks in a block that run if there is a task error in the main block list.
 
-run_once
+#### run_once
 Boolean that will bypass the host loop, forcing the task to attempt to execute on the first host available and afterward apply any results and facts to all active hosts in the same batch.
 
-tags
+#### tags
 Tags applied to the task or included tasks, this allows selecting subsets of tasks from the command line.
 
-throttle
+#### throttle
 Limit the number of concurrent task runs on task, block and playbook level. This is independent of the forks and serial settings, but cannot be set higher than those limits. For example, if forks is set to 10 and the throttle is set to 15, at most 10 hosts will be operated on in parallel.
 
-timeout
+#### timeout
 Time limit for the task action to execute in, if exceeded, Ansible will interrupt the process. Timeout does not include templating or looping.
 
-vars
+#### vars
 Dictionary/map of variables
 
-when
+#### when
 Conditional expression, determines if an iteration of a task is run or not.
 
-Task
-action
+---
+## Task Keywords
+
+#### action
 The ‘action’ to execute for a task, it normally translates into a C(module) or action plugin.
 
-any_errors_fatal
+#### any_errors_fatal
 Force any un-handled task errors on any host to propagate to all hosts and end the play.
 
-args
+#### args
 A secondary way to add arguments into a task. Takes a dictionary in which keys map to options and values.
 
-async
+#### async
 Run a task asynchronously if the C(action) supports this; the value is the maximum runtime in seconds.
 
-become
+#### become
 Boolean that controls if privilege escalation is used or not on Task execution. Implemented by the become plugin. See Become plugins.
 
-become_exe
+#### become_exe
 Path to the executable used to elevate privileges. Implemented by the become plugin. See Become plugins.
 
-become_flags
+#### become_flags
 A string of flag(s) to pass to the privilege escalation program when become is True.
 
-become_method
+#### become_method
 Which method of privilege escalation to use (such as sudo or su).
 
-become_user
+#### become_user
 User that you ‘become’ after using privilege escalation. The remote/login user must have permissions to become this user.
 
-changed_when
+#### changed_when
 Conditional expression that overrides the task’s normal ‘changed’ status.
 
-check_mode
+#### check_mode
 A boolean that controls if a task is run normally or avoids changes to the target and tries to report what it would have done (check mode/dry run). See Validating tasks: check mode and diff mode.
 
-collections
+#### collections
 List of collection namespaces to search for modules, plugins, and roles. See Using collections in a playbook
 
 Note
 
 Tasks within a role do not inherit the value of collections from the play. To have a role search a list of collections, use the collections keyword in meta/main.yml within a role.
 
-connection
+#### connection
 Allows you to change the connection plugin used for tasks to execute on the target. See Using connection plugins.
 
-debugger
+#### debugger
 Enable debugging tasks based on the state of the task result. See Debugging tasks.
 
-delay
+#### delay
 Number of seconds to delay between retries. This setting is only used in combination with until.
 
-delegate_facts
+#### delegate_facts
 Boolean that allows you to apply facts to a delegated host instead of inventory_hostname.
 
-delegate_to
+#### delegate_to
 Host to execute task instead of the target (inventory_hostname). Connection vars from the delegated host will also be used for the task.
 
-diff
+#### diff
 Toggle to make tasks return ‘diff’ information or not.
 
-environment
+#### environment
 A dictionary that gets converted into environment vars to be provided for the task upon execution. This can ONLY be used with modules. This is not supported for any other type of plugins nor Ansible itself nor its configuration, it just sets the variables for the code responsible for executing the task. This is not a recommended way to pass in confidential data.
 
-failed_when
+#### failed_when
 Conditional expression that overrides the task’s normal ‘failed’ status.
 
-ignore_errors
+#### ignore_errors
 Boolean that allows you to ignore task failures and continue with play. It does not affect connection errors.
 
-ignore_unreachable
+#### ignore_unreachable
 Boolean that allows you to ignore task failures due to an unreachable host and continue with the play. This does not affect other task errors (see ignore_errors) but is useful for groups of volatile/ephemeral hosts.
 
-local_action
+#### local_action
 Same as action but also implies delegate_to: localhost
 
-loop
+#### loop
 Takes a list for the task to iterate over, saving each list element into the item variable (configurable via loop_control)
 
-loop_control
+#### loop_control
 Several keys here allow you to modify/set loop behavior in a task. See Adding controls to loops.
 
-module_defaults
+#### module_defaults
 Specifies default parameter values for modules.
 
-name
+#### name
 Identifier. Can be used for documentation, or in tasks/handlers.
 
-no_log
+#### no_log
 Boolean that controls information disclosure.
 
-notify
+#### notify
 List of handlers to notify when the task returns a ‘changed=True’ status.
 
-poll
+#### poll
 Sets the polling interval in seconds for async tasks (default 10s).
 
-port
+#### port
 Used to override the default port used in a connection.
 
-register
+#### register
 Name of variable that will contain task status and module return data.
 
-remote_user
+#### remote_user
 User used to log into the target via the connection plugin.
 
-retries
+#### retries
 Number of retries before giving up in a until loop. This setting is only used in combination with until.
 
-run_once
+#### run_once
 Boolean that will bypass the host loop, forcing the task to attempt to execute on the first host available and afterward apply any results and facts to all active hosts in the same batch.
 
-tags
+#### tags
 Tags applied to the task or included tasks, this allows selecting subsets of tasks from the command line.
 
-throttle
+#### throttle
 Limit the number of concurrent task runs on task, block and playbook level. This is independent of the forks and serial settings, but cannot be set higher than those limits. For example, if forks is set to 10 and the throttle is set to 15, at most 10 hosts will be operated on in parallel.
 
-timeout
+#### timeout
 Time limit for the task action to execute in, if exceeded, Ansible will interrupt the process. Timeout does not include templating or looping.
 
-until
+#### until
 This keyword implies a ‘retries loop’ that will go on until the condition supplied here is met or we hit the retries limit.
 
-vars
+#### vars
 Dictionary/map of variables
 
-when
+#### when
 Conditional expression, determines if an iteration of a task is run or not.
 
-with_<lookup_plugin>
+#### with_<lookup_plugin>
 The same as loop but magically adds the output of any lookup plugin to generate the item list.
 
