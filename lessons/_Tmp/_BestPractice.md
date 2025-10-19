@@ -295,7 +295,7 @@ Roles group tasks, handlers, and variables into reusable components.
   - Regular scans identify issues. 
 - Log and monitor executions centrally.
   - Logging and monitoring provide audit trails and help troubleshoot.
-- Use **`no_log`** to prevent logging sensutuve data.
+- Use **`no_log`** to prevent logging sensitive data.
 
 ---
 ## Additional Notes
