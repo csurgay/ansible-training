@@ -20,21 +20,21 @@
 ## General Principles
 
 - Use **YAML** instead of JSON for readability.  
+  - YAML is easier to read and maintain than JSON. 
 - Keep **consistent indentation** and spacing.  
+  - Consistent indentation ensures files parse correctly and improves readability. 
 - Write **clear comments** describing tasks.  
+  - Comments clarify why tasks exist. 
 - Follow **consistent naming** for tasks, variables, roles, and files.  
+  - Naming conventions help you locate and understand tasks, variables, and roles. 
 - Store projects in **version control** (e.g., Git).  
+  - Version control tracks changes and simplifies collaboration. 
 - Use **ansible-lint** and **molecule** for linting and testing.  
+  - Linting and testing ensure reliability. 
 - Use **tags** to organize and run specific tasks.  
+  - Tags help run only specific parts of a playbook.
 - **Start simple** and expand gradually.
-
-- YAML is easier to read and maintain than JSON. 
-- Consistent indentation ensures files parse correctly and improves readability. 
-- Comments clarify why tasks exist. 
-- Naming conventions help you locate and understand tasks, variables, and roles. 
-- Version control tracks changes and simplifies collaboration. 
-- Linting and testing ensure reliability. 
-- Tags help run only specific parts of a playbook. Starting simple reduces complexity and prevents errors.
+  - Starting simple reduces complexity and prevents errors.
 
 ---
 ## Recommended Project Structure
@@ -217,10 +217,7 @@ Example:
 webserver_port: 8080
 database_port: 5432
 ```
-
-- Quote strings properly.  
 - Keep variable logic simple.
-
 - Defaults provide fallback values. 
 - Group and host variables organize configuration per host or group. 
 - Prefixing names prevents collisions. 
@@ -257,60 +254,59 @@ Example:
 
 Roles group tasks, handlers, and variables into reusable components.
 
+- Roles should perform one clear function.
+  - If multiple functions are mixed in one role, reusability suffers
 - Follow **Ansible Galaxy** structure.  
+  - Galaxy standards improve readability. 
 - Keep roles **focused** and loosely coupled.  
+  - Loosely coupled roles are reusable. 
 - Use **import_role** or **include_role** for execution control.  
+  - Importing roles controls execution order. 
 - Validate and store external roles locally.
-
-- Roles should perform one clear function. 
-- Galaxy standards improve readability. 
-- Loosely coupled roles are reusable. 
-- Importing roles controls execution order. 
-- Storing validated roles locally avoids dependency issues.
+  - Storing validated roles locally avoids dependency issues.
 
 ---
 ## Execution and Deployment
 
 - Test in **staging** before production.  
+  - Testing in staging prevents production mistakes. 
 - Limit execution using `--limit` or `--tags`.  
+  - Limiting execution targets the desired hosts or tasks. 
 - Preview execution with `--list-tasks`, `--list-hosts`, `--check`, `--diff`.  
+  - Previewing shows what would happen. 
 - Resume partial runs with `--start-at-task "<task name>"`.  
+  - Provides for faster debugging
 - Use `serial` for **rolling updates**.  
+  - Rolling updates prevent downtime by updating hosts in batches. 
 - Explore [execution strategies](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_strategies.html).
+  - Execution strategies optimize task performance in large deployments.
 
-- Testing in staging prevents production mistakes. 
-- Limiting execution targets the desired hosts or tasks. 
-- Previewing shows what would happen. 
-- Rolling updates prevent downtime by updating hosts in batches. 
-- Execution strategies optimize task performance in large deployments.
 
 ---
 ## Security Practices
 
 - Use **Ansible Vault** or external secrets managers.  
+  - Vault encrypts sensitive information. 
 - Limit `become` usage to necessary tasks.  
+  - Limiting privilege escalation reduces risk. 
 - Apply **RBAC** and governance controls.  
+  - RBAC gives fine-grained access control. 
 - Scan for vulnerabilities regularly.  
+  - Regular scans identify issues. 
 - Log and monitor executions centrally.
-
-- Vault encrypts sensitive information. 
-- Limiting privilege escalation reduces risk. 
-- RBAC gives fine-grained access control. 
-- Regular scans identify issues. 
-- Logging and monitoring provide audit trails and help troubleshoot.
+  - Logging and monitoring provide audit trails and help troubleshoot.
 
 ---
 ## Additional Notes
 
 - Ensure **idempotency** across all tasks.  
+  - Idempotent tasks are safe to run multiple times. 
 - Use **role dependencies** carefully.  
+  - Careful role dependency management keeps roles modular. 
 - Integrate **dynamic inventories** for hybrid environments.  
+  - Dynamic inventories simplify hybrid deployments. 
 - Combine provisioning and configuration when possible.
-
-- Idempotent tasks are safe to run multiple times. 
-- Careful role dependency management keeps roles modular. 
-- Dynamic inventories simplify hybrid deployments. 
-- Combining provisioning and configuration reduces complexity.
+  - It reduces complexity.
 
 ---
 ## References
