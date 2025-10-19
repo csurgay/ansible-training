@@ -15,8 +15,8 @@
 
     - name: Copy haproxy configuration to node
       ansible.builtin.copy:
-        src: haproxy.conf.sample
-        dest: /etc/haproxy/haproxy.conf
+        src: haproxy.cfg.sample
+        dest: /etc/haproxy/haproxy.cfg
         mode: 644
         owner: root
         group: root
