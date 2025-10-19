@@ -12,7 +12,7 @@
 ## Checking installed Python packages and version 
 
 ```
-[ansible@ansible ~]$ sudo dnf list installed python3* 
+[local@ansible ~]$ sudo dnf list installed python3* 
 Updating Subscription Management repositories. 
 Installed Packages 
 python3-bind.noarch                          32:9.11.26-3.el8                         @rhel8-appstream-media 
@@ -23,7 +23,7 @@ python3-chardet.noarch                       3.0.4-7.el8                        
 python36.x86_64                              3.6.8-2.module+el8.1.0+3334+5cb623d7     @rhel8-appstream-media 
 
 ## Also verify the version of Python
-[ansible@ansible ~]$ python3 -V 
+[local@ansible ~]$ python3 -V 
 Python 3.6.8 
 ```
 
@@ -31,7 +31,7 @@ Python 3.6.8
 
 ```
 ## on RHEL/Fedora/CentOS systems
-[ansible@ansible ~]$ sudo dnf install ansible  
+[local@ansible ~]$ sudo dnf install ansible  
 
 ## For an Ubuntu system, you can use the apt command as follows: 
 $ sudo apt install ansible 
@@ -40,7 +40,7 @@ $ sudo apt install ansible
 ## Verify Ansible installation 
 
 ```
-[ansible@ansible ~]$ ansible --version  
+[local@ansible ~]$ ansible --version  
 ansible 2.9.27  
 config file = /etc/ansible/ansible.cfg  
 configured module search path = ['/home/ansible/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']  
@@ -82,7 +82,7 @@ $ python -m pip install ansible-core==2.11.4 --user
 ## 2 - Check Ansible version 
 
 ```
-[ansible@ansible ~]$ ansible --version  
+[local@ansible ~]$ ansible --version  
 [DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible  
 2.12. Current version: 3.6.8 (default, Mar 18 2021, 08:58:41) [GCC 8.4.1 20200928 (Red Hat 8.4.1-1)]. This  
 feature will be removed from ansible-core in version 2.12. Deprecation warnings can be disabled by setting  
@@ -101,9 +101,9 @@ libyaml = True
 ## 3 - Creating ansible.cfg file 
 
 ```
-[ansible@ansible ~]$ mkdir ansible-demo  
-[ansible@ansible ~]$ cd ansible-demo/  
-[ansible@ansible ansible-demo]$ vim ansible.cfg  
+[local@ansible ~]$ mkdir ansible-demo  
+[local@ansible ~]$ cd ansible-demo/  
+[local@ansible ansible-demo]$ vim ansible.cfg  
 ```
 
 ## 4 - Content of ansible.cfg 
@@ -118,7 +118,7 @@ ask_pass = false
 ## 5 - Checking which ansible.cfg is taken by Ansible 
 
 ```
-ansible@ansible ansible-demo]$ ansible --version  
+local@ansible ansible-demo]$ ansible --version  
 ansible [core 2.11.6]  
 config file = /home/ansible/ansible-demo/ansible.cfg  
 .  
@@ -129,7 +129,7 @@ config file = /home/ansible/ansible-demo/ansible.cfg
 ## 6 -  Another ansible.cfg sample with privilege escalation parameters 
 
 ```
-[ansible@ansible ansible-demo]$ cat ansible.cfg  
+[local@ansible ansible-demo]$ cat ansible.cfg  
 [Defaults]  
 inventory = ./hosts  
 remote_user = devops  
@@ -146,10 +146,10 @@ become_ask_pass = true
 
 ```
 ## switch to project directory
-[ansible@ansible ~]$ cd ansible-demo/  
+[local@ansible ~]$ cd ansible-demo/  
 
 ## Open the file in text editor
-[ansible@ansible ansible-demo]$ vim hosts  
+[local@ansible ansible-demo]$ vim hosts  
 ```
 
 ## Sample inventory file content
@@ -164,7 +164,7 @@ localhost
 
 ## 9 - Ansible inventory with human-readable names and ansible_host 
 ```
-[ansible@ansible ansible-demo]$ cat hosts  
+[local@ansible ansible-demo]$ cat hosts  
 [local]  
 localhost ansible_connection=local  
 
@@ -175,7 +175,7 @@ node01 ansible_host=192.168.100.4
 ## 0 - List inventory hosts 
 
 ```
-[ansible@ansible ansible-demo]$ ansible all --list-hosts  
+[local@ansible ansible-demo]$ ansible all --list-hosts  
 hosts (2):  
   localhost  
   node01  
@@ -184,7 +184,7 @@ hosts (2):
 ## 1 - Another Ansible inventory with more hosts and groups 
 
 ```
-[ansible@ansible ansible-demo]$ cat myinventory  
+[local@ansible ansible-demo]$ cat myinventory  
 [myself]  
 localhost  
   
@@ -204,7 +204,7 @@ database
 ## 2 - Multiple inventory files in project directory 
 
 ```
-[ansible@ansible ansible-demo]$ ls -l  
+[local@ansible ansible-demo]$ ls -l  
 total 12  
 -rw-rw-r--. 1 ansible ansible 181 Nov 19 15:40 ansible.cfg  
 -rw-rw-r--. 1 ansible ansible  90 Nov 19 15:33 hosts  
@@ -214,7 +214,7 @@ total 12
 ## 3 - List inventory hosts with different inventory file 
 
 ```
-[ansible@ansible ansible-demo]$ ansible all --list-hosts -i myinventory  
+[local@ansible ansible-demo]$ ansible all --list-hosts -i myinventory  
 hosts (4):  
   localhost  
   servera.techbeatly.com  
@@ -225,7 +225,7 @@ hosts (4):
 ## 4 - Checking Ansible help and arguments 
 
 ```
-[ansible@ansible ansible-demo]$ ansible --help  
+[local@ansible ansible-demo]$ ansible --help  
 .  
 .  
   
@@ -248,14 +248,14 @@ hosts (4):
 ## 5 - Host selection using patterns 
 
 ```
-[ansible@ansible ansible-demo]$ ansible --list-hosts -i myinventory *techbeatly.com  
+[local@ansible ansible-demo]$ ansible --list-hosts -i myinventory *techbeatly.com  
 hosts (3):  
   servera.techbeatly.com  
   serverb.techbeatly.com  
   db101.techbeatly.com  
 
 ## Print only db servers: 
-[ansible@ansible ansible-demo]$ ansible --list-hosts -i myinventory db*  
+[local@ansible ansible-demo]$ ansible --list-hosts -i myinventory db*  
 hosts (1):  
   Db101.techbeatly.com  
 ```
@@ -283,7 +283,7 @@ passwd: all authentication tokens updated successfully.
 ## 8 - Generating SSH key pair on Ansible control node 
 
 ```
-[ansible@ansible ansible-demo]$ ssh-keygen -t rsa -b 4096 -C "ansible@ansible.lab.local"  
+[local@ansible ansible-demo]$ ssh-keygen -t rsa -b 4096 -C "local@ansible.lab.local"  
 Generating public/private rsa key pair.  
 Enter file in which to save the key (/home/ansible/.ssh/id_rsa):  
 Created directory '/home/ansible/.ssh'.  
@@ -298,7 +298,7 @@ Your ublic key has been saved in /home/ansible/.ssh/id_rsa.pub.
 ## 0 - Verify SSH key permission
 
 ```
-[ansible@ansible ansible-demo]$ ls -la ~/.ssh/  
+[local@ansible ansible-demo]$ ls -la ~/.ssh/  
 total 8  
 drwx------. 2 ansible ansible   38 Nov 19 16:14 .  
 drwx------. 7 ansible ansible  175 Nov 19 16:14 ..  
@@ -309,7 +309,7 @@ drwx------. 7 ansible ansible  175 Nov 19 16:14 ..
 ## 1 - Copy SSH public key to managed node 
 
 ```
-[ansible@ansible ansible-demo]$ ssh-copy-id -i ~/.ssh/id_rsa devops@node01  
+[local@ansible ansible-demo]$ ssh-copy-id -i ~/.ssh/id_rsa devops@node01  
 /usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/ansible/.ssh/id_rsa.pub"  
 The authenticity of host 'node01 (192.168.100.4)' can't be established.  
 RSA key fingerprint is SHA256:UEQ72EtSvn+0/tuEDbeclQuhHNTtp/uPf+VVvKkuB6k.  
@@ -327,7 +327,7 @@ and check to make sure that only the key(s) you wanted were added.
 ## 2 - Login to managed node without password 
 
 ```
-[ansible@ansible ansible-demo]$ ssh devops@node01node-1  
+[local@ansible ansible-demo]$ ssh devops@node01node-1  
 Last login: Fri Nov 19 16:23:25 2021  
 [devops@node01node-1 ~]$
 
@@ -356,7 +356,7 @@ ansible_user=devops
 ## 4 - Ansible ad hoc command using ping module 
 
 ```
-[ansible@ansible ansible-demo]$ ansible all -m ping  
+[local@ansible ansible-demo]$ ansible all -m ping  
 localhost | SUCCESS => {  
   "ansible_facts": {  
       "discovered_interpreter_python": "/usr/libexec/platform-python"  
@@ -376,7 +376,7 @@ node01 | SUCCESS => {
 ## 5 - Ansible ad hoc command using shell module
 
 ```
-[ansible@ansible ansible-demo]$ ansible all -m shell -a "whoami"  
+[local@ansible ansible-demo]$ ansible all -m shell -a "whoami"  
 localhost | CHANGED | rc=0 >>  
 ansible  
 node01 | CHANGED | rc=0 >>  
@@ -386,7 +386,7 @@ devops
 ## 6 - Multiple commands in shell module
 
 ```
-[ansible@ansible ansible-demo]$ ansible all -m shell -a "hostname;uptime;date;cat /etc/*release| grep ^NAME;uname -a"  
+[local@ansible ansible-demo]$ ansible all -m shell -a "hostname;uptime;date;cat /etc/*release| grep ^NAME;uname -a"  
 localhost | CHANGED | rc=0 >>  
 ansible  
 16:58:15 up  1:37,  1 user,  load average: 0.00, 0.00, 0.00  
@@ -404,13 +404,13 @@ Linux node01.lab.local 4.18.0-305.el8.x86_64 #1 SMP Thu Apr 29 08:54:30 EDT 2021
 ## 7 - Ansible ad hoc command using setup module
 
 ```
-[ansible@ansible ansible-demo]$ ansible all –m setup -a "filter=ansible_distribution*" 
+[local@ansible ansible-demo]$ ansible all –m setup -a "filter=ansible_distribution*" 
 ```
 
 ## 8 - Ansible ad hoc command using dnf module 
 
 ```
-[ansible@ansible ansible-demo]$ ansible node01 -m dnf -a 'name=vim state=latest'  
+[local@ansible ansible-demo]$ ansible node01 -m dnf -a 'name=vim state=latest'  
 node01 | FAILED! => {  
   "ansible_facts": {  
       "discovered_interpreter_python": "/usr/libexec/platform-python"  
@@ -424,7 +424,7 @@ node01 | FAILED! => {
 ## 9 - Installing package using dnf module and privileged mode 
 
 ```
-[ansible@ansible ansible-demo]$ ansible node01 -m dnf -a 'name=vim state=latest' -b  
+[local@ansible ansible-demo]$ ansible node01 -m dnf -a 'name=vim state=latest' -b  
 node01 | CHANGED => {  
   "ansible_facts": {  
       "discovered_interpreter_python": "/usr/libexec/platform-python"  
@@ -443,7 +443,7 @@ node01 | CHANGED => {
 ## 1 - Removing package using Ansible ad hoc command 
 
 ```
-[ansible@ansible ansible-demo]$ ansible node01 -m dnf -a 'name=vim state=absent' -b  
+[local@ansible ansible-demo]$ ansible node01 -m dnf -a 'name=vim state=absent' -b  
 node01 | CHANGED => {  
   "ansible_facts": {  
       "discovered_interpreter_python": "/usr/libexec/platform-python"  
