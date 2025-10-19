@@ -1,4 +1,4 @@
-## Ansible ping module and yum module 
+##  - Ansible ping module and yum module 
 
 ```
 - name: Ping to managed node 
@@ -9,7 +9,7 @@
     state: latest 
 ```
 
-## Checking installed Python packages and version 
+##  - Checking installed Python packages and version 
 
 ```
 [ansible@ansible ~]$ sudo dnf list installed python3* 
@@ -27,7 +27,7 @@ python36.x86_64                              3.6.8-2.module+el8.1.0+3334+5cb623d
 Python 3.6.8 
 ```
 
-## Installing Ansible package 
+##  - Installing Ansible package 
 
 ```
 ## on RHEL/Fedora/CentOS systems
@@ -37,7 +37,7 @@ Python 3.6.8
 $ sudo apt install ansible 
 ```
 
-## Verify Ansible installation 
+##  - Verify Ansible installation 
 
 ```
 [ansible@ansible ~]$ ansible --version  
@@ -152,7 +152,7 @@ become_ask_pass = true
 [ansible@ansible ansible-demo]$ vim hosts  
 ```
 
-## Sample inventory file content
+##  - Sample inventory file content
 
 ```
 [local]  
