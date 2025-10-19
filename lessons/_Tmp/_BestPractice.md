@@ -3,17 +3,18 @@
 
 ### In this section the following subjects will be covered
 
-1. General Principles  
-2. Recommended Project Structure  
-3. Inventory Management  
-4. Playbooks and Task Design  
-5. Variable Management  
-6. Module Usage  
-7. Roles  
-8. Execution and Deployment  
-9. Security Practices  
-10. Additional Notes  
-11. References  
+1. General Principles
+1. Recommended Project Structure
+1. Inventory Management
+1. Playbooks and Task Design
+1. Debug Practices
+1. Variable Management
+1. Module Usage
+1. Roles
+1. Execution and Deployment
+1. Security Practices
+1. Additional Notes
+1. References
 
 ---
 ## General Principles
@@ -184,6 +185,24 @@ handlers:
 - Blocks group related tasks, simplifying management and error handling. 
 - Handlers run only when changes occur, improving efficiency. 
 - Top-level playbooks provide orchestration and modularity.
+
+---
+## Debug Practicies
+
+Regiser result of all tasks, then debug based on success.
+
+```yaml
+- name: Install EDB server packages
+  dnf:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ edb_server_packages }}"
+  register: result_install
+
+- debug:
+    var: result_install
+  when: result_install is failed
+```
 
 ---
 ## Variable Management
