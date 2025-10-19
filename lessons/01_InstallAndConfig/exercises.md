@@ -49,7 +49,7 @@ executable location = /usr/bin/ansible
 python version = 3.6.8 (default, Mar 18 2021, 08:58:41) [GCC 8.4.1 20200928 (Red Hat 8.4.1-1)] 
 ```
 
-## 0 - Installing Ansible using Python pip 
+## Installing Ansible using Python pip 
 
 ```
 ## download and install Python pip
@@ -63,7 +63,7 @@ $ python -m pip install --upgrade pip
 $ python -m pip install --user ansible 
 ```
 
-## 1 - Installing specific version of Ansible using pip 
+## Installing specific version of Ansible using pip 
 
 ```
 ## Installing old ansible version (ansible + modules)  
@@ -79,7 +79,7 @@ $ python -m pip install ansible-base==2.10.13 --user
 $ python -m pip install ansible-core==2.11.4 --user  
 ```
 
-## 2 - Check Ansible version 
+## Check Ansible version 
 
 ```
 [local@ansible ~]$ ansible --version  
@@ -98,7 +98,7 @@ jinja version = 3.0.3
 libyaml = True
 ```
 
-## 3 - Creating ansible.cfg file 
+## Creating ansible.cfg file 
 
 ```
 [local@ansible ~]$ mkdir ansible-demo  
@@ -106,7 +106,7 @@ libyaml = True
 [local@ansible ansible-demo]$ vim ansible.cfg  
 ```
 
-## 4 - Content of ansible.cfg 
+## Content of ansible.cfg 
 
 ```
 [Defaults]  
@@ -115,7 +115,7 @@ remote_user = devops
 ask_pass = false
 ```
 
-## 5 - Checking which ansible.cfg is taken by Ansible 
+## Checking which ansible.cfg is taken by Ansible 
 
 ```
 local@ansible ansible-demo]$ ansible --version  
@@ -126,7 +126,7 @@ config file = /home/ansible/ansible-demo/ansible.cfg
 ```
 
 
-## 6 -  Another ansible.cfg sample with privilege escalation parameters 
+##  Another ansible.cfg sample with privilege escalation parameters 
 
 ```
 [local@ansible ansible-demo]$ cat ansible.cfg  
@@ -142,7 +142,7 @@ become_user = root
 become_ask_pass = true 
 ```
 
-## 7 - Creating inventory file inside project directory 
+## Creating inventory file inside project directory 
 
 ```
 ## switch to project directory
@@ -162,7 +162,7 @@ localhost
 192.168.100.4  
 ```
 
-## 9 - Ansible inventory with human-readable names and ansible_host 
+## Ansible inventory with human-readable names and ansible_host 
 ```
 [local@ansible ansible-demo]$ cat hosts  
 [local]  
@@ -172,7 +172,7 @@ localhost ansible_connection=local
 node01 ansible_host=192.168.100.4 
 ```
 
-## 0 - List inventory hosts 
+## List inventory hosts 
 
 ```
 [local@ansible ansible-demo]$ ansible all --list-hosts  
@@ -181,7 +181,7 @@ hosts (2):
   node01  
 ```  
 
-## 1 - Another Ansible inventory with more hosts and groups 
+## Another Ansible inventory with more hosts and groups 
 
 ```
 [local@ansible ansible-demo]$ cat myinventory  
@@ -201,7 +201,7 @@ intranetweb
 database
 ```
 
-## 2 - Multiple inventory files in project directory 
+## Multiple inventory files in project directory 
 
 ```
 [local@ansible ansible-demo]$ ls -l  
@@ -211,7 +211,7 @@ total 12
 -rw-rw-r--. 1 ansible ansible 162 Nov 19 15:44 myinventory  
 ```
 
-## 3 - List inventory hosts with different inventory file 
+## List inventory hosts with different inventory file 
 
 ```
 [local@ansible ansible-demo]$ ansible all --list-hosts -i myinventory  
@@ -222,7 +222,7 @@ hosts (4):
   db101.techbeatly.com 
 ```  
 
-## 4 - Checking Ansible help and arguments 
+## Checking Ansible help and arguments 
 
 ```
 [local@ansible ansible-demo]$ ansible --help  
@@ -245,7 +245,7 @@ hosts (4):
 ...<output omitted for brevity>...
 ```
 
-## 5 - Host selection using patterns 
+## Host selection using patterns 
 
 ```
 [local@ansible ansible-demo]$ ansible --list-hosts -i myinventory *techbeatly.com  
@@ -260,7 +260,7 @@ hosts (1):
   Db101.techbeatly.com  
 ```
 
-## 6 - Create new user and set password 
+## Create new user and set password 
 
 ```
 ## create a new user - devops
@@ -274,13 +274,13 @@ Retype new password:
 passwd: all authentication tokens updated successfully.  
 ```
 
-## 7 - Enabled privileged access for the new user 
+## Enabled privileged access for the new user 
 
 ```
 [root@node01 ~]# echo "devops ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/devops  
 ```
 
-## 8 - Generating SSH key pair on Ansible control node 
+## Generating SSH key pair on Ansible control node 
 
 ```
 [local@ansible ansible-demo]$ ssh-keygen -t rsa -b 4096 -C "local@ansible.lab.local"  
@@ -295,7 +295,7 @@ Your ublic key has been saved in /home/ansible/.ssh/id_rsa.pub.
 +----[SHA256]-----+  
 ```
 
-## 0 - Verify SSH key permission
+## Verify SSH key permission
 
 ```
 [local@ansible ansible-demo]$ ls -la ~/.ssh/  
@@ -306,7 +306,7 @@ drwx------. 7 ansible ansible  175 Nov 19 16:14 ..
 -rw-r--r--. 1 ansible ansible  751 Nov 19 16:14 id_rsa.pub  
 ```
 
-## 1 - Copy SSH public key to managed node 
+## Copy SSH public key to managed node 
 
 ```
 [local@ansible ansible-demo]$ ssh-copy-id -i ~/.ssh/id_rsa devops@node01  
@@ -324,7 +324,7 @@ Now try logging into the machine, with:   "ssh 'devops@node01'"
 and check to make sure that only the key(s) you wanted were added.  
 ```
 
-## 2 - Login to managed node without password 
+## Login to managed node without password 
 
 ```
 [local@ansible ansible-demo]$ ssh devops@node01node-1  
@@ -337,7 +337,7 @@ Last login: Fri Nov 19 16:23:25 2021
 Node01Node-1.lab.local 
 ```
 
-## 3 - Configuring SSH key information for managed nodes 
+## Configuring SSH key information for managed nodes 
 
 ```
 [dev]  
@@ -353,7 +353,7 @@ ansible_ssh_private_key_file=/home/ansible/.ssh/id_rsa
 ansible_user=devops  
 ```
 
-## 4 - Ansible ad hoc command using ping module 
+## Ansible ad hoc command using ping module 
 
 ```
 [local@ansible ansible-demo]$ ansible all -m ping  
@@ -373,7 +373,7 @@ node01 | SUCCESS => {
 }  
 ```
 
-## 5 - Ansible ad hoc command using shell module
+## Ansible ad hoc command using shell module
 
 ```
 [local@ansible ansible-demo]$ ansible all -m shell -a "whoami"  
@@ -383,7 +383,7 @@ node01 | CHANGED | rc=0 >>
 devops 
 ```
 
-## 6 - Multiple commands in shell module
+## Multiple commands in shell module
 
 ```
 [local@ansible ansible-demo]$ ansible all -m shell -a "hostname;uptime;date;cat /etc/*release| grep ^NAME;uname -a"  
@@ -401,13 +401,13 @@ NAME="Red Hat Enterprise Linux"
 Linux node01.lab.local 4.18.0-305.el8.x86_64 #1 SMP Thu Apr 29 08:54:30 EDT 2021 x86_64 x86_64 x86_64 GNU/Linux 
 ```
 
-## 7 - Ansible ad hoc command using setup module
+## Ansible ad hoc command using setup module
 
 ```
 [local@ansible ansible-demo]$ ansible all –m setup -a "filter=ansible_distribution*" 
 ```
 
-## 8 - Ansible ad hoc command using dnf module 
+## Ansible ad hoc command using dnf module 
 
 ```
 [local@ansible ansible-demo]$ ansible node01 -m dnf -a 'name=vim state=latest'  
@@ -421,7 +421,7 @@ node01 | FAILED! => {
 }  
 ```
 
-## 9 - Installing package using dnf module and privileged mode 
+## Installing package using dnf module and privileged mode 
 
 ```
 [local@ansible ansible-demo]$ ansible node01 -m dnf -a 'name=vim state=latest' -b  
@@ -440,7 +440,7 @@ node01 | CHANGED => {
 }  
 ```
 
-## 1 - Removing package using Ansible ad hoc command 
+## Removing package using Ansible ad hoc command 
 
 ```
 [local@ansible ansible-demo]$ ansible node01 -m dnf -a 'name=vim state=absent' -b  
