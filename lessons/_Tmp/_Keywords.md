@@ -1,6 +1,6 @@
 # Section xx: Keywords
 
-These are the keywords available on common playbook objects. Keywords are one of several sources for configuring Ansible behavior. See Controlling how Ansible behaves: precedence rules for details on the relative precedence of each source.
+Keywords on common Playbook objects configure or modify Ansible behavior.
 
 ### In this section the following subjects will be covered:
 
