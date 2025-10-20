@@ -2,6 +2,7 @@
 - name: Install and run apache or nginx with webcontent template
   hosts: all
   gather_facts: no
+  become: yes
   tasks:
 
     - name: Testing input parameter webserver
