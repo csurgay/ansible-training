@@ -159,6 +159,30 @@ After e.g. config modification.
     var: result_nginx
 ```
 
+#### Multiple Services State
+
+```yaml
+- name: Check Multiple Services State
+  hosts: all
+  gather_facts: false
+
+  tasks:
+
+    - name: Check services is-active
+      shell: systemctl is-active {{ item }}
+      register: results_state
+      loop:
+        - sshd
+        - nginx
+        - firewalld
+      ignore_errors: true
+
+    - name: Display Services State
+      debug:
+        msg: "{{ item.item }} service status: {{ item.stdout }}"
+      loop: "{{ results_state.results }}"
+```
+
 ---
 ### User Module
 
