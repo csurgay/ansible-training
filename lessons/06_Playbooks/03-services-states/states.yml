@@ -6,7 +6,7 @@
   tasks:
 
     - name: Check services is-active
-      shell: systemctl is-active {{ item }}
+      ansible.builtin.shell: systemctl is-active {{ item }}
       register: results_state
       loop:
         - sshd
@@ -14,8 +14,12 @@
         - firewalld
       ignore_errors: true
 
+    - name: Display Full Results
+      ansible.builtin.debug:
+        var: results_state
+
     - name: Display Services State
-      debug:
+      ansible.builtin.debug:
         msg: |
           {{ item.cmd }} 
           {{ item.stdout }}
