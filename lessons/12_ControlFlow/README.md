@@ -12,6 +12,17 @@
 ---
 ## Conditions
 
+Conditions can be evaluated by the `when:` keyword. Some useful expressions are:
+
+- `when: variabled is defined`
+- `when: variable is undefined`
+- `when: result is failed`
+- `when: result is succeeded`
+- `when: result is skipped`
+- `when: result is changed`
+- `when: ansible_facts['os_family'] == "RedHat"`
+- `and` `or` `not`
+
 ### Variable as Condition
 
 ```
@@ -323,4 +334,5 @@ Tasks can notify Handlers to execute at the end, so that restarting type of oper
         name: httpd
         state: restarted
 ```
+
 
