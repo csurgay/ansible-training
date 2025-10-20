@@ -34,6 +34,11 @@
         permanent: true
         state: enabled
 
+    - name: Reload firewalld to apply changes
+      ansible.builtin.service:
+        name: firewalld
+        state: reloaded
+
     - name: Enable and start haproxy Service
       ansible.builtin.systemd:
         name: haproxy
