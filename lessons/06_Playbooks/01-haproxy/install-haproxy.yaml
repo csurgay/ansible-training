@@ -1,6 +1,6 @@
 ---
 - name: Install Haproxy Package
-  hosts: host1
+  hosts: all
   become: true
   tasks:
     - name: Ensure haproxy package is installed
