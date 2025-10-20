@@ -1,0 +1,14 @@
+---
+- name: Listing files
+  hosts: all
+  gather_facts: false
+
+  tasks:
+
+    - name: Listing
+      ansible.builtin.shell: 'ls -l *'
+      register: result_listing
+
+    - name: Print result
+      ansible.builtin.debug:
+        var: result_listing.stdout_lines
