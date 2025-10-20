@@ -1,19 +1,24 @@
 ---
-- name: Edit OpenSSH Configuration
+- name: Modify sshd Configuration
   hosts: all
   become: true
+  gather_facts: false
+
   tasks:
-    - name: Allow Password Authentication
+ 
+    - name: PasswordAuthentication yes
       ansible.builtin.lineinfile:
         state: present
         dest: /etc/ssh/sshd_config
         regexp: "^PasswordAuthentication"
         line: "PasswordAuthentication yes"
         validate: 'sshd -t -f %s'
-      notify: Restart service
+      notify: Restart sshd
       
   handlers:
-    - name: Restart service
+
+    - name: Restart sshd
       ansible.builtin.service:
         name: sshd
         state: restarted
+
