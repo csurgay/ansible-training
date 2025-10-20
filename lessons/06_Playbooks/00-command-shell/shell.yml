@@ -1,12 +1,13 @@
 ---
 - name: Listing files
   hosts: all
+  become: true
   gather_facts: false
 
   tasks:
 
     - name: Listing
-      ansible.builtin.shell: 'ls -l *'
+      ansible.builtin.shell: "ls -la /etc/ssh/ > /tmp/sshdir.lst"
       register: result_listing
 
     - name: Print result
