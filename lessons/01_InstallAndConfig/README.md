@@ -143,9 +143,10 @@ A few typical uses of the other CLI tools:
     command hostname
     become true
     dnf name=sl state=present
-    gather_facts
     set_fact alma=2kg
     debug var=alma
+    gather_facts
+    debug var=ansible_facts.os_family
     ```
 - `ansible-doc debug`
 - `ansible-doc --snippet debug`
