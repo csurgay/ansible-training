@@ -24,7 +24,7 @@
     - name: Enable and start haproxy Service
       ansible.builtin.systemd:
         name: haproxy
-        state: started
+        state: restarted
         enabled: yes
         masked: no
 
