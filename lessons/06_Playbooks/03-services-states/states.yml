@@ -20,6 +20,6 @@
 
     - name: Display Services State
       ansible.builtin.debug:
-        msg: "{{ item }}"
+        var: "{{ item.cmd }}"
       loop: "{{ results_state.results }}"
       
