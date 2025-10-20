@@ -1,7 +1,10 @@
 {% for i in groups['all'] %}
 Facts for {{ i }}:
 {{ hostvars[i]['ansible_facts']['default_ipv4']['address'] }} 
+{{ hostvars[i]['ansible_facts']['default_ipv4']['interface'] }} 
+{{ hostvars[i]['ansible_facts']['default_ipv4']['macaddress'] }} 
+{{ hostvars[i].ansible_facts.date_time.date }} 
+{{ hostvars[i].ansible_facts.date_time.time }} 
 {{ hostvars[i]['ansible_facts']['fqdn'] }} 
-{{ hostvars[i]['ansible_facts']['hostname'] }}
 {% endfor %}
 
