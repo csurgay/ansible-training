@@ -14,8 +14,11 @@
         - firewalld
       ignore_errors: true
 
-    - name: Display Services State
-      ansible.builtin.debug:
-        var: "{{ item.cmd }}"
+    - name: Format and print result
+      block:
+        - ansible.builtin.set_fact:
+            str: "{{ item.item }} state: {{ item.stdout }}"
+        - ansible.builtin.debug:
+            var: "{{ str }}"
       loop: "{{ results_state.results }}"
-      
+
