@@ -28,3 +28,9 @@
         enabled: yes
         masked: no
 
+    - name: Open firewall port 5000 for haproxy
+      ansible.posix.firewalld:
+        port: 5000/tcp
+        permanent: true
+        state: enabled
+
