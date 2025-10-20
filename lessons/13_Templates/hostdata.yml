@@ -10,4 +10,10 @@
         src: hostdata.j2
         dest: /tmp/hostdata
 
+    - name: Debug hostdata file content
+      ansible.builtin.command:
+        cmd: cat /tmp/hostdata
+      register: result_command
+      ansible.builtin.debug:
+        msg: "{{ result_command.stdout }}"
 
