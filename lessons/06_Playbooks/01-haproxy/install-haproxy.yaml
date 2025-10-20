@@ -21,7 +21,7 @@
         owner: root
         group: root
     
-    - name: Enable and start chrony Service
+    - name: Enable and start haproxy Service
       ansible.builtin.systemd:
         name: haproxy
         state: started
