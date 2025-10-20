@@ -1,5 +1,6 @@
 - name: Check Multiple Services State
   hosts: all
+  become: false
   gather_facts: false
 
   tasks:
@@ -15,10 +16,6 @@
 
     - name: Display Services State
       debug:
-        msg: "{{ results_state }}"
-      
-    - name: Display Services State
-      debug:
         msg: "{{ item.item }} service status: {{ item.stdout }}"
-      loop: "{{ results_state }}"
+      loop: "{{ results_state.results }}"
       
