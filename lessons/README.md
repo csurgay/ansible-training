@@ -52,6 +52,12 @@ Imagine setting up 10 web servers:
 
 ## Introduction to Ansible
 
+Ansible is for automation and management of computers and systems across different platforms. It’s widely used by IT teams and has become a popular choice for large organizations that want to simplify and speed up their operations.
+
+Supported by **Red Hat** and a strong open-source community, Ansible is great for **configuring systems, setting up infrastructure, and deploying applications**.
+
+It can automate almost anything—from cloud and on-premise servers to IoT devices—making your IT environment **faster, more consistent, and more reliable**.
+
 ### Ansible is an open-source automation tool that helps you
 
 + Provision servers
@@ -59,24 +65,51 @@ Imagine setting up 10 web servers:
 + Deploy applications
 + Manage complex IT workflows
 
+### Advantages of Ansible
+
+* **Free and open-source**, supported by a large and active community.
+* **Proven and reliable**, trusted by IT professionals for many years.
+* **Easy to learn and use**, with no need for advanced programming skills.
+* **Simple to set up**, since it doesn’t require any extra agents.
+* **Flexible and modular**, with powerful features that grow with your experience.
+* **Well-documented**, with official guides and plenty of helpful community resources online.
+
 ### Key Characteristics
 
 + **Agentless** → No special software needed on managed nodes, just SSH and Python.
 + **Declarative** → You describe the desired state, and Ansible makes it happen.
 + **Idempotent** → Running the same playbook multiple times won't break things.
 
+### Ansible automation
+
+Ansible works using two types of machines: a **control node** and **managed nodes**. The control node is the computer where Ansible is installed. From there, it connects to the managed nodes and sends them commands and instructions.
+
+The pieces of code that Ansible runs on managed nodes are called **modules**. Each module is triggered by a **task**, and a list of tasks forms a **playbook**. In a playbook, you describe what the system should look like or what actions should happen.
+
+All managed machines are listed in a simple **inventory file**, which can group them into different categories.
+
+Ansible uses **YAML**, an easy-to-read language, to define playbooks, so you can understand and write them from the very beginning.
+
+One big advantage of Ansible is that it **doesn’t need any agent software** installed on the managed machines—making setup and use very straightforward.
+
+In most cases, all you need is a **terminal** to run commands and a **text editor** to write your configuration files.
+
 ### Ansible Core Concepts
 
 |Concept|Description|
 |------------|------------------------------------------|
-|**Control node**|A host where Ansible (and Python) is running playbooks|
-|**Managed hosts**|Servers that Ansible manages, configures, provisions; need no Ansible but Python|
-|**Inventory**|A list of servers or devices you manage, written in a simple text file|
-|**Module**|A unit of work Ansible can do (e.g., install a package, manage a service)|
-|**Playbook**|A YAML file describing tasks to run on hosts|
-|**Role**|A structured way to organize playbooks, variables, and files|
-|**Task**|A single action (e.g., "Install Nginx")|
-|**Idempotence**|Ensures running tasks repeatedly doesn’t cause unintended changes|
+| **Control node** | A host where Ansible (and Python) is running playbooks |
+| **Managed hosts** | Servers that Ansible manages, configures, provisions; need no Ansible but Python |
+| **Group** | A set of hosts that share something in common |
+| **Inventory** | A list of servers or devices you manage, written in a simple text file |
+| **Module** | A small piece of (python) code that Ansible runs on the remote machines to perform specific actions |
+| **Playbook** | A YAML file containing one or more Plays |
+| **Play** | A YAML list of tasks, describing step-by-step how a system should be configured |
+| **Role** | A structured way to organize playbooks, variables, and files for reuse and sharing |
+| **Task** | A single action (e.g., "Install Nginx", "Copy a file") |
+| **Handler** | A special Task executed only if notified by previous Tasks |
+| **Idempotence** | Ensures running tasks repeatedly doesn’t cause unintended changes |
+| **YAML** | A simple, human-friendly text format that Ansible uses to define playbooks and configuration files |
 
 ### How Ansible Works
 
@@ -242,6 +275,7 @@ The result is faster development cycles, scalable infrastructure, and reduced ri
 > [!TIP]
 > Key takeaway: Treat infrastructure like code, automate everything possible,\
 > and use Ansible to enforce consistency and reliability across your environments.
+
 
 
 
