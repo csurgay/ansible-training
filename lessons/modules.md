@@ -2,25 +2,26 @@
 
 ## Some frequently used Modules
 
-|Category|Module|Description|
-|---------------|------|-----------|
-|Files modules|copy|Copy a local file to the managed host|
-||file|Set permissions and other properties of files|
-||lineinfile|Ensure a particular line is or is not in a file|
-||synchronize|Synchronize content using rsync|
-|Package modules|package|Autodetected package manager|
-||yum|YUM package manager|
-||apt|APT package manager|
-||dnf|DNF package manager|
-||gem|Manage Ruby gems|
-||pip|Manage Python packages from PyPI|
-|System modules|firewalld|Ports and services management|
-||reboot|Reboot a machine|
-||service|Manage services|
-||user|Add, remove, and manage user accounts|
-|Net Tools modules|get_url|Download files over HTTP, HTTPS, or FTP|
-||nmcli|Manage networking|
-||uri|Interact with web services|
+| Category | Module | Description |
+|----------|--------|-------------|
+| Files modules | copy | Copy a local file to the managed host |
+| | file | Set permissions and other properties of files |
+| | lineinfile | Ensure a particular line is or is not in a file |
+| | synchronize | Synchronize content using rsync |
+| Package modules | package | Autodetected package manager |
+| | yum | YUM package manager |
+| | apt | APT package manager |
+| | dnf | DNF package manager |
+| | gem | Manage Ruby gems |
+| | pip | Manage Python packages from PyPI |
+| System modules | firewalld | Ports and services management |
+| | reboot | Reboot a machine |
+| | service | Manage services on generic systems |
+| | systemd | Manage services on systemd specific systems |
+| | user | Add, remove, and manage user accounts |
+| Net Tools modules|get_url | Download files over HTTP, HTTPS, or FTP |
+| | nmcli | Manage networking |
+| | uri | Interact with web services |
 
 ---
 ## Usage of Modules
@@ -70,7 +71,19 @@ This checks if Nginx is installed and adds it if not.
     state: latest
 ```
 
-### Service Module
+### Service Module (Systemd Module)
+
+| Feature	| Service Module | Systemd Module |
+|---------|----------------|----------------|
+| Platform support | Universal across Unix-like systems	| Specific to systemd-enabled systems |
+| Service manager detection	| Automatic detection of underlying service manager	| Direct systemd integration only | 
+| Advanced features	| Basic service operations (start, stop, restart, enable)	| Advanced systemd features (masking, daemon-reload, user services) | 
+| Dependency management	| Limited dependency handling	| Comprehensive systemd dependency management | 
+| Unit file management | No direct unit file manipulation	| Direct unit file creation and modification | 
+| Socket management	| Not supported	| Full socket unit support | 
+| Performance	| Lightweight, minimal overhead	| Feature-rich with additional overhead | 
+| Portability	| High portability across different init systems	| Limited to systemd environments | 
+| State management	| Basic state control	| Advanced state management with service properties | 
 
 #### Start and enable Nginx
 
