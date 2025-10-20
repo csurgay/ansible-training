@@ -17,8 +17,7 @@
     - name: Display Services State
       debug:
         msg: |
-          {{ item.item }} 
+          {{ item.item.cmd }} 
           {{ item.stdout }}
-
       loop: "{{ results_state.results }}"
       
