@@ -30,13 +30,8 @@
 
     - lineinfile:
         path: /tmp/report.txt
-        regex: ^VDA
-        line: VDA_DISK_SIZE={% if ansible_devices.vda is defined %}{{ ansible_facts['devices']['vda']['size'] }}{% else %}NONE{% endif %}
-        state: present
-    - lineinfile:
-        path: /tmp/report.txt
-        regex: ^VDB
-        line: VDB_DISK_SIZE={% if ansible_devices.vdb is defined %}{{ ansible_facts['devices']['vdb']['size'] }}{% else %}NONE{% endif %}
+        regex: ^SDA
+        line: SDA_DISK_SIZE={% if ansible_devices.sda is defined %}{{ ansible_facts['devices']['sda']['size'] }}{% else %}NONE{% endif %}
         state: present
  
 
