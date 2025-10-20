@@ -26,11 +26,12 @@
 ---
 ## Usage of Modules
 
+---
 ### File Module
 
 #### Create directory
 
-```
+```yaml
 - name: Create a log directory
   file:
     path: /var/log/myapp
@@ -42,18 +43,19 @@ This makes a directory at /var/log/myapp with standard permissions. Run it again
 
 #### Delete file
 
-```
+```yaml
 - name: Delete an old log
   file:
     path: /var/log/old.log
     state: absent
 ```
 
+---
 ### Package (dnf) Module
 
 #### Installing Nginx
 
-```
+```yaml
 - name: Install Nginx
   dnf:
     name: nginx
@@ -64,13 +66,14 @@ This checks if Nginx is installed and adds it if not.
 
 #### Update all
 
-```
+```yaml
 - name: Update all packages
   dnf:
     name: "*"
     state: latest
 ```
 
+---
 ### Service Module (Systemd Module)
 
 | Feature	| Service Module | Systemd Module |
@@ -87,7 +90,7 @@ This checks if Nginx is installed and adds it if not.
 
 #### Start and enable Nginx
 
-```
+```yaml
 - name: Start and enable Nginx
   service:
     name: nginx
@@ -95,20 +98,73 @@ This checks if Nginx is installed and adds it if not.
     enabled: yes
 ```
 
-#### Quick restart
+#### Restart Nginx
 
-```
+After e.g. config modification.
+
+```yaml
 - name: Restart Nginx
   service:
     name: nginx
     state: restarted
 ```
 
+#### Multiple restarts
+
+```yaml
+- name: Restart multiple services
+  hosts: appservers
+  become: yes
+
+  tasks:
+
+    - name: Restart application services
+      ansible.builtin.service:
+        name: "{{ item }}"
+        state: restarted
+      loop:
+        - redis
+        - postgresql
+        - myapp
+```
+
+#### Service Status
+
+```yaml
+- name: Check Service Status
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Get service information
+      ansible.builtin.service_facts:
+    
+    - name: Show Nginx Status
+      debug:
+        msg: "Nginx status: {{ ansible_facts.services['nginx.service'].state }}"
+      when: "'nginx.service' in ansible_facts.services"
+```
+
+#### Capture Output
+
+```yaml
+- name: Capture Output
+  ansible.builtin.service:
+    name: nginx
+    state: started
+  register: result_nginx
+
+- name: Display response
+  debug:
+    var: result_nginx
+```
+
+---
 ### User Module
 
 #### Create user
 
-```
+```yaml
 - name: Add Sarah with sudo
   user:
     name: sarah
@@ -119,18 +175,19 @@ This checks if Nginx is installed and adds it if not.
 
 #### Remove user
 
-```
+```yaml
 - name: Remove Sarah
   user:
     name: sarah
     state: absent
 ```
 
+---
 ### Template Module
 
 #### Deploy Nginx config
 
-```
+```yaml
 - name: Set up Nginx config
   template:
     src: /path/to/nginx.conf.j2
@@ -147,7 +204,7 @@ This uses a template file (.j2) and restarts Nginx if it changes.
 
 Install multiple packages at once with a loop:
 
-```
+```yaml
 - name: Install several packages
   package:
     name: "{{ item }}"
@@ -162,7 +219,7 @@ This installs all three in one shot.
 
 ### Waiting for Something
 
-```
+```yaml
 - name: Wait for port 80 to be open
   wait_for:
     port: 80
@@ -175,7 +232,7 @@ This waits until port 80 is active.
 
 Run a task only if something’s true:
 
-```
+```yaml
 - name: Restart if needed
   service:
     name: nginx
