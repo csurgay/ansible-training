@@ -20,17 +20,24 @@
         mode: 644
         owner: root
         group: root
+
+    - name: Bind eth0 to public zone
+      ansible.posix.firewalld:
+        zone: public
+        interface: eth0
+        permanent: true
+        state: enabled
     
+    - name: Open firewall port 5000 for haproxy
+      ansible.posix.firewalld:
+        port: 5000/tcp
+        permanent: true
+        state: enabled
+
     - name: Enable and start haproxy Service
       ansible.builtin.systemd:
         name: haproxy
         state: restarted
         enabled: yes
         masked: no
-
-    - name: Open firewall port 5000 for haproxy
-      ansible.posix.firewalld:
-        port: 5000/tcp
-        permanent: true
-        state: enabled
 

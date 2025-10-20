@@ -6,11 +6,11 @@
   tasks:
 
     - name: Testing input parameter webserver
-      debug:
+      ansible.builtin.debug:
         var: webserver
 
     - name: Stop webservers on port 80
-      service:
+      ansible.builtin.service:
         name: "{{ item }}"
         state: stopped
       loop:
@@ -19,26 +19,26 @@
       ignore_errors: true
 
     - name: Install webserver httpd or nginx
-      package:
+      ansible.builtin.package:
         name: "{{ webserver }}"
         state: latest
 
     - name: Start apache or nginx in foreground
-      service:
+      ansible.builtin.service:
         name: "{{ webserver }}"
         state: started
         enabled: true
 
     - name: Set location for webcontent
-      set_fact:
+      ansible.builtin.set_fact:
         weblocation: "/var/www/html/"
       when: webserver == "httpd"
-    - set_fact:
+    - ansible.builtin.set_fact:
         weblocation: "/usr/share/nginx/html/"
       when: webserver == "nginx"
 
     - name: Create webcontent
-      template:
+      ansible.builtin.template:
         src: index.html.j2
         dest: "{{ weblocation }}index.html"
         owner: root
@@ -53,32 +53,34 @@
         state: enabled
 
     - name: Open HTTP service in public zone
-      firewalld:
+      ansible.posix.firewalld:
         zone: public
         service: http
         permanent: true
         state: enabled
 
     - name: Reload firewalld to apply changes
-      command: firewall-cmd --reload
+      ansible.builtin.service:
+        name: firewalld
+        state: reloaded
 
     - name: Check webcontent 200 status code from container
-      uri:
+      ansible.builtin.uri:
         url: http://localhost
         return_content: true
       register: container_response
 
     - name: Debug container response
-      debug:
+      ansible.builtin.debug:
         var: container_response.content
 
     - name: Check webcontent 200 status code from localhost
-      uri:
+      ansible.builtin.uri:
         url: http://{{ ansible_host }}
         return_content: true
       register: localhost_response
 
     - name: Debug localhost response
-      debug:
+      ansible.builtin.debug:
         var: localhost_response.content
 
