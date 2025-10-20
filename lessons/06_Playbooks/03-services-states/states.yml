@@ -14,10 +14,6 @@
         - firewalld
       ignore_errors: true
 
-    - name: Display Full Results
-      ansible.builtin.debug:
-        var: results_state
-
     - name: Display Services State
       ansible.builtin.debug:
         var: "{{ item.cmd }}"
