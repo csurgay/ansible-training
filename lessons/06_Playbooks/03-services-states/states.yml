@@ -15,6 +15,10 @@
 
     - name: Display Services State
       debug:
+        msg: "{{ results_state }}"
+      
+    - name: Display Services State
+      debug:
         msg: "{{ item.item }} service status: {{ item.stdout }}"
       loop: "{{ results_state }}"
       
