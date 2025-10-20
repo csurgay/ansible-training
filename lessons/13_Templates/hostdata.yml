@@ -11,9 +11,11 @@
         dest: /tmp/hostdata
 
     - name: Debug hostdata file content
-      ansible.builtin.command:
-        cmd: cat /tmp/hostdata
-      register: result_command
-    - ansible.builtin.debug:
-        msg: "{{ result_command.stdout }}"
+      block:
+      run_once: true
+        - ansible.builtin.command:
+            cmd: cat /tmp/hostdata
+          register: result_command
+        - ansible.builtin.debug:
+            msg: "{{ result_command.stdout }}"
 
