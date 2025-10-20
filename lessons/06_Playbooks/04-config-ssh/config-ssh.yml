@@ -3,6 +3,10 @@
   hosts: all
   become: true
   gather_facts: false
+  vars_prompt:
+    - name: yesorno
+      prompt: PasswordAuthentication yes or no?
+      private: false
 
   tasks:
  
@@ -11,7 +15,7 @@
         state: present
         dest: /etc/ssh/sshd_config
         regexp: "^PasswordAuthentication"
-        line: "PasswordAuthentication yes"
+        line: "PasswordAuthentication {{ yesorno }}"
         validate: 'sshd -t -f %s'
       notify: Restart sshd
       
