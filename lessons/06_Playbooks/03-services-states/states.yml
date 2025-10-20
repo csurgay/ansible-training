@@ -15,10 +15,6 @@
       ignore_errors: true
 
     - name: Format and print result
-      block:
-        - ansible.builtin.set_fact:
-            str: "{{ item.item }} state: {{ item.stdout }}"
-        - ansible.builtin.debug:
-            var: "{{ str }}"
+      include_tasks: block.yml
       loop: "{{ results_state.results }}"
 

@@ -1,0 +1,6 @@
+---
+- ansible.builtin.set_fact:
+    str: "{{ item.item }} state: {{ item.stdout }}"
+- ansible.builtin.debug:
+    var: "{{ str }}"
+
