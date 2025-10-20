@@ -62,6 +62,24 @@ Output of an Ansible Task can saved into variables (registering into variables).
   register: date_result
 ```
 
+#### Best practice for registered variables
+
+- **Descriptive variables names**
+
+Use clear and meaningful names when you create registered variables in your playbooks. This helps you and your teammates quickly understand what each variable contains. For example, names like disk_usage_output or nginx_status are much better than generic ones like result or output.
+
+- **Avoid overusing registered variables**
+
+Only register output when you actually need the data for later tasks. Storing unnecessary results can make your playbook harder to read and add clutter to the task output. A clean playbook is easier to understand, debug, and maintain.
+
+- **Use debug for troubleshooting**
+  
+When developing a playbook, use the debug module to print the contents of a registered variable. This helps you see the variable’s structure and make sure you’re using the right attributes in your conditions or loops. You can add and remove these debug tasks as needed during development.
+
+- **Handle failures**
+
+If a task might fail but you still want the playbook to continue, use ignore_errors: true. This way, Ansible will keep running but still save the result for later checks. You can use the rc (return code) value in conditions to decide what to do next. This keeps your playbooks flexible and reliable across different systems.
+
 ---
 ### Nested (complex) varaibles
 
@@ -402,6 +420,7 @@ ansible host1     -m debug -a 'var=inventory_hostname'
         name: "{{ packagename }}"
         state: present
 ```
+
 
 
 
