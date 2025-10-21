@@ -14,6 +14,10 @@
         name: rsync
         state: present
 
+    - name: Print all hosts
+      ansible.builtin.debug:
+        var: "{{ ansible_play_hosts_all }}"
+
     - name: Backup files with rsync
       ansible.posix.synchronize:
         src: "{{ source_dir }}"
