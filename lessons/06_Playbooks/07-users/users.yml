@@ -56,7 +56,14 @@
 
     - name: Wait 5s
       ansible.builtin.wait_for:
-        timeout: 10
+        timeout: 5
+
+    - name: Install passlib with pip
+      ansible.builtin.pip:
+        name: passlib
+        state: present
+      delegate_to: localhost
+      run_once: true
 
     - name: Create local users
       ansible.builtin.user:
