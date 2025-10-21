@@ -1,6 +1,7 @@
 ---
 - name: Backup
   hosts: all
+  become: true
   gather_facts: false
   vars:
     source_dir: /var/www
@@ -17,5 +18,6 @@
       ansible.posix.synchronize:
         src: "{{ source_dir }}"
         dest: "{{ dest_dir }}"
-        mode: push
+        mode: pull
+      become: false
 
