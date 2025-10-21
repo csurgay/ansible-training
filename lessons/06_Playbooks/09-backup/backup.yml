@@ -16,14 +16,14 @@
 
     - name: Print all hosts
       ansible.builtin.debug:
-        var: "{{ ansible_play_hosts_all }}"
+        var: ansible_play_hosts_all
 
     - name: Backup files with rsync
       ansible.posix.synchronize:
         src: "{{ source_dir }}"
         dest: "{{ dest_dir }}/{{ item }}"
         mode: pull
-      loop: "{{ ansible_play_hosts_all }}"
+      loop: ansible_play_hosts_all
       become: false
       delegate_to: localhost
       run_once: true
