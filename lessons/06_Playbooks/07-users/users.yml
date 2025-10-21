@@ -30,6 +30,11 @@
   tasks:
 
     - name: Install passlib
+      ansible.builtin.dnf:
+        name: packaging
+        state: present
+
+    - name: Install passlib
       ansible.builtin.pip:
         name: passlib
         state: present
