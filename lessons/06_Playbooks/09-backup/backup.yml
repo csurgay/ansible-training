@@ -3,6 +3,9 @@
   hosts: all
   become: true
   gather_facts: false
+  vars:
+    source_dir: /var/www
+    dest_dir: /tmp/www-backup
 
   tasks:
 
@@ -11,16 +14,6 @@
         name: rsync
         state: present
 
-- name: Backup www docroots
-  hosts: localhost
-  become: false
-  gather_facts: true
-  vars:
-    source_dir: /var/www
-    dest_dir: /tmp/www-backup
-
-  tasks:
-
     - name: Print all hosts
       ansible.builtin.debug:
         var: ansible_play_hosts_all
@@ -28,7 +21,6 @@
     - name: Backup files with rsync
       ansible.posix.synchronize:
         src: "{{ source_dir }}"
-        dest: "{{ dest_dir }}/{{ item }}"
+        dest: "{{ dest_dir }}/{{ ansible_host }}"
         mode: pull
-      loop: "{{ ansible_play_hosts_all }}"
-
+      delegate_to: localhost
