@@ -47,6 +47,14 @@
       delegate_to: localhost
       run_once: true
 
+    - name: Install cracklib/pwquality
+      when: ansible_os_family == "RedHat"
+      ansible.builtin.dnf:
+        name:
+          - libpwquality
+          - cracklib-dicts
+        state: present
+
     - name: Create local users
       ansible.builtin.user:
         name: "{{ item.name }}"
