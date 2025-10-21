@@ -29,6 +29,11 @@
 
   tasks:
 
+   - name: Install passlib
+       ansible.builtin.pip:
+         name: passlib
+         state: present
+
     - name: Create local users
       ansible.builtin.user:
         name: "{{ item.name }}"
