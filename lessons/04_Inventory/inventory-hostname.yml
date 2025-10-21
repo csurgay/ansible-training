@@ -1,5 +1,5 @@
 ---
-- name: Library item: Set system hostname to inventory_hostname
+- name: Set system hostname to inventory_hostname
   hosts: all
   become: true
   gather_facts: false
