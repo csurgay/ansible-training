@@ -11,7 +11,7 @@
     - name: Create file.txt only on host1
       ansible.builtin.file:
         path: /home/local/file.txt
-        state: present
+        state: touch
         owner: local
         group: local
         mode: '0644'
