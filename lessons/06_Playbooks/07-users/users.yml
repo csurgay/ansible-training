@@ -35,11 +35,13 @@
           - python3-packaging
           - python3-pip
         state: present
+      delegate_to: localhost
 
     - name: Install passlib with pip
       ansible.builtin.pip:
         name: passlib
         state: present
+      delegate_to: localhost
 
     - name: Create local users
       ansible.builtin.user:
