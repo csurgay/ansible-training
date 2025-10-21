@@ -3,9 +3,6 @@
   hosts: all
   become: true
   gather_facts: false
-  vars:
-    source_dir: /var/www
-    dest_dir: /tmp/www-backup
 
   tasks:
 
@@ -18,6 +15,9 @@
   hosts: localhost
   become: false
   gather_facts: true
+  vars:
+    source_dir: /var/www
+    dest_dir: /tmp/www-backup
 
   tasks:
 
