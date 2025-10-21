@@ -31,7 +31,9 @@
 
     - name: Install pip with dnf
       ansible.builtin.dnf:
-        name: python3-pip
+        name:
+          - python3-packaging
+          - python3-pip
         state: present
 
     - name: Install passlib with pip
