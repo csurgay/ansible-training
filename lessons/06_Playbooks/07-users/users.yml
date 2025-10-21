@@ -32,16 +32,20 @@
     - name: Install pip with dnf
       ansible.builtin.dnf:
         name:
-          - python3-packaging
+          - python3
           - python3-pip
+          - python3-setuptools
+          - python3-packaging
         state: present
       delegate_to: localhost
+      run_once: true
 
     - name: Install passlib with pip
       ansible.builtin.pip:
         name: passlib
         state: present
       delegate_to: localhost
+      run_once: true
 
     - name: Create local users
       ansible.builtin.user:
