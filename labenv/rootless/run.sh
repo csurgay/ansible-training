@@ -16,6 +16,11 @@ echo "### Run rootless Managed Hosts"
 
 for i in {1..3}; do podman run --name host$i --privileged --hostname host$i -d -v /sys/fs/cgroup:/sys/fs/cgroup:ro -p 282$i:22 -p 888$i:80 --network ansible --mac-address 10:10:10:10:10:1$i docker.io/csurgay/rootless_managedhost; done
 
+echo "### Give local users NOPASSWD sudo"
+
+podman exec -it -w /home/local ansible bash -c "echo 'local ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/local"
+for i in {1..3}; do podman exec -it -w /home/local host$i bash -c "echo 'local ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/local"; done
+
 echo "### Clone latest Ansible Training Lab"
 
 podman exec -it -w /home/local ansible rm -rvf ansible-training
