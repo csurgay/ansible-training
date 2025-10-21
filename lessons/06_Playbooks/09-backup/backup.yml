@@ -17,5 +17,5 @@
       ansible.posix.synchronize:
         src: "{{ source_dir }}"
         dest: "{{ dest_dir }}"
-        mode: pull
+        mode: push
 
