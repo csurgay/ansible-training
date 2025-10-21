@@ -23,6 +23,9 @@
       ansible.builtin.file:
         path: "{{ dest_path }}"
         state: directory
+        owner: local
+        group: local
+        mode: '0755'
 
     - name: Backup files with rsync
       ansible.posix.synchronize:
