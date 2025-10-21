@@ -1,8 +1,8 @@
 ---
-- name: Backup
+- name: Install rsync
   hosts: all
   become: true
-  gather_facts: yes
+  gather_facts: false
   vars:
     source_dir: /var/www
     dest_dir: /tmp/www-backup
@@ -14,6 +14,13 @@
         name: rsync
         state: present
 
+- name: Backup www docroots
+  hosts: localhots
+  become: false
+  gather_facts: true
+
+  tasks:
+
     - name: Print all hosts
       ansible.builtin.debug:
         var: ansible_play_hosts_all
@@ -23,8 +30,5 @@
         src: "{{ source_dir }}"
         dest: "{{ dest_dir }}/{{ item }}"
         mode: pull
-      loop: ansible_play_hosts_all
-      become: false
-      delegate_to: localhost
-      run_once: true
+      loop: "{{ ansible_play_hosts_all }}"
 
