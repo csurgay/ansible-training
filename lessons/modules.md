@@ -19,6 +19,9 @@
 | | service | Manage services on generic systems |
 | | systemd | Manage services on systemd specific systems |
 | | user | Add, remove, and manage user accounts |
+| Command modules | command | Executes a single command |
+| | shell | Runs the command on a new Shell (redirection, pipes...) |
+| | raw | Executes a single command without python involved (for installing python) |
 | Net Tools modules|get_url | Download files over HTTP, HTTPS, or FTP |
 | | nmcli | Manage networking |
 | | uri | Interact with web services |
