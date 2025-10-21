@@ -15,7 +15,7 @@
         state: present
 
 - name: Backup www docroots
-  hosts: localhots
+  hosts: localhost
   become: false
   gather_facts: true
 
