@@ -7,8 +7,6 @@
   hosts: all
   gather_facts: true
   become: true
-  vars:
-    - output_dir: output
 
   tasks:
 
