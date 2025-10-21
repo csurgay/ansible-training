@@ -21,10 +21,4 @@
           - Service state: {{ sshd_status.status.ActiveState }}
           - Service enabled: {{ sshd_status.status.UnitFileState == 'enabled' }}
           - Service loaded: {{ sshd_status.status.LoadState == 'loaded' }}
-      register: result_sshd
-      no_log: true
-
-    - name: Print result
-      ansible.builtin.debug:
-        var: result_sshd.stdout
 
