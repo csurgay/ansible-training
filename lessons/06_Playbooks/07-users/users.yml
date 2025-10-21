@@ -1,0 +1,36 @@
+---
+- name: Create three local users on all servers
+  hosts: all
+  gather_facts: false
+  become: true
+
+  vars:
+    users_to_create:
+
+      - name: "alice"
+        comment: "Alice User"
+        shell: "/bin/bash"
+        home: "/home/alice"
+
+      - name: "bob"
+        comment: "Bob User"
+        shell: "/bin/bash"
+        home: "/home/bob"
+
+      - name: "charlie"
+        comment: "Charlie User"
+        shell: "/bin/bash"
+        home: "/home/charlie"
+
+  tasks:
+
+    - name: Create local users
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        comment: "{{ item.comment }}"
+        shell: "{{ item.shell }}"
+        home: "{{ item.home }}"
+        create_home: true
+        state: present
+      loop: "{{ users_to_create }}"
+
