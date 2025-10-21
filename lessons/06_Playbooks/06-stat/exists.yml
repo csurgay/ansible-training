@@ -1,0 +1,34 @@
+---
+- name: Check file exists
+  hosts: all
+  become: false
+  gather_facts: false
+  vars:
+    myfile: /home/local/file.txt
+
+  tasks:
+
+    - name: Create file.txt only on host1
+      ansible.builtin.file:
+        path: /home/local/file.txt
+        state: present
+        owner: local
+        group: local
+        mode: '0644'
+      when: inventory_hostname is 'host1'
+
+    - name: Check if a file exists
+      ansible.builtin.stat:
+        path: "{{ myfile }}"
+      register: result_stat
+
+    - name: Report file exists
+      ansible.builtin.debug:
+        msg: "The file {{ myfile }} exist"
+      when: result_stat.stat.exists
+
+    - name: Report file not exists
+      ansible.builtin.debug:
+        msg: "The file {{ myfile }} doesn't exist"
+      when: not result_stat.stat.exists
+
