@@ -17,9 +17,8 @@
     - name: Backup files with rsync
       ansible.posix.synchronize:
         src: "{{ source_dir }}"
-        dest: "{{ dest_dir }}"
+        dest: "{{ dest_dir }}/{{ item }}"
         mode: pull
+      loop: "{{ ansible_play_hosts_all }}"
       become: false
-      delegate_to: host1
-      run_once: true
 
