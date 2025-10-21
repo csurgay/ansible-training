@@ -26,5 +26,5 @@
 
     - name: Print result
       ansible.builtin.debug:
-        var: result_sshd
+        var: result_sshd.stdout
 
