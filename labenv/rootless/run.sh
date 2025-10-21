@@ -7,5 +7,9 @@ fi
 podman run --name ansible --hostname ansible -d --network ansible docker.io/csurgay/rootless_controlnode
 for i in {1..3}; do podman run --name host$i --privileged --hostname host$i -d -v /sys/fs/cgroup:/sys/fs/cgroup:ro -p 282$i:22 -p 888$i:80 --network ansible --mac-address 10:10:10:10:10:1$i docker.io/csurgay/rootless_managedhost; done
 
-podman exec -it -u local -w /home/local/ansible-training/labenv/rootless ansible /bin/bash
+podman exec -it -w /home/local ansible rm -rvf ansible-training
+
+podman exec -it -u local -w /home/local ansible git clone https://github.com/csurgay/ansible-training.git
+
+podman exec -it -u local -w /home/local/ansible-training/lessons ansible /bin/bash
 
