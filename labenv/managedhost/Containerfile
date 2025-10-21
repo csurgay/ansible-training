@@ -5,26 +5,9 @@ RUN dnf -y install \
         systemd \
         systemd-libs \
         systemd-container \
-        openssh-server \
-        passwd \
-        sudo \
-        iproute \
         procps-ng \
         firewalld \
-        ip \
-        vim \
-        python3 \
-        python3-dnf \
-    && dnf clean all \
-    && ssh-keygen -A
-
-# Enable root ssh login and password login
-COPY sshd_config /etc/ssh/
-
-# Enable sshd service
-RUN mkdir -p /var/run/sshd && \
-    systemctl enable sshd.service && \
-    echo 'root:root' | chpasswd
+    && dnf clean all
 
 # Expose ssh port
 EXPOSE 22

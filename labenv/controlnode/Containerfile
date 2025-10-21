@@ -5,6 +5,8 @@ FROM fedora:latest
 RUN dnf install -y \
     openssh-clients \
     sshd \
+    sudo \
+    iproute \
     openssh-server \
     passwd \
     ip \
@@ -20,9 +22,13 @@ RUN dnf install -y \
     ssh-keygen -A
 
 COPY ssh_config /etc/ssh/
+
+# Enable root ssh login and password login
 COPY sshd_config /etc/ssh/
 
-RUN mkdir -p /var/run/sshd
+# Enable sshd service
+RUN mkdir -p /var/run/sshd && \
+    systemctl enable sshd.service
 
 EXPOSE 22
 
