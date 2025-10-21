@@ -40,19 +40,19 @@
       delegate_to: localhost
       run_once: true
 
-    - name: Install passlib with pip
-      ansible.builtin.pip:
-        name: passlib
-        state: present
-      delegate_to: localhost
-      run_once: true
-
     - name: Install cracklib/pwquality
       ansible.builtin.dnf:
         name:
           - libpwquality
           - cracklib-dicts
         state: present
+
+    - name: Install passlib with pip
+      ansible.builtin.pip:
+        name: passlib
+        state: present
+      delegate_to: localhost
+      run_once: true
 
     - name: Create local users
       ansible.builtin.user:
