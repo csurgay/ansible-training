@@ -8,6 +8,10 @@ if [ $? -eq 0 ]
 	else podman network create ansible
 fi
 
+echo "### Remove all rootless containers"
+
+podman rm -fa
+
 echo "### Run rootless Control Node"
 
 podman run --name ansible --hostname ansible -d --network ansible docker.io/csurgay/rootless_controlnode
