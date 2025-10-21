@@ -8,7 +8,7 @@
 | | ansible.builtin.**fetch** | Fetch a remote file to the Control Node |
 | | ansible.builtin.**file** | Set permissions and other properties of files |
 | | ansible.builtin.**lineinfile** | Ensure a particular line is or is not in a file |
-| | ansible.builtin.**synchronize** | Synchronize content using rsync |
+| | ansible.posix.**synchronize** | Synchronize content using rsync |
 | Package modules | ansible.builtin.**package** | Autodetected package manager |
 | | ansible.builtin.**yum** | YUM package manager |
 | | ansible.builtin.**apt** | APT package manager |
