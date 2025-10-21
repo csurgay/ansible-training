@@ -17,7 +17,7 @@
         mode: '0644'
       when: inventory_hostname == 'host1'
 
-    - name: Copy file.txt only on host2
+    - name: Copy file.txt only to host2
       ansible.builtin.copy:
         src: ./file.txt
         dest: /home/local/file.txt
@@ -25,6 +25,12 @@
         group: local
         mode: '0644'
       when: inventory_hostname == 'host2'
+
+    - name: Remove file.txt from host3
+      ansible.builtin.file:
+        path: /home/local/file.txt
+        state: absent
+      when: inventory_hostname == 'host3'
 
     - name: Check if a file exists
       ansible.builtin.stat:
