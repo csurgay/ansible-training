@@ -48,7 +48,6 @@
       run_once: true
 
     - name: Install cracklib/pwquality
-      when: ansible_os_family == "RedHat"
       ansible.builtin.dnf:
         name:
           - libpwquality
