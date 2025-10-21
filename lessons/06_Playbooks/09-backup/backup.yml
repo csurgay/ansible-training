@@ -20,4 +20,6 @@
         dest: "{{ dest_dir }}"
         mode: pull
       become: false
+      delegate_to: host1
+      run_once: true
 
