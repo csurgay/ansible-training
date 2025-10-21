@@ -9,8 +9,8 @@
   tasks:
 
     - name: Backup files with rsync
-      ansible.builtin.synchronize:
+      ansible.posix.synchronize:
         src: "{{ source_dir }}"
         dest: "{{ dest_dir }}"
-        mode: backup
+        mode: pull
 
