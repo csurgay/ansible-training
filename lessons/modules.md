@@ -4,27 +4,28 @@
 
 | Category | Module | Description |
 |----------|--------|-------------|
-| Files modules | copy | Copy a local file to the managed host |
-| | file | Set permissions and other properties of files |
-| | lineinfile | Ensure a particular line is or is not in a file |
-| | synchronize | Synchronize content using rsync |
-| Package modules | package | Autodetected package manager |
-| | yum | YUM package manager |
-| | apt | APT package manager |
-| | dnf | DNF package manager |
-| | gem | Manage Ruby gems |
-| | pip | Manage Python packages from PyPI |
-| System modules | firewalld | Ports and services management |
-| | reboot | Reboot a machine |
-| | service | Manage services on generic systems |
-| | systemd | Manage services on systemd specific systems |
-| | user | Add, remove, and manage user accounts |
-| Command modules | command | Executes a single command |
-| | shell | Runs the command on a new Shell (redirection, pipes...) |
-| | raw | Executes a single command without python involved (for installing python) |
-| Net Tools modules|get_url | Download files over HTTP, HTTPS, or FTP |
-| | nmcli | Manage networking |
-| | uri | Interact with web services |
+| Files modules | ansible.builtin.**copy** | Copy a local file to Managed Hosts |
+| | ansible.builtin.**fetch** | Fetch a remote file to the Control Node |
+| | ansible.builtin.**file** | Set permissions and other properties of files |
+| | ansible.builtin.**lineinfile** | Ensure a particular line is or is not in a file |
+| | ansible.builtin.**synchronize** | Synchronize content using rsync |
+| Package modules | ansible.builtin.**package** | Autodetected package manager |
+| | ansible.builtin.**yum** | YUM package manager |
+| | ansible.builtin.**apt** | APT package manager |
+| | ansible.builtin.**dnf** | DNF package manager |
+| | ansible.builtin.**gem** | Manage Ruby gems |
+| | ansible.builtin.**pip** | Manage Python packages from PyPI |
+| System modules | ansible.posix.**firewalld** | Ports and services management |
+| | ansible.builtin.**reboot** | Reboot a machine |
+| | ansible.builtin.**service** | Manage services on generic systems |
+| | ansible.builtin.**systemd** | Manage services on systemd specific systems |
+| | ansible.builtin.**user** | Add, remove, and manage user accounts |
+| Command modules | ansible.builtin.**command** | Executes a single command |
+| | ansible.builtin.**shell** | Runs the command on a new Shell (redirection, pipes...) |
+| | ansible.builtin.**raw** | Executes a single command without python involved (for installing python) |
+| Net Tools modules| ansible.builtin.**get_url** | Download files over HTTP, HTTPS, or FTP |
+| | community.general.**nmcli** | Manage networking |
+| | ansible.builtin.**uri** | Interact with web services |
 
 ---
 ## Usage of Modules
