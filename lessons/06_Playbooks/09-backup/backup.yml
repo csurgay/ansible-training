@@ -25,4 +25,5 @@
         dest: "{{ dest_dir }}/{{ ansible_host }}"
         mode: pull
       when: inventory_hostname != 'localhost'
+      become: false
 
