@@ -8,6 +8,11 @@
 
   tasks:
 
+    - name: Install rsync
+      ansible.builtin.dnf:
+        name: rsync
+        state: present
+
     - name: Backup files with rsync
       ansible.posix.synchronize:
         src: "{{ source_dir }}"
