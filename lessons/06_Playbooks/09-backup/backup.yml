@@ -2,7 +2,7 @@
 - name: Backup
   hosts: all
   become: true
-  gather_facts: false
+  gather_facts: yes
   vars:
     source_dir: /var/www
     dest_dir: /tmp/www-backup
@@ -25,4 +25,6 @@
         mode: pull
       loop: "{{ ansible_play_hosts_all }}"
       become: false
+      delegate_to: localhost
+      run_once: true
 
