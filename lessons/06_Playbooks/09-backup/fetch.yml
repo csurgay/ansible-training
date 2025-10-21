@@ -1,18 +1,13 @@
 ---
-- name: Install rsync
+- name: Backup with fetch
   hosts: all
   become: true
   gather_facts: false
   vars:
     source_path: /var/www
-    dest_path: /tmp/www-backup
+    dest_path: /tmp/backup/fetch
 
   tasks:
-
-    - name: Install rsync
-      ansible.builtin.dnf:
-        name: rsync
-        state: present
 
     - name: Print all hosts
       ansible.builtin.debug:
@@ -27,11 +22,10 @@
         group: local
         mode: '0755'
 
-    - name: Backup files with rsync
-      ansible.posix.synchronize:
-        src: "{{ source_path }}"
-        dest: "{{ dest_path }}/{{ ansible_host }}"
-        mode: pull
+    - name: Backup files with fetch
+      ansible.builtin.fetch:
+        src: "{{ source_path }}/html/index.html"
+        dest: "{{ dest_path }}"
       when: inventory_hostname != 'localhost'
       become: false
 
