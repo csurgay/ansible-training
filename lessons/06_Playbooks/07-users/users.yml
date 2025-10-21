@@ -54,6 +54,10 @@
       delegate_to: localhost
       run_once: true
 
+    - name: Wait 5s
+      ansible.builtin.wait_for:
+        timeout: 10
+
     - name: Create local users
       ansible.builtin.user:
         name: "{{ item.name }}"
