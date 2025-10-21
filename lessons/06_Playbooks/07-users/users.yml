@@ -29,12 +29,12 @@
 
   tasks:
 
-    - name: Install passlib
+    - name: Install pip with dnf
       ansible.builtin.dnf:
-        name: packaging
+        name: python3-pip
         state: present
 
-    - name: Install passlib
+    - name: Install passlib with pip
       ansible.builtin.pip:
         name: passlib
         state: present
