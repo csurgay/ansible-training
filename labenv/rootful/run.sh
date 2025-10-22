@@ -1,10 +1,19 @@
 #!/bin/bash
 
 log() {
-	printf "\n##################################################\n"
-	printf "$1"
-	printf "\n##################################################\n"
-	printf "\n"
+	if [ $? -eq 0 ]
+	then
+		printf "\n##################################################\n"
+		printf "Success: $1"
+		printf "\n##################################################\n"
+		printf "\n"
+	else
+		printf "\n##################################################\n"
+		printf "ERROR: $1"
+		printf "\n##################################################\n"
+		printf "\n"
+		exit 1
+	fi
 }
 
 log "Rootful sctipt starting"
@@ -51,7 +60,7 @@ for i in {1..3}; do podman exec ansible sshpass -f /root/pass ssh-copy-id host$i
 
 log "SSH key is copied into Managedhost containers"
 
-podman exec -w /root/ansible-training/labenv/rootful ansible ansible myhosts --become=false -m ping
+podman exec -w /root/ansible-training/labenv/rootful ansible ansible myhosts -m ping
 
 log "Ansible accessing Managedhosts is tested OK"
 
