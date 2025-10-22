@@ -1,3 +1,5 @@
+#!/bin/bash
+
 log() {
 	printf "\n##########################################\n"
 	printf "$1"
@@ -17,7 +19,7 @@ cd ../managedhost
 
 log "Managedhost containers are running"
 
-cd ../rebuild
+cd ../rootful
 
 podman exec ansible dnf install -y git
 
