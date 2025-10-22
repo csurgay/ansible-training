@@ -55,5 +55,5 @@ podman exec -w /root/ansible-training/labenv ansible ansible myhosts -m ping
 
 log "Ansible accessing Managedhosts is tested OK"
 
-podman exec -w /root/ansible-training/lessons ansible bash
+podman exec -it -w /root/ansible-training/lessons ansible bash
 
