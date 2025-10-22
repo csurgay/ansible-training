@@ -41,7 +41,7 @@ for i in {1..3}; do str="$(podman network inspect ansible | grep -A5 host$i | gr
 
 log "Managed hosts IP addresses is saved in Controlnode container"
 
-podman exec ansible ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -P ""
+podman exec -u root ansible bash -c 'ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -P ""'
 
 log "SSH key is generated for root in Controlnode container"
 
@@ -54,4 +54,6 @@ log "SSH key is copied into Managedhost containers"
 podman exec -w /root/ansible-training/labenv ansible ansible myhosts -m ping
 
 log "Ansible accessing Managedhosts is tested OK"
+
+podman exec -w /root/ansible-training/lessons ansible bash
 
