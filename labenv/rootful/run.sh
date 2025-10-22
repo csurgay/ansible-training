@@ -9,6 +9,10 @@ log() {
 
 log "Rootful sctipt starting"
 
+podman rm -fa
+
+log "All existing containers removed"
+
 cd ../controlnode
 ./run.sh
 
