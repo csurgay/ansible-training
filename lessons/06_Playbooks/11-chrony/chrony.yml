@@ -25,3 +25,11 @@
         name: chronyd
         state: restarted
 
+    - name: Set timezone
+      community.general.timezone:
+        name: Europe/Budapest
+
+    - name: Get date time
+      ansible.builtin.shell:
+        cmd: date
+
