@@ -36,5 +36,5 @@
 
     - name: Print date
       ansible.builtin.debug:
-        var: result_date
+        var: result_date.stdout
 
