@@ -124,7 +124,7 @@ ansible all -m shell -a "echo $HOME"
 ansible all --become -m shell -a whoami
 ```
 
-This will return an error message because `local` cannot `sudo` without password.
+This will return an error message because `devops` cannot `sudo` without password.
 
 * **Ask to provide `sudo` password**:
 
@@ -132,7 +132,7 @@ This will return an error message because `local` cannot `sudo` without password
 ansible all --become --ask-become-pass -m shell -a whoami
 ```
 
-This will ask for the `sudo` password and use that on the managed hosts (passwd is `local`).  
+This will ask for the `sudo` password and use that on the managed hosts (user `devops` passwd is `devops`).  
 
 > [!NOTE]
 > The reason why it's called "become" is that there can be other elevations than `sudo`.  
@@ -370,6 +370,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
