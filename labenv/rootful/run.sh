@@ -1,9 +1,9 @@
 #!/bin/bash
 
 log() {
-	printf "\n##########################################\n"
+	printf "\n##################################################\n"
 	printf "$1"
-	printf "\n##########################################\n"
+	printf "\n##################################################\n"
 	printf "\n"
 }
 
@@ -29,11 +29,11 @@ podman exec -w=/root ansible git clone https://github.com/csurgay/ansible-traini
 
 log "Training lab is pulled from Git to Controlnode container"
 
-podman exec ansible bash -c 'printf "[defaults]\ninventory=./host_inventory\nlog_path=ansible.log\ninterpreter_python=/usr/bin/python3\n" > /root/ansible-training/labenv/ansible.cfg'
+podman cp ansible.cfg ansible:/root/ansible-training/labenv/rootful/
 
 log "Ansible config is saved in Controlnode container"
 
-podman exec ansible bash -c 'printf "[myhosts]\nhost1\nhost2\nhost3\n" > /root/ansible-training/labenv/host_inventory'
+podman cp host_inventory ansible:/root/ansible-training/labenv/rootful/
 
 log "Ansible Inventory is saved in Controlnode container"
 
@@ -51,7 +51,7 @@ for i in {1..3}; do podman exec ansible sshpass -f /root/pass ssh-copy-id host$i
 
 log "SSH key is copied into Managedhost containers"
 
-podman exec -w /root/ansible-training/labenv ansible ansible myhosts -m ping
+podman exec -w /root/ansible-training/labenv/rootful ansible ansible myhosts --become=false -m ping
 
 log "Ansible accessing Managedhosts is tested OK"
 
