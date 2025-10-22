@@ -21,17 +21,9 @@ log "Managedhost containers are running"
 
 cd ../rootful
 
-podman exec ansible dnf install -y git
-
-log "Git is installed in Controlnode container"
-
 podman exec -w=/root ansible git clone https://github.com/csurgay/ansible-training.git
 
 log "Training lab is pulled from Git to Controlnode container"
-
-podman exec ansible dnf install -y ansible
-
-log "Ansible is installed in Controlnode container"
 
 podman exec ansible bash -c 'printf "[defaults]\ninventory=./host_inventory\nlog_path=ansible.log\ninterpreter_python=/usr/bin/python3\n" > /root/ansible-training/labenv/ansible.cfg'
 
