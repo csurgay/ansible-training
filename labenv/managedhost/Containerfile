@@ -1,19 +1,7 @@
 FROM controlnode
 
-# Install systemd, openssh-server, and useful tools
-RUN dnf -y install \
-        systemd \
-        systemd-libs \
-        systemd-container \
-        procps-ng \
-        firewalld \
-    && dnf clean all
-
 # Expose ssh port
 EXPOSE 22
-
-# Systemd needs a few things mounted when container runs
-VOLUME [ "/sys/fs/cgroup" ]
 
 # Use systemd as PID 1
 CMD ["/usr/sbin/init"]

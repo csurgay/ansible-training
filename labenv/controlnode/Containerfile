@@ -10,6 +10,7 @@ RUN dnf install -y \
     openssh-server \
     passwd \
     ip \
+    ps \
     tree \
     vim \
     ping \
@@ -17,9 +18,14 @@ RUN dnf install -y \
     podman \
     python3 \
     python3-dnf && \
-    dnf clean all && \
-    echo "root:root" | chpasswd && \
-    ssh-keygen -A
+    systemd \
+    systemd-libs \
+    systemd-container \
+    procps-ng \
+    firewalld \
+  dnf clean all && \
+  echo "root:root" | chpasswd && \
+  ssh-keygen -A
 
 COPY ssh_config /etc/ssh/
 
@@ -30,7 +36,12 @@ COPY sshd_config /etc/ssh/
 RUN mkdir -p /var/run/sshd && \
     systemctl enable sshd.service
 
+# Expose ssh port
 EXPOSE 22
 
-CMD ["/usr/sbin/sshd", "-D"]
+# Systemd needs a few things mounted when container runs
+VOLUME [ "/sys/fs/cgroup" ]
+
+# Use systemd as PID 1
+CMD ["/usr/sbin/init"]
 
