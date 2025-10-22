@@ -32,4 +32,9 @@
     - name: Get date time
       ansible.builtin.shell:
         cmd: date
+      register: result_date
+
+    - name: Print date
+      ansible.builtin.debug:
+        var: result_date
 
