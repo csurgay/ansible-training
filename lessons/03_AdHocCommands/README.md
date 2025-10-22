@@ -1,15 +1,5 @@
 # Section 3. Ansible Ad-Hoc Commands
 
-> [!IMPORTANT]
-> Use the rootless ansible training lab environment for this exercise
-> ```
-> podman rmi -fa
-> cd .../labenv/rootless/
-> ./run.sh
-> podman exec -it --user local ansible /bin/bash
-> cd /home/local/ansible-training/labenv/rootless/
-> ```
-
 ### In this section the following subjects will be covered:
 
 1. Checking the Inventory (`--list-hosts`)
@@ -380,6 +370,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
