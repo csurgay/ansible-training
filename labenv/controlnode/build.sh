@@ -1,4 +1,4 @@
 #!/bin/bash
 
-podman build -t controlnode --layers=false .
+podman build -t docker.io/csurgay/ansible_node --layers=false .
 

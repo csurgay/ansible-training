@@ -1,8 +1,0 @@
-FROM controlnode
-
-# Expose ssh port
-EXPOSE 22
-
-# Use systemd as PID 1
-CMD ["/usr/sbin/init"]
-
