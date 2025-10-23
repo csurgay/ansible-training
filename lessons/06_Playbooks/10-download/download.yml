@@ -6,7 +6,7 @@
   vars:
     myurl: "https://releases.ansible.com/ansible/ansible-2.9.27.tar.gz"
     mycrc: "sha256:https://releases.ansible.com/ansible/ansible-2.9.27.tar.gz.sha"
-    mydest: "/home/local"
+    mydest: "/home/devops"
 
   tasks:
 
@@ -15,7 +15,7 @@
         url: "{{ myurl }}"
         dest: "{{ mydest }}"
         checksum: "{{ mycrc }}"
-        owner: local
-        group: local
+        owner: devops
+        group: devops
         mode: '0644'
 

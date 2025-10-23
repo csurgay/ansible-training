@@ -16,7 +16,7 @@ Use `-l` or `--list` for a complete list of installed modules to find something 
 `ansible-doc -l | grep firewall`
 
 ```
-local@builder:~$ ansible-doc -l | grep firewalld
+devops@ansible:~$ ansible-doc -l | grep firewalld
 ansible.posix.firewalld
 ansible.posix.firewalld_info
 ```
@@ -29,7 +29,7 @@ Use the `-s` or `--snippet` option for a module template with complete list of a
 `ansible-doc -s firewalld`  
 
 ```
-local@builder:~$ ansible-doc -s firewalld
+devops@ansible:~$ ansible-doc -s firewalld
 - name: Manage arbitrary ports/services with firewalld
   firewalld:
       forward:               # The forward setting you would like to enable/disable to/from zones

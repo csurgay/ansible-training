@@ -14,7 +14,7 @@ A typical ansible configuration file:
 
 ```
 [defaults]
-remote_user = local
+remote_user = devops
 inventory = ./inventory
 ask_pass = false
 log_path = ./ansible.log
@@ -50,7 +50,7 @@ Directives in the configuratin file above
 /etc/ansible/ansible.cfg
 ~/.ansible.cfg
 ./ansible.cfg
-export ANSIBLE_CONFIG=/home/local/ansible-training/labenv/rootless/ansible.cgf
+export ANSIBLE_CONFIG=/home/devops/ansible-training/labenv/ansible.cgf
 ```
 
 The last one is best practice and have the highest precedence over all the others.

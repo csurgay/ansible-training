@@ -63,5 +63,6 @@ Numbered GitHub lesson directories under `ansible-training/lessons`
 Enter the Ansible Control Node Container (ansible) and run the exercise commands and playbooks
 
 ```
-podman exec -it -u local -w /home/local/ansible-training/labenv ansible /bin/bash
+podman exec -it -u devops -w /home/devops/ansible-training/labenv ansible /bin/bash
 ```
+

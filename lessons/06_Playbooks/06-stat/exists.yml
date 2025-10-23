@@ -4,31 +4,31 @@
   become: false
   gather_facts: false
   vars:
-    myfile: /home/local/file.txt
+    myfile: /home/devops/file.txt
 
   tasks:
 
     - name: Create file.txt only on host1
       ansible.builtin.file:
-        path: /home/local/file.txt
+        path: /home/devops/file.txt
         state: touch
-        owner: local
-        group: local
+        owner: devops
+        group: devops
         mode: '0644'
       when: inventory_hostname == 'host1'
 
     - name: Copy file.txt only to host2
       ansible.builtin.copy:
         src: ./file.txt
-        dest: /home/local/file.txt
-        owner: local
-        group: local
+        dest: /home/devops/file.txt
+        owner: devops
+        group: devops
         mode: '0644'
       when: inventory_hostname == 'host2'
 
     - name: Remove file.txt from host3
       ansible.builtin.file:
-        path: /home/local/file.txt
+        path: /home/devops/file.txt
         state: absent
       when: inventory_hostname == 'host3'
 

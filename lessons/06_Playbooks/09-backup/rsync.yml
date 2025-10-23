@@ -23,8 +23,8 @@
       ansible.builtin.file:
         path: "{{ dest_path }}"
         state: directory
-        owner: local
-        group: local
+        owner: devops
+        group: devops
         mode: '0755'
 
     - name: Backup files with rsync

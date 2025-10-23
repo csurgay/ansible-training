@@ -47,16 +47,16 @@
         path: "/tmp/{{ output_dir }}"
         state: directory
         mode: '0755'
-        owner: local
-        group: local
+        owner: devops
+        group: devops
 
     - name: Write markdown report to file on controller
       ansible.builtin.copy:
         dest: "/tmp/{{ output_dir }}/storage.lst"
         content: "{{ storage_report_markdown | default('# Storage Usage Report\n(No data was collected)') }}\n"
         mode: '0644'
-        owner: local
-        group: local
+        owner: devops
+        group: devops
 
     - name: Print result file
       ansible.builtin.debug:

@@ -28,8 +28,8 @@ command will ask for a master password and open the text editor for the strucrtu
 ```
 ---
 # Secrets to be encrypted by Vault
-username: local
-password: local
+username: devops
+password: devops
 ```
 
 `ansible-vault encrypt mysecret.yml`
