@@ -33,24 +33,25 @@ On the other hand, pre-designed environments for different exercises can also be
 
 ### 1. Clone and build the Training Lab
 
-Log in to any Red Hat based linux or VM as root, then:
+Log in to any Red Hat based host or VM, then:
 
 ```
 # Install Git and Podman
-dnf install -y git podman
+sudo dnf install -y git podman
 
 # Clone the Git repo on the Host VM
 git clone https://github.com/csurgay/ansible-training.git
 
 # Run the Lab Containers and enter the Control Node (ansible)
-cd ansible-training/labenv/rootless
-./run.sh
+cd ansible-training/labenv/
+sudo ./run.sh
 ```
 
 ### 2. Test the Training Lab
 
-On the Control Node (ansible)
+In the `labenv` direcotory of the Ansible Control Node container 'ansible'
 ```
+cd /home/devops/ansible-training/labenv
 ansible all -m ping
 ```
 
@@ -63,6 +64,6 @@ Numbered GitHub lesson directories under `ansible-training/lessons`
 Enter the Ansible Control Node Container (ansible) and run the exercise commands and playbooks
 
 ```
-podman exec -it -u devops -w /home/devops/ansible-training/labenv ansible /bin/bash
+sudo podman exec -it -u devops -w /home/devops/ansible-training/lessons ansible /bin/bash
 ```
 
