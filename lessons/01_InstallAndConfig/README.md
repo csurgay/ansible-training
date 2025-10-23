@@ -2,18 +2,19 @@
 
 ### In this section the following subjects will be covered:
 
-1.	Launch Ansible control node and three managed hosts in containers
-2.	Set up SSH keys so that Ansible can access managed hosts 
-3.	Install and configure Ansible in the control node container
-4.	Smoke test Ansible to access managed hosts
-5.	CLI Toolset
+1.	Launch Ansible Control Node and three Managed Hosts in containers
+2.	Set up SSH keys so that Ansible Control Node can access itself and Managed Hosts 
+3.	Install and configure Ansible in the Control Node container
+4.	Clone Training-Lab git repo into Ansible Control Node
+5.	Smoke test Ansible to access managed hosts
+6.	CLI Toolset
 
 ### Ansible Training Environment
 
-![Figure 1. Training lab environment](https://csurgay.com/ansible/ansible-labenv.png)
+![Figure 1. Training lab environment](https://csurgay.com/ansible/labenv.png)
 
 ---
-## Launching the Ansible Training Environment
+## Launch Ansible Control Node and three Managed Hosts in containers
 
 ### Log into the builder environment
 
@@ -24,6 +25,9 @@
 5.	cd into the “ansible-training/labenv” directory in root’s home
 
 ### Build ansible image
+
+> [!NOTE]
+> This step is going to take quite a while, so it is prepared in advance. **Participants can skip this section!**
 
 1.	cd into the “ansible_node/build_image” directory under “labenv”
 2.	Run the command **`./build_image.sh`**
@@ -56,7 +60,7 @@ affd78f71de7  docker.io/csurgay/ansible_node:latest  /usr/sbin/init  11 seconds 
 ```
 
 ---
-## Setting up SSH keys
+## Set up SSH keys so that Ansible Control Node can access itself and Managed Hosts 
 
 ### Create `devops` user in Control Node and Managed Hosts containers
 
@@ -67,27 +71,28 @@ affd78f71de7  docker.io/csurgay/ansible_node:latest  /usr/sbin/init  11 seconds 
 5.  Exit container by **`exit`** (or ctrl-d)
 6.  Repeat 1-2-3-4 for Managed Hosts by entering them **`podman exec -it host1 bash`**
 
-### Generate devops SSH keys on “controlnode”
+### Generate devops SSH keys on Control Node
 
 1.	Enter control node with the command **`podman exec -it -u devops ansible bash`**
 2.	Generate SSH keys with the command **`ssh-keygen`**
 3.	Answer with empty “Enter” to all three questions
 
-### Copy devops SSH public keys into managed hosts
+### Copy devops SSH public keys into Control Node and Managed Hosts
 
-1.	Issue the command **`ssh-copy-id host1`**
-2.	No need to answer “yes” for the known_host fingerprint related question due to ssh configuration
-3.	Type in root password **`devops`** when requested
-4.	Repeat 2-3 for the other two magaged host containers as well
+1.	Still as `devops` in the Control Node container `ansible`
+2.	Copy SSH key into localhost by **`ssh-copy-id host1`**
+3.	No need to answer “yes” for the known_host fingerprint related question due to ssh configuration
+4.	Type in root password **`devops`** when requested
+5.	Repeat 2-3 for the other two magaged host containers as well
 
 ---
-## Install and configure Ansible on control node
+## Install and configure Ansible in the Control Node container
 
-### Install ansible and vim
+### Install ansible, git and vim
 
-1.	Run **`sudo dnf install -y ansible`** on control node “ansible” host as root
-2.	Test the installation with **`ansible –version`**
-3.	Install Vim editor for coloring of playbooks **`dnf install -y vim`**
+1.  Enter Ansible Control Node container `ansible` by `podman exec -it -u devops ansible bash`
+2.	Run **`sudo dnf install -y ansible git vim`** on Control Node “ansible” host
+3.	Test the installation with **`ansible –version`**
 
 ### Configure Ansible
 
@@ -111,6 +116,13 @@ inventory=./hosts_inventory
 log_path=ansible.log
 interpreter_python=/usr/bin/python3
 ```
+
+---
+## Clone Training-Lab git repo into Ansible Control Node
+
+1.  Enter Ansible Control Node `ansible` by **`podman -it -u devops -w /home/devops ansible bash`**
+2.  Clone the Training-Lab git repo under `/home/devops` by
+3.  **`git clone https://github.com/csurgay/ansible-training.git`**
 
 ---
 ## Smoke test ansible access managed hosts
