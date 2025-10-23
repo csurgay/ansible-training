@@ -26,6 +26,9 @@
 
 ### Build ansible image
 
+> [!NOTE]
+> This step is going to take quite a while, so it is prepared in advance, participants can skip this section!
+
 1.	cd into the “ansible_node/build_image” directory under “labenv”
 2.	Run the command **`./build_image.sh`**
 3.	Check the images with the command **`podman images -a`**
