@@ -26,7 +26,7 @@ On the other hand, pre-designed environments for different exercises can also be
 
 ### Container based Ansible Training Lab
 
-![Figure 1. Training lab environment](https://csurgay.com/ansible/ansible-labenv.png)
+![Figure 1. Training lab environment](https://csurgay.com/ansible/labenv.png)
 
 ---
 # Usage
