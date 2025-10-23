@@ -31,7 +31,7 @@ On the other hand, pre-designed environments for different exercises can also be
 ---
 # Usage
 
-### 1. Clone and build the Training Lab
+### 1. Launch the Training Lab
 
 Log in to any Red Hat based host or VM, then:
 
@@ -61,9 +61,8 @@ Numbered GitHub lesson directories under `ansible-training/lessons`
 
 ### 4. Hands-on exercises
 
-Enter the Ansible Control Node Container (ansible) and run the exercise commands and playbooks
+Enter the Ansible Control Node container (ansible) and run the exercise commands and playbooks
 
 ```
 sudo podman exec -it -u devops -w /home/devops/ansible-training/lessons ansible /bin/bash
 ```
-
