@@ -1,3 +1,0 @@
-PermitRootLogin yes
-AuthorizedKeysFile	.ssh/authorized_keys
-Subsystem	sftp	/usr/libexec/openssh/sftp-server

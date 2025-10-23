@@ -23,30 +23,38 @@
 4.	**`git clone https://github.com/csurgay/ansible-training.git`**
 5.	cd into the “ansible-training/labenv” directory in root’s home
 
-### Build ansible “control node” image
+### Build ansible image
 
-1.	cd into the “controlnode” directory under “labenv”
-2.	Run the command **`./build.sh`**
-3.	It is going to take some time, ca. 1-2 minutes
+1.	cd into the “ansible_node/build_image” directory under “labenv”
+2.	Run the command **`./build_image.sh`**
+3.	It is going to take some time
 4.	Check the images with the command **`podman images -a`**
 
-### Run the “control node” container
+You should see the images list:
 
-1.	Run the command **`./run.sh`** in the same “controlnode” directory
-2.	Check the running container with the command **`podman ps -a`**
+```bash
+root@builder:~/ansible-training/labenv/ansible_node/build_image$ podman images -a
+REPOSITORY                         TAG         IMAGE ID      CREATED             SIZE
+docker.io/csurgay/ansible_node     latest      94a737e19025  About a minute ago  1.05 GB
+registry.fedoraproject.org/fedora  latest      e78db4e34c81  3 hours ago         170 MB
+```
 
-### Build ansible “managed host” image
+### Run the Training-Lab containers
 
-1.	cd into the “managedhost” directory under “labenv”
-2.	Run the command **`./build.sh`**
-3.	Check the images with the command **`podman images -a`**
+1.	cd into the “ansible_node” directory under “labenv”
+2.	Run the command **`./run_containers.sh`**
+3.	Check the running container with the command **`podman ps -a`**
 
-### Run the “managed host” containers
+You should see the list of containers in `Up` state
 
-1.	Run the command **`./run.sh`** in the same “managedhost” directory
-2.	Check the output IP and MAC addresses, they should all be different
-3.	Make note of the 3 IP addresses, we will need them later (e.g. 10.88.0.11, 12, 13)
-4.	Check the running containers with the command **`podman ps -a`**
+```bash
+root@builder:~/ansible-training/labenv/ansible_node$ podman ps -a
+CONTAINER ID  IMAGE                                  COMMAND         CREATED         STATUS         PORTS                                               NAMES
+51d0ad5445c6  docker.io/csurgay/ansible_node:latest  /usr/sbin/init  12 seconds ago  Up 13 seconds  0.0.0.0:2020->22/tcp, 22/tcp                        ansible
+bcec1e67c6f3  docker.io/csurgay/ansible_node:latest  /usr/sbin/init  12 seconds ago  Up 12 seconds  0.0.0.0:2021->22/tcp, 0.0.0.0:8081->80/tcp, 22/tcp  host1
+affd78f71de7  docker.io/csurgay/ansible_node:latest  /usr/sbin/init  11 seconds ago  Up 12 seconds  0.0.0.0:2022->22/tcp, 0.0.0.0:8082->80/tcp, 22/tcp  host2
+8ae3f09469ac  docker.io/csurgay/ansible_node:latest  /usr/sbin/init  11 seconds ago  Up 12 seconds  0.0.0.0:2023->22/tcp, 0.0.0.0:8083->80/tcp, 22/tcp  host3
+```
 
 ---
 ## Setting up SSH keys
