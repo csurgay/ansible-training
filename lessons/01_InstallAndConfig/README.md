@@ -18,11 +18,14 @@
 
 ### Log into the builder environment
 
-1.	Log in to the Ansible Training virtual machine called “builder” as root
-2.	Install “git” if not already installed **`dnf -y install git`**
-3.	Clone the Training Lab Git Repository to your local VM:
-4.	**`git clone https://github.com/csurgay/ansible-training.git`**
-5.	cd into the “ansible-training/labenv” directory in root’s home
+1.	Log in to the Ansible Training virtual machine called “builder”
+2.	`su` yourself (or **`sudo -s`** with no root password) to privileged
+3.	Make yourself nopasswd sudo by **`echo "<username> ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/<username>`**
+4.	Install “git” if not already installed **`dnf -y install git`**
+5.	Exit privileged by **`exit`** or (ctrl-d)
+6.	Clone the Training Lab Git Repository to your local VM as your regular user into your home directory:
+7.	**`git clone https://github.com/csurgay/ansible-training.git`**
+8.	Change dir into the **`cd /home/<username>/ansible-training/labenv`** directory
 
 ### Build ansible image
 
@@ -30,8 +33,8 @@
 > This step is going to take quite a while, so it is prepared in advance. **Participants can skip this section!**
 
 1.	cd into the “ansible_node/build_image” directory under “labenv”
-2.	Run the command **`./build_image.sh`**
-3.	Check the images with the command **`podman images -a`**
+2.	Run the command **`sudo ./build_image.sh`**
+3.	Check the images with the command **`sudo podman images -a`**
 
 You should see the images list:
 
@@ -45,8 +48,8 @@ registry.fedoraproject.org/fedora  latest      e78db4e34c81  3 hours ago        
 ### Run the Training-Lab containers
 
 1.	cd into the “ansible_node” directory under “labenv”
-2.	Run the command **`./run_containers.sh`**
-3.	Check the running container with the command **`podman ps -a`**
+2.	Run the command **`sudo ./run_containers.sh`**
+3.	Check the running container with the command **`sudo podman ps -a`**
 
 You should see the list of containers in `Up` state
 
@@ -64,7 +67,7 @@ affd78f71de7  docker.io/csurgay/ansible_node:latest  /usr/sbin/init  11 seconds 
 
 ### Create `devops` user in Control Node and Managed Hosts containers
 
-1.	Enter control node with the command **`podman exec -it ansible bash`**
+1.	Enter control node with the command **`sudo podman exec -it ansible bash`**
 2.  Create `devops` user by **`adduser devops`**
 3.  Add password `devops` for user `devops` by **`passwd devops`** and enter `devops` twice
 4.  Add `sudo` rights to `devops` by **`echo "devops ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/devops`**
