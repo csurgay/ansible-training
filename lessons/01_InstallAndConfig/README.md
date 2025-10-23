@@ -11,7 +11,7 @@
 
 ### Ansible Training Environment
 
-![Figure 1. Training lab environment](https://csurgay.com/ansible/ansible-labenv.png)
+![Figure 1. Training lab environment](https://csurgay.com/ansible/labenv.png)
 
 ---
 ## Launch Ansible Control Node and three Managed Hosts in containers
