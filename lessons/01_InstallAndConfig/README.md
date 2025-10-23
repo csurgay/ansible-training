@@ -27,8 +27,7 @@
 
 1.	cd into the “ansible_node/build_image” directory under “labenv”
 2.	Run the command **`./build_image.sh`**
-3.	It is going to take some time
-4.	Check the images with the command **`podman images -a`**
+3.	Check the images with the command **`podman images -a`**
 
 You should see the images list:
 
@@ -59,25 +58,34 @@ affd78f71de7  docker.io/csurgay/ansible_node:latest  /usr/sbin/init  11 seconds 
 ---
 ## Setting up SSH keys
 
-### Generate SSH keys on “controlnode”
+### Create `devops` user in Control Node and Managed Hosts containers
 
 1.	Enter control node with the command **`podman exec -it ansible bash`**
+2.  Create `devops` user by **`adduser devops`**
+3.  Add password `devops` for user `devops` by **`passwd devops`** and enter `devops` twice
+4.  Add `sudo` rights to `devops` by **`echo "devops ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/devops`**
+5.  Exit container by **`exit`** (or ctrl-d)
+6.  Repeat 1-2-3-4 for Managed Hosts by entering them **`podman exec -it host1 bash`**
+
+### Generate devops SSH keys on “controlnode”
+
+1.	Enter control node with the command **`podman exec -it -u devops ansible bash`**
 2.	Generate SSH keys with the command **`ssh-keygen`**
 3.	Answer with empty “Enter” to all three questions
 
-### Copy public ssh keys into managed hosts
+### Copy devops SSH public keys into managed hosts
 
-1.	Issue the command **`ssh-copy-id 10.88.0.11`**
-2.	Answer “yes” for the known_host fingerprint related question
-3.	Type in root password **`root`** when requested
-4.	Repeat 2 and 3 for the other two magaged host containers as well
+1.	Issue the command **`ssh-copy-id host1`**
+2.	No need to answer “yes” for the known_host fingerprint related question due to ssh configuration
+3.	Type in root password **`devops`** when requested
+4.	Repeat 2-3 for the other two magaged host containers as well
 
 ---
 ## Install and configure Ansible on control node
 
 ### Install ansible and vim
 
-1.	Run **`dnf install -y ansible`** on control node “ansible” host as root
+1.	Run **`sudo dnf install -y ansible`** on control node “ansible” host as root
 2.	Test the installation with **`ansible –version`**
 3.	Install Vim editor for coloring of playbooks **`dnf install -y vim`**
 
