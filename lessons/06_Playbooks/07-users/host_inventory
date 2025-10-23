@@ -1,3 +1,6 @@
+[controlnode]
+localhost
+
 [myhosts]
 host1 web_port=8081
 host2 web_port=8082
