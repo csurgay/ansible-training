@@ -75,18 +75,19 @@ Set up SSH keys so that Ansible Control Node can manage itself and Managed Hosts
 
 ### Create `devops` user in Control Node and Managed Hosts containers
 
-1.	Enter control node with the command **`sudo podman exec -it ansible bash`**
-2.  Create `devops` user by **`adduser devops`**
-3.  Add password `devops` for user `devops` by **`passwd devops`** and enter `devops` twice
-4.  Add `sudo` rights to `devops` by **`echo "devops ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/devops`**
-5.  Exit container by **`exit`** (or ctrl-d)
-6.  Repeat 1-2-3-4 for Managed Hosts by entering them **`podman exec -it host1 bash`**
+1.	Enter Control Node with the command **`sudo podman exec -it ansible bash`**
+2.  Now you entered the `änsible` contaner as `root`
+3.  Create `devops` user by **`adduser devops`**
+4.  Add password `devops` for user `devops` by **`passwd devops`** and enter `devops` twice
+5.  Add `sudo` rights to `devops` by **`echo "devops ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/devops`**
+6.  Exit container by **`exit`** (or ctrl-d)
+7.  Repeat 1-2-3-4 for Managed Hosts by entering them **`podman exec -it host1 bash`**
 
 ### Generate devops SSH keys on Control Node
 
-1.	Enter control node with the command **`podman exec -it -u devops ansible bash`**
+1.	Enter Control Node with the command **`sudo podman exec -it -u devops ansible bash`**
 2.	Generate SSH keys with the command **`ssh-keygen`**
-3.	Answer with empty “Enter” to all three questions
+3.	Answer with empty **`Enter`** to all three questions
 
 ### Copy devops SSH public keys into Control Node and Managed Hosts
 
@@ -103,21 +104,27 @@ Install and configure Ansible in the Control Node container.
 
 ### Install ansible, git and vim
 
-1.  Enter Ansible Control Node container `ansible` by `podman exec -it -u devops ansible bash`
+1.  Enter Ansible Control Node container `ansible` by **`sudo podman exec -it -u devops ansible bash`**
 2.	Run **`sudo dnf install -y ansible git vim`** on Control Node “ansible” host
 3.	Test the installation with **`ansible –version`**
 
 ### Configure Ansible
 
-1.	Create a textfile named **`hosts_inventory`** with the three IP addresses e.g. as follows:
+1. Change dir **`cd /home/devops/ansible-training/labenv`** for ansible config creation
+
+2.	Create a textfile named **`hosts_inventory`** as follows:
+
 ```
+[controlnode]
+localhost
+
 [myhosts]
-10.88.0.11
-10.88.0.12
-10.88.0.13
+host1
+host2
+host3
 ```
 
-2.	Create a textfile named **`ansible.cfg`**
+3.	Create a textfile named **`ansible.cfg`**
 
 It will contain the reference for the default inventory,
 a reference for the log_path to log all ansible output to,
@@ -125,9 +132,18 @@ and suppress a python related warning for conveniance.
 
 ```
 [defaults]
-inventory=./hosts_inventory
-log_path=ansible.log
-interpreter_python=/usr/bin/python3
+inventory = ./hosts_inventory
+remote_user = devops
+ask_pass = false
+log_path = ansible.log
+interpreter_python = /usr/bin/python3
+callback_result_format = yaml
+
+[privilege_escalation]
+become = true
+become_method = sudo
+become_user = root
+become_ask_pass = false
 ```
 
 ---
@@ -146,11 +162,13 @@ Smoke test Ansible access Managed Hosts
 
 ### Ad-hoc command for testing
 
-1.	Test python version on Control node:
-2.	**`ansible localhost -m setup | grep python_version`** 
-1.	Test that ansible can manage the hosts with the ping module as follows:
-1.	**`ansible myhosts -m ping`**
-1.	Check ansible output for all three pong responses
+1.  Enter Ansible Control Node container `ansible` by
+2.  **`sudo podman -it -u devops -w /home/devops/ansible-training/labenv ansible bash`**
+3.	As user `devops` inside Control Node `ansible` test python version
+4.	**`ansible localhost -m setup | grep python_version`** 
+5.	Test that ansible can manage the hosts with the ping module as follows:
+6.	**`ansible myhosts -m ping`**
+7.	Check ansible output for all four pong responses
 
 ---
 ## CLI toolset
