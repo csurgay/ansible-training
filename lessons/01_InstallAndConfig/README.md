@@ -2,11 +2,11 @@
 
 ### In this section the following subjects will be covered:
 
-1.	Launch Ansible Control Node and three Managed Hosts in containers
-2.	Set up SSH keys so that Ansible Control Node can access itself and Managed Hosts 
-3.	Install and configure Ansible in the Control Node container
-4.	Clone Training-Lab git repo into Ansible Control Node
-5.	Smoke test Ansible to access managed hosts
+1.	Launch Training-Lab containers
+2.	Set up SSH keys 
+3.	Set up Ansible
+4.	Clone Lessons git repo
+5.	Smoke test
 6.	CLI Toolset
 
 ### Ansible Training Environment
@@ -14,7 +14,9 @@
 ![Figure 1. Training lab environment](https://csurgay.com/ansible/labenv.png)
 
 ---
-## Launch Ansible Control Node and three Managed Hosts in containers
+## Launch Training-Lab containers
+
+Launch Ansible Control Node and three Managed Hosts in containers.
 
 ### Log into the builder environment
 
@@ -63,7 +65,13 @@ affd78f71de7  docker.io/csurgay/ansible_node:latest  /usr/sbin/init  11 seconds 
 ```
 
 ---
-## Set up SSH keys so that Ansible Control Node can access itself and Managed Hosts 
+## Set up SSH keys
+
+Set up SSH keys so that Ansible Control Node can manage itself and Managed Hosts by SSH.
+
+> [!NOTE]
+> This section is automated in `labenv/ansible_node/setup_ssh/setup_devops.sh`. To avoid subsequent manual repetition,
+> run this with sudo.
 
 ### Create `devops` user in Control Node and Managed Hosts containers
 
@@ -89,7 +97,9 @@ affd78f71de7  docker.io/csurgay/ansible_node:latest  /usr/sbin/init  11 seconds 
 5.	Repeat 2-3 for the other two magaged host containers as well
 
 ---
-## Install and configure Ansible in the Control Node container
+## Set up Ansible
+
+Install and configure Ansible in the Control Node container.
 
 ### Install ansible, git and vim
 
@@ -121,14 +131,18 @@ interpreter_python=/usr/bin/python3
 ```
 
 ---
-## Clone Training-Lab git repo into Ansible Control Node
+## Clone Lessons git repo
 
-1.  Enter Ansible Control Node `ansible` by **`podman -it -u devops -w /home/devops ansible bash`**
-2.  Clone the Training-Lab git repo under `/home/devops` by
+Clone Training-Lab Lessons git repo into Ansible Control Node.
+
+1.  Enter Control Node container `ansible` by **`sudo podman -it -u devops -w /home/devops ansible bash`**
+2.  Clone the Training-Lab git repo as user `devops` under `/home/devops` by
 3.  **`git clone https://github.com/csurgay/ansible-training.git`**
 
 ---
-## Smoke test ansible access managed hosts
+## Smoke test
+
+Smoke test Ansible access Managed Hosts
 
 ### Ad-hoc command for testing
 
