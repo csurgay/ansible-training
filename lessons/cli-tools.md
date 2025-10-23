@@ -1,4 +1,4 @@
-# Appendix for Section 3: The CLI Toolset
+# CLI Tools
 
 It this section we explore a number CLI (Command Line Interface) tools coming with the Ansible package.
 
@@ -52,3 +52,4 @@ A few typical uses of the other CLI tools:
 - `ansible-playbook --inventory targethosts --become --aks-become-pass myplaybook.yml`
 - `ansible-pull -U https://github.com/user/myansible myplaybook.yml`
 - `ansible-vault view --vault-id=@prompt mysecret.yml`
+
