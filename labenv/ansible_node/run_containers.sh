@@ -28,7 +28,7 @@ fi
 
 log "Podman network nw_ansible created"
 
-podman run --name ansible --hostname ansible -d -p 2020:22 --network nw_ansible docker.io/csurgay/ansible_node
+podman run --name ansible --hostname ansible -d --privileged --cap-add=ALL --security-opt seccomp=unconfined -v /sys/fs/cgroup:/sys/fs/cgroup:ro --tmpfs /run --tmpfs /run/lock -p 2020:22 --network nw_ansible --mac-address 10:10:10:10:10:10 docker.io/csurgay/ansible_node
 
 log "Control Node container (ansible) started"
 
