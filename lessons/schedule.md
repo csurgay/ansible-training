@@ -12,6 +12,7 @@
 | |	10	| Further topics, Summary and Q&A session|
 
 
+---
 ## Day 1 Session 1 – Introduction to Automation and Ansible
 
 - Understand why to automating Linux administration tasks with Ansible
