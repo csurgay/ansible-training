@@ -16,7 +16,7 @@ ssh host3
 lftp -u devops host1
 password: devops
 
-cd /tmp
+cd /etc
 get vimrc
 
 exit (ctrl-d)
