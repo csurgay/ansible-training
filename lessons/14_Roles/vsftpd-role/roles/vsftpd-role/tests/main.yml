@@ -1,0 +1,25 @@
+---
+- name: Smoke test of vsftpd-to-role project
+  hosts: host3
+  become: false
+  gather_facts: false
+
+  roles:
+    - vsftpd-role
+
+  tasks:
+
+    - name: Test lftp from host3 to host2
+      ansible.builtin.shell:
+        cmd: |
+          lftp -u devops,devops host2<<EOF
+          cd /tmp
+          put /etc/hosts
+          bye
+          EOF
+      register: result_lftp
+
+    - name: Print lftp result
+      ansible.builtin.debug:
+        msg: "{{ result_lftp.stdout }}"
+
