@@ -48,7 +48,7 @@ mv site.yml roles/vsftpd-role/tasks/main.yml
   
 # FTP Clients playbook
 - include_tasks: ftpclients.yml
-  when: inventory_hostname in group['ftpclients']
+  when: inventory_hostname in groups['ftpclients']
 ```
 
 ## Place the included Playbook yaml files also into roles/vsftpd/tasks/
