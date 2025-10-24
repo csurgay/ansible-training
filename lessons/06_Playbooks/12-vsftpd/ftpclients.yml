@@ -2,7 +2,7 @@
 - name: Ensure FTP Client Configuration
   hosts: ftpclients
   become: true
-  gather_facts:false
+  gather_facts: false
 
   tasks:
 
