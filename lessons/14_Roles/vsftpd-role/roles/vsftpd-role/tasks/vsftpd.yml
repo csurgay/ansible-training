@@ -1,15 +1,4 @@
 ---
-- name: FTP server is installed
-  hosts:
-    - ftpservers
-  become: true
-  gather_facts: false
-  vars_files:
-    - vars/defaults-template.yml
-    - vars/vars.yml
-
-  tasks:
-
     - name: Packages are installed
       ansible.builtin.dnf:
         name: "{{ vsftpd_package }}"
