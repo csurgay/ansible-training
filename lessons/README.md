@@ -237,6 +237,17 @@ Resilience	Recover from failures by re-applying playbooks.
     + Navigator for a one-shop tool set
     + CI/CD integration
 
+## GitOps benefits
+
+- Single point of truth
+- Observability, maintainability
+- Reuse across planes, datacenters
+- Automate entire infrastructure
+- Version control of CMDB
+- Audited co-operative modifications
+
+<img src="https://csurgay.com/ansible/gitops.png" width="600">
+
 ## Visual Workflow
 
 ```mermaid
@@ -275,6 +286,7 @@ The result is faster development cycles, scalable infrastructure, and reduced ri
 > [!TIP]
 > Key takeaway: Treat infrastructure like code, automate everything possible,\
 > and use Ansible to enforce consistency and reliability across your environments.
+
 
 
 
