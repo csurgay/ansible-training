@@ -165,6 +165,6 @@ Smoke test Ansible access Managed Hosts
 3.	As user `devops` inside Control Node `ansible` test python version
 4.	**`ansible localhost -m setup | grep python_version`** 
 5.	Test that ansible can manage the hosts with the ping module as follows:
-6.	**`ansible myhosts -m ping`**
+6.	**`ansible all -m ping`**
 7.	Check ansible output for all four pong responses
 
