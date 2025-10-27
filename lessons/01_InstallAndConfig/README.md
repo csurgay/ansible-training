@@ -107,6 +107,13 @@ Install and configure Ansible in the Control Node container.
 2.	Run **`sudo dnf install -y ansible git vim`** on Control Node “ansible” host
 3.	Test the installation with **`ansible –version`**
 
+### Clone the Training-Lab on the Ansible Control Node container 'asnible'
+
+```bash
+cd /home/devops
+git clone https://github.com/csurgay/ansible-training.git
+```
+
 ### Configure Ansible
 
 1. Change dir **`cd /home/devops/ansible-training/labenv`** for ansible config creation
