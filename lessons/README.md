@@ -125,7 +125,7 @@ In most cases, all you need is a **terminal** to run commands and a **text edito
 Here’s a simple playbook to install and start Nginx:
 
 #### setup-web.yml
-```
+```yaml
 ---
 - name: Install and configure web server
   hosts: host1, host2
@@ -148,17 +148,20 @@ Here’s a simple playbook to install and start Nginx:
 Where 
 
 #### inventory.ini
-
 ```yaml
 host1
 host2
 ```
 
 #### Run it:
-`ansible-playbook -i inventory.ini -K setup-web.yml`
+```bash
+ansible-playbook -i inventory.ini -K setup-web.yml`
+```
 
 #### Testing
-`for i in {1..2}; do ssh host$i curl -s localhost | grep "/title"; done`
+```bash
+for i in {1..2}; do ssh host$i curl -s localhost | grep "/title"; done`
+```
 
 ---
 ## Infrastructure as Code (IaC)
@@ -281,6 +284,7 @@ The result is faster development cycles, scalable infrastructure, and reduced ri
 > [!TIP]
 > Key takeaway: Treat infrastructure like code, automate everything possible,\
 > and use Ansible to enforce consistency and reliability across your environments.
+
 
 
 
