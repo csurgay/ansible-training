@@ -80,7 +80,7 @@ Set up SSH keys so that Ansible Control Node can manage itself and Managed Hosts
 4.  Add password `devops` for user `devops` by **`passwd devops`** and enter `devops` twice
 5.  Add `sudo` rights to `devops` by **`echo "devops ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/devops`**
 6.  Exit container by **`exit`** (or ctrl-d)
-7.  Repeat 1-2-3-4 for Managed Hosts by entering them **`podman exec -it host1 bash`**
+7.  Repeat above points 1-2-3-4 for the three Managed Hosts by entering them **`podman exec -it host1 bash`**
 
 ### Generate devops SSH keys on Control Node
 
