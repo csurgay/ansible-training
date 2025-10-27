@@ -130,13 +130,14 @@ Here’s a simple playbook to install and start Nginx:
   become: yes
 
   tasks:
+
     - name: Install Nginx
-      dnf:
+      ansible.builtin.dnf:
         name: nginx
         state: present
 
     - name: Start and enable Nginx
-      systemd:
+      ansible.builtin.systemd:
         name: nginx
         state: started
         enabled: true
@@ -286,6 +287,7 @@ The result is faster development cycles, scalable infrastructure, and reduced ri
 > [!TIP]
 > Key takeaway: Treat infrastructure like code, automate everything possible,\
 > and use Ansible to enforce consistency and reliability across your environments.
+
 
 
 
