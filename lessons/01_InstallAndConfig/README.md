@@ -111,9 +111,13 @@ Install and configure Ansible in the Control Node container.
 
 Clone Training-Lab Lessons git repo into Ansible Control Node.
 
-1.  Enter Control Node container `ansible` by **`sudo podman -it -u devops -w /home/devops ansible bash`**
+1.  Enter Control Node container `ansible` by **`sudo podman exec -it -u devops -w /home/devops ansible bash`**
 2.  Clone the Training-Lab git repo as user `devops` under `/home/devops` by
 3.  **`git clone https://github.com/csurgay/ansible-training.git`**
+
+> [!NOTE]
+> The reason we clone git repo twice is that both the `labenv` for VM `builder` and
+> the `lessons` for Control Node container `ansible` is packaged into the same git repo.
 
 ### Configure Ansible
 
@@ -156,13 +160,13 @@ become_ask_pass = false
 ---
 ## Smoke test
 
-Smoke test Ansible access Managed Hosts
+Smoke test Ansible can access Managed Hosts
 
 ### Ad-hoc command for testing
 
 1.  Enter Ansible Control Node container `ansible` by
 2.  **`sudo podman exec -it -u devops -w /home/devops/ansible-training/labenv ansible bash`**
-3.	As user `devops` inside Control Node `ansible` test python version
+3.	As user `devops` inside Control Node `ansible` test Python is installed by
 4.	**`ansible localhost -m setup | grep python_version`** 
 5.	Test that ansible can manage the hosts with the ping module as follows:
 6.	**`ansible all -m ping`**
