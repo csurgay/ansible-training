@@ -56,7 +56,7 @@ podman cp host_inventory ansible:/home/devops/ansible-training/labenv/
 
 log "Ansible Inventory is saved in Controlnode container"
 
-podman exec -u devops -w /home/devops/ansible-training/labenv ansible ansible myhosts -m ping
+podman exec -u devops -w /home/devops/ansible-training/labenv ansible ansible all -m ping
 
 log "Ansible accessing Managedhosts is tested OK"
 
