@@ -145,9 +145,6 @@ Here’s a simple playbook to install and start Nginx:
         state: started
         enabled: true
 ```
-#### Run it:
-`ansible-playbook -i inventory.ini -K setup-web.yml`
-
 Where 
 
 #### inventory.ini
@@ -157,6 +154,13 @@ host1
 host2
 ```
 
+#### Run it:
+`ansible-playbook -i inventory.ini -K setup-web.yml`
+
+#### Testing
+`for i in {1..2}; do ssh host$i curl -s localhost | grep "/title"; done`
+
+---
 ## Infrastructure as Code (IaC)
 
 ### What is IaC?
@@ -277,6 +281,7 @@ The result is faster development cycles, scalable infrastructure, and reduced ri
 > [!TIP]
 > Key takeaway: Treat infrastructure like code, automate everything possible,\
 > and use Ansible to enforce consistency and reliability across your environments.
+
 
 
 
