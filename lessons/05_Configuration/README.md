@@ -18,6 +18,7 @@ remote_user = devops
 inventory = ./inventory
 ask_pass = false
 log_path = ./ansible.log
+stdout_callback = yaml
 interpreter_python = /usr/bin/python3
 
 [privilege_escalation]
@@ -31,15 +32,16 @@ Directives in the configuratin file above
 
 |Directive|Semantics|
 |---------|---------|
-|inventory|Path to the inventory file|
-|remote_user|user to log in to the managed hosts, default is current user|
-|ask_pass|Asking for SSH password, false for public key authentication|
-|become|Switch user on the managed host (default is root)|
-|become_method|sudo is the default, su also can be used|
-|become_user|Switch to this user on the managed host, default is root|
-|become_ask_pass|Asking for sudo password, only one for all hosts|
-|log_path|Ansible will append all output to this file|
-|interpreter_python|Specifying exact location of python version suppresses warning in logs|
+| inventory | Path to the inventory file |
+| remote_user | user to log in to the managed hosts, default is current user |
+| ask_pass | Asking for SSH password, false for public key authentication |
+| become | Switch user on the managed host (default is root) |
+| become_method | sudo is the default, su also can be used |
+| become_user | Switch to this user on the managed host, default is root |
+| become_ask_pass | Asking for sudo password, only one for all hosts |
+| log_path | Ansible will append all output to this file |
+| stdout_callback | YAML or JSON format for the result ansible outputs |
+| interpreter_python|Specifying exact location of python version suppresses warning in logs |
 
 ---
 ### Location of `ansible.cfg`
@@ -73,5 +75,6 @@ Good practice is to specify the `log_path=./ansible.log` in the configuration so
 * try `ansible-config view`
 * try `ansible-config validate`
 * try `ansible-config init > /tmp/ansible.cfg`
+
 
 
