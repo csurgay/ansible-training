@@ -160,7 +160,7 @@ Smoke test Ansible access Managed Hosts
 ### Ad-hoc command for testing
 
 1.  Enter Ansible Control Node container `ansible` by
-2.  **`sudo podman -it -u devops -w /home/devops/ansible-training/labenv ansible bash`**
+2.  **`sudo podman exec -it -u devops -w /home/devops/ansible-training/labenv ansible bash`**
 3.	As user `devops` inside Control Node `ansible` test python version
 4.	**`ansible localhost -m setup | grep python_version`** 
 5.	Test that ansible can manage the hosts with the ping module as follows:
