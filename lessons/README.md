@@ -47,8 +47,10 @@ Traditionally, managing infrastructure and applications was done manually:
 
 Imagine setting up 10 web servers:
 
-+ **Manual way**: SSH into each server, install Nginx, configure it, open firewall rules → takes hours, error-prone.
-+ **Automated way**: Run one Ansible playbook → all servers are ready in minutes, identical, and logged.
+| | | |
+|----------------|--------------|-----------|
+| **Manually** | SSH into each server, install Nginx, configure it, open firewall rules | Takes hours and error-prone |
+| **Automated** | Run one Ansible playbook | Ready in minutes, identical, and logged |
 
 ## Introduction to Ansible
 
@@ -126,8 +128,9 @@ Here’s a simple playbook to install and start Nginx:
 ```
 ---
 - name: Install and configure web server
-  hosts: webservers
+  hosts: host1, host2
   become: yes
+  # run with --ask-become-pass (-K)
 
   tasks:
 
@@ -143,7 +146,16 @@ Here’s a simple playbook to install and start Nginx:
         enabled: true
 ```
 #### Run it:
-`ansible-playbook -i inventory.ini setup-web.yml`
+`ansible-playbook -i inventory.ini -K setup-web.yml`
+
+Where 
+
+#### inventory.ini
+
+```yaml
+host1
+host2
+```
 
 ## Infrastructure as Code (IaC)
 
@@ -216,28 +228,6 @@ Scalability	Manage 10 or 10,000 servers the same way.
 Collaboration	Infrastructure changes reviewed like software code.
 Resilience	Recover from failures by re-applying playbooks.
 
-## Next Steps for Learners
-
-1. Install Ansible:
-   `sudo dnf install ansible -y`
-2. Set up an inventory file:
-   ```
-   [webservers]
-   192.168.1.10
-   192.168.1.11
-   ```
-3. Run your first command:
-   `ansible all -i inventory.ini -m ping`
-4.	Write your first playbook (install Nginx, as shown above).
-5.	Use Git to version-control your playbooks.
-6.	Explore advanced topics:
-    + Roles and collections
-    + Dynamic inventory
-    + AAP Controller for centralized management
-    + Execution Environments for encapsulated ansible dependencies
-    + Navigator for a one-shop tool set
-    + CI/CD integration
-
 ## GitOps benefits
 
 - Single point of truth
@@ -287,6 +277,7 @@ The result is faster development cycles, scalable infrastructure, and reduced ri
 > [!TIP]
 > Key takeaway: Treat infrastructure like code, automate everything possible,\
 > and use Ansible to enforce consistency and reliability across your environments.
+
 
 
 
