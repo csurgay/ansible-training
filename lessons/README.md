@@ -155,12 +155,12 @@ host2
 
 #### Run it:
 ```bash
-ansible-playbook -i inventory.ini -K setup-web.yml`
+ansible-playbook -i inventory.ini -K setup-web.yml
 ```
 
 #### Testing
 ```bash
-for i in {1..2}; do ssh host$i curl -s localhost | grep "/title"; done`
+for i in {1..2}; do ssh host$i curl -s localhost | grep "/title"; done
 ```
 
 ---
@@ -284,6 +284,7 @@ The result is faster development cycles, scalable infrastructure, and reduced ri
 > [!TIP]
 > Key takeaway: Treat infrastructure like code, automate everything possible,\
 > and use Ansible to enforce consistency and reliability across your environments.
+
 
 
 
