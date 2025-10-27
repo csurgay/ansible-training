@@ -144,7 +144,7 @@ remote_user = devops
 ask_pass = false
 log_path = ansible.log
 interpreter_python = /usr/bin/python3
-callback_result_format = yaml
+stdout_callback = yaml
 
 [privilege_escalation]
 become = true
