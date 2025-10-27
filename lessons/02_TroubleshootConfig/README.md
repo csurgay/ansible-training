@@ -24,15 +24,25 @@ flowchart TD
   end
   subgraph id3[SSHD on managed host]
     direction LR
-    id31(sshd installed) --> id32(sshd started) --> id33(sshd config) --> id33(PermitRootLogin)
+    id31(sshd installed) --> id32(sshd started) --> id33(sshd config) --> id34(PermitRootLogin)
   end
-  subgraph id4[Python on managed host]
+  subgraph id4[Technical User]
     direction LR
-    id41(python)
+    id41(user created on ControlNode) --> id42(user created on ManagedHosts) --> id43(user has password) --> id44(user has sudo)
+  end
+  subgraph id5[SSH Keys]
+    direction LR
+    id51(create Keys on ControlNode) --> id52(copy Keys to ManagedHosts)
+  end
+  subgraph id6[Python]
+    direction LR
+    id61(python3 on ControlNode) --> id62(python3 on ManagedHosts)
   end
   id1 --> id2
   id2 --> id3
   id3 --> id4
+  id4 --> id5
+  id5 --> id6
 ```
 
 ## Validation steps for Ansible configuration
