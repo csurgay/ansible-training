@@ -5,8 +5,7 @@
 1.	Launch Training-Lab containers
 2.	Set up SSH keys 
 3.	Set up Ansible
-4.	Clone Lessons git repo
-5.	Smoke test
+4.	Smoke test
 
 ### Ansible Training Environment
 
@@ -107,12 +106,13 @@ Install and configure Ansible in the Control Node container.
 2.	Run **`sudo dnf install -y ansible git vim`** on Control Node “ansible” host
 3.	Test the installation with **`ansible –version`**
 
-### Clone the Training-Lab on the Ansible Control Node container 'asnible'
+### Clone Lessons git repo
 
-```bash
-cd /home/devops
-git clone https://github.com/csurgay/ansible-training.git
-```
+Clone Training-Lab Lessons git repo into Ansible Control Node.
+
+1.  Enter Control Node container `ansible` by **`sudo podman -it -u devops -w /home/devops ansible bash`**
+2.  Clone the Training-Lab git repo as user `devops` under `/home/devops` by
+3.  **`git clone https://github.com/csurgay/ansible-training.git`**
 
 ### Configure Ansible
 
@@ -151,15 +151,6 @@ become_method = sudo
 become_user = root
 become_ask_pass = false
 ```
-
----
-## Clone Lessons git repo
-
-Clone Training-Lab Lessons git repo into Ansible Control Node.
-
-1.  Enter Control Node container `ansible` by **`sudo podman -it -u devops -w /home/devops ansible bash`**
-2.  Clone the Training-Lab git repo as user `devops` under `/home/devops` by
-3.  **`git clone https://github.com/csurgay/ansible-training.git`**
 
 ---
 ## Smoke test
