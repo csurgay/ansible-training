@@ -90,7 +90,8 @@ Set up SSH keys so that Ansible Control Node can manage itself and Managed Hosts
 ### Copy devops SSH public keys into Control Node and Managed Hosts
 
 1.	Still as `devops` in the Control Node container `ansible`
-2.	Copy SSH key into localhost by **`ssh-copy-id host1`**
+2.	Copy SSH key into localhost by **`ssh-copy-id localhost`**
+2.	Copy SSH key into all Managed Hosts by **`ssh-copy-id host1`**
 3.	No need to answer “yes” for the known_host fingerprint related question due to ssh configuration
 4.	Type in root password **`devops`** when requested
 5.	Repeat 2-3 for the other two magaged host containers as well
