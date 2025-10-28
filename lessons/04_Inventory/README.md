@@ -88,8 +88,8 @@ dbserver1 ansible_host=host2
 dbserver2 ansible_host=host3
 
 [myhosts:children]
-[appservers]
-[dbservers]
+appservers
+dbservers
 ```
 
 ---
