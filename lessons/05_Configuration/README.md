@@ -52,7 +52,7 @@ Directives in the configuratin file above
 /etc/ansible/ansible.cfg
 ~/.ansible.cfg
 ./ansible.cfg
-export ANSIBLE_CONFIG=/home/devops/ansible-training/labenv/ansible.cgf
+export ANSIBLE_CONFIG=/home/devops/ansible-training/labenv/ansible.cfg
 ```
 
 The last one is best practice and have the highest precedence over all the others.
@@ -75,6 +75,7 @@ Good practice is to specify the `log_path=./ansible.log` in the configuration so
 * try `ansible-config view`
 * try `ansible-config validate`
 * try `ansible-config init > /tmp/ansible.cfg`
+
 
 
 
