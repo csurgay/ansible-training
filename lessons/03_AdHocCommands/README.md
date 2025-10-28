@@ -159,7 +159,7 @@ ansible all -m command -a "cat /tmp/hosts_backup"
 ```
 ansible all -m fetch -a "src=/etc/hosts dest=/tmp/hosts"
 tree /tmp/hosts/
-cat /tmp/hosts/*/ect/hosts
+cat /tmp/hosts/*/etc/hosts
 ```
 
 **Exercise:**
@@ -177,7 +177,7 @@ ansible all -m command -a "cat /usr/local/bin/myscript.sh"
 ```
 ansible all -m fetch -a "src=/etc/redhat-release dest=/tmp/hosts"
 tree /tmp/hosts/
-cat /tmp/hosts/*/ect/redhat-release
+cat /tmp/hosts/*/etc/redhat-release
 ```
 
 ---
@@ -370,5 +370,6 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
