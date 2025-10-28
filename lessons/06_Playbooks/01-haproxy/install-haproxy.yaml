@@ -20,6 +20,7 @@
         mode: 644
         owner: root
         group: root
+        backup: true
 
     - name: Bind eth0 to public zone
       ansible.posix.firewalld:
