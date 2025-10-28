@@ -255,6 +255,7 @@ ansible all -m systemd -a "name=nginx enabled=yes"
 
 ```
 ansible all -m user -a "name=deploy state=present"
+ansible all -m user -a "name=deploy groups=wheel state=append"
 ansible all -m group -a "name=devops state=absent"
 ```
 
@@ -385,6 +386,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
