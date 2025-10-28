@@ -69,6 +69,8 @@ sudo podman exec -it -u devops -w /home/devops/ansible-training/lessons ansible 
 
 ### Alias for yourself for convenient reuse
 
+Copy the command below into your builder VM prompt so that it is easy get back to the Control Node any time just by typing `cn`.
+
 ```bash
 alias cn="sudo podman exec -it -u devops -w /home/devops/ansible-training/lessons ansible /bin/bash"
 ```
