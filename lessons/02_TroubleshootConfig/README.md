@@ -2,13 +2,34 @@
 
 ### In this section the following subjects will be covered:
 
+1. Summary of setting up Ansible
+1. Exercise for pairs of participants
+1. Validation process for Ansible configuration
+
+---
+## Summary of setting up Ansible
+
+- [ ] Install Ansible on Control Node
+- [ ] Install Python3 all Nodes
+- [ ] Create technical user on all Nodes
+- [ ] Create password for technical user
+- [ ] Grant sudo for technical user
+- [ ] Create SSH Key for technical user on Control Node
+- [ ] Copy SSH Key from Control Node to all Managed Hosts
+- [ ] Test Ansible can access Managed Hosts
+
+---
+## Exercise for pairs of participants
+
 1. Participants are instructed to form group of pairs
-2. One member shall introduce some failure to the Ansible configuration
-3. Failures can affect any of the boxes on the Figure below
-4. The other member shall try to localize and fix the failure introduced
-5. The first member observes the process and helps with hints if neccessary
-6. They test Ansible successfully access managed hosts together
-7. Members of the pair swith roles and do the excercise again
+1. One member shall introduce some failure to the Ansible configuration
+1. Failures can affect any of the boxes on the Figure below
+1. The other member shall try to localize and fix the failure introduced
+1. The first member observes the process and helps with hints if neccessary
+1. They test Ansible successfully access managed hosts together
+1. Members of the pair swith roles and do the excercise again
+
+
 
 ## Figure 1. Validation process for Ansible configuration
 
