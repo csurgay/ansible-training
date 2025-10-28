@@ -16,6 +16,8 @@
 - [ ] Grant sudo for technical user
 - [ ] Create SSH Key for technical user on Control Node
 - [ ] Copy SSH Key from Control Node to all Managed Hosts
+- [ ] Create some ./inventory
+- [ ] Optionally create some ./ansible.cfg
 - [ ] Test Ansible can access Managed Hosts
 
 ---
