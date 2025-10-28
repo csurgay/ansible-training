@@ -17,6 +17,21 @@
 1. Limit and Control Parallel Processes (`limit` and `fork`)
 1. Final Exercise: Multi-Step Task
 
+> [!WARNING]
+> For these exercises to work in the `lessons/03_AdHocCommands` directory you need to set up an inventory
+> in this directory locally and use `-i inventory` option with the `ansible` command!
+
+#### inventory
+```yaml
+host1
+host2
+```
+
+#### ansible command
+```yaml
+ansible all -i inventory -m <module> -a <module arguments>
+```
+
 ## Ad-Hoc commands
 
 Ansible **Ad-Hoc commands** are simple, one-liner commands that allow you to quickly perform tasks on managed hosts  
@@ -159,7 +174,7 @@ ansible all -m command -a "cat /tmp/hosts_backup"
 ```
 ansible all -m fetch -a "src=/etc/hosts dest=/tmp/hosts"
 tree /tmp/hosts/
-cat /tmp/hosts/*/ect/hosts
+cat /tmp/hosts/*/etc/hosts
 ```
 
 **Exercise:**
@@ -177,7 +192,7 @@ ansible all -m command -a "cat /usr/local/bin/myscript.sh"
 ```
 ansible all -m fetch -a "src=/etc/redhat-release dest=/tmp/hosts"
 tree /tmp/hosts/
-cat /tmp/hosts/*/ect/redhat-release
+cat /tmp/hosts/*/etc/redhat-release
 ```
 
 ---
@@ -225,13 +240,13 @@ ansible all -m systemd -a "name=nginx enabled=yes state=stopped"
 * Start `httpd` or `nginx` service on all hosts.
 
 ```
-ansible all -m service -a "name=httpd state=started"
+ansible all -m service -a "name=nginx state=started"
 ```
 
 * Enable the service to auto-start on boot.
 
 ```
-ansible all -m systemd -a "name=httpd enabled=yes"
+ansible all -m systemd -a "name=nginx enabled=yes"
 ```
 
 ---
@@ -239,8 +254,9 @@ ansible all -m systemd -a "name=httpd enabled=yes"
 ### User and Group Management (`user` / `group`)
 
 ```
-ansible all -m user -a "name=deploy state=present"
-ansible all -m group -a "name=devops state=absent"
+ansible -i inventory host1 -m user -a "name=deploy state=present"
+ansible -i inventory host1 -m user -a "name=deploy groups=wheel state=present append=true" --become
+ansible -i inventory host1 -m group -a "name=wheel state=absent" --become
 ```
 
 **Exercise:**
@@ -299,7 +315,7 @@ ansible all -m reboot
 
 > [!CAUTION]
 > Containers do not come back after reboot in default behaviour, so restart them:  
-> `podman start host1 host2 host3`
+> `sudo podman start ansible host1 host2 host3`
 
 ---
 
@@ -370,5 +386,13 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
+
+
+
+
+
+
+
 
 

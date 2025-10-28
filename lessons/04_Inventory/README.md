@@ -80,16 +80,16 @@ Using the `:children` suffix host groups can be nested under parent hostgroups.
 
 ```
 [appservers]
-appserver1
-appserver2
+appserver1 ansible_host=host1
+appserver2 anisble_host=host2
 
 [dbservers]
-dbserver1
-dbserver2
+dbserver1 ansible_host=host2
+dbserver2 ansible_host=host3
 
-[servers:children]
-[appservers]
-[dbservers]
+[myhosts:children]
+appservers
+dbservers
 ```
 
 ---
