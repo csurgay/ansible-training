@@ -1,8 +1,9 @@
 ---
-- name: Install and run apache or nginx with webcontent template
-  hosts: all
+- name: Play 1. Install and run httpd/nginx with webcontent template
+  hosts: myhosts
   gather_facts: no
   become: yes
+
   tasks:
 
     - name: Testing input parameter webserver
@@ -69,18 +70,29 @@
         url: http://localhost
         return_content: true
       register: container_response
-
     - name: Debug container response
       ansible.builtin.debug:
         var: container_response.content
 
-    - name: Check webcontent 200 status code from localhost
-      ansible.builtin.uri:
-        url: http://{{ ansible_host }}
-        return_content: true
-      register: localhost_response
+- name: Play 2. Tests from localhost
+  hosts: localhost
+  gather_facts: no
+  become: no
 
-    - name: Debug localhost response
-      ansible.builtin.debug:
-        var: localhost_response.content
+  tasks:
+
+    - name: Check webcontent 200 status code from localhost
+      ansible.builtin.command:
+        cmd: curl http://{{ item }}
+      loop:
+        - host1
+        - host2
+        - host3
+      register: localhost_response
+    - ansible.builtin.debug:
+        msg: "From localhost: {{ item.stdout }}"
+      loop: "{{ localhost_response.results }}"
+      loop_control:
+        label: "{{ item.stdout }}"
+
 
