@@ -240,13 +240,13 @@ ansible all -m systemd -a "name=nginx enabled=yes state=stopped"
 * Start `httpd` or `nginx` service on all hosts.
 
 ```
-ansible all -m service -a "name=httpd state=started"
+ansible all -m service -a "name=nginx state=started"
 ```
 
 * Enable the service to auto-start on boot.
 
 ```
-ansible all -m systemd -a "name=httpd enabled=yes"
+ansible all -m systemd -a "name=nginx enabled=yes"
 ```
 
 ---
@@ -385,6 +385,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
