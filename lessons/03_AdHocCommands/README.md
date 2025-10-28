@@ -18,8 +18,8 @@
 1. Final Exercise: Multi-Step Task
 
 > [!WARNING]
-> For these exercises to work in the `lessons/03_AdHocCommands` directory you need to set up an inventory and
-> use `-i inventory` option with the `ansible` command!
+> For these exercises to work in the `lessons/03_AdHocCommands` directory you need to set up an inventory
+> in this directory locally and use `-i inventory` option with the `ansible` command!
 
 #### inventory
 ```yaml
@@ -385,6 +385,7 @@ ansible all -m shell -a "curl -s localhost"
 > [!TIP]
 > With ad-hoc commands, you can quickly **test, configure, and troubleshoot** systems.  
 > For more complex workflows, you’ll want to use **Ansible Playbooks**.
+
 
 
 
