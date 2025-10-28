@@ -66,3 +66,11 @@ Enter the Ansible Control Node container (ansible) and run the exercise commands
 ```
 sudo podman exec -it -u devops -w /home/devops/ansible-training/lessons ansible /bin/bash
 ```
+
+### Alias for yourself for convenient reuse
+
+```bash
+alias cn="sudo podman exec -it -u devops -w /home/devops/ansible-training/lessons ansible /bin/bash"
+```
+
+
