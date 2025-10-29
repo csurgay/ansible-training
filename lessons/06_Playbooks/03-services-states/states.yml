@@ -1,4 +1,4 @@
-- name: Check Multiple Services State
+- name: Check Multiple Services State with include_tasks
   hosts: all
   become: false
   gather_facts: false
@@ -16,7 +16,7 @@
       no_log: true
 
     - name: Format and print result
-      include_tasks: block.yml
+      include_tasks: print.yml
       loop: "{{ results_state.results }}"
       no_log: true
 
