@@ -1,5 +1,5 @@
 ---
-# This is a comment in the sample Playbook
+# Comment: Sample Playbook of two Plays
 
 - name: 1st Play. Install and start nginx
   hosts: webservers
