@@ -13,6 +13,7 @@
 9. Recommended Tools
 10. Summary
 
+---
 ## Why Do We Automate?
 
 ### The Problem with Manual Work
@@ -52,6 +53,7 @@ Imagine setting up 10 web servers:
 | **Manually** | SSH into each server, install Nginx, configure it, open firewall rules | Takes hours and error-prone |
 | **Automated** | Run one Ansible playbook | Ready in minutes, identical, and logged |
 
+---
 ## Introduction to Ansible
 
 Ansible is for automation and management of computers and systems across different platforms. It’s widely used by IT teams and has become a popular choice for large organizations that want to simplify and speed up their operations.
@@ -120,7 +122,8 @@ In most cases, all you need is a **terminal** to run commands and a **text edito
 2. Tasks are executed using modules (like package, service, copy).
 2. System state is enforced and logged.
 
-### Example: Ansible Playbook
+---
+## Your First Playbook
 
 Here’s a simple playbook to install and start Nginx:
 
@@ -145,6 +148,7 @@ Here’s a simple playbook to install and start Nginx:
         state: started
         enabled: true
 ```
+
 Where 
 
 #### inventory.ini
@@ -224,18 +228,22 @@ Application deployment	Zero-downtime rolling updates of a web application
 Security compliance	Enforce password policies, firewall rules, and auditing settings
 Disaster recovery	Quickly rebuild production from code
 
+---
 ## Benefits Summary
 
-### Category	Benefit
+### Ansible benefits
 
-Speed	Deploy in minutes instead of hours or days.
-Consistency	Identical environments every time.
-Auditability	Track who changed what and when via Git.
-Scalability	Manage 10 or 10,000 servers the same way.
-Collaboration	Infrastructure changes reviewed like software code.
-Resilience	Recover from failures by re-applying playbooks.
+|     |          |
+|-----|----------|
+| **Speed** | Deploy in minutes instead of hours or days |
+| **Consistency** | Identical environments every time |
+| **Auditability** | Track who changed what and when via Git |
+| **Scalability** | Manage 10 or 10,000 servers the same way |
+| **Collaboration** | Infrastructure changes reviewed like software code |
+| **Resilience** | Recover from failures by re-applying playbooks |
 
-## GitOps benefits
+---
+## GitOps
 
 - Single point of truth
 - Observability, maintainability
@@ -246,31 +254,24 @@ Resilience	Recover from failures by re-applying playbooks.
 
 <img src="https://csurgay.com/ansible/gitops.png" width="600">
 
-## Visual Workflow
+### Visual Workflow
 
 ```mermaid
 flowchart TD;
   id1[Write Playbook] --> id2[(Commit to Git)] --> id3((CI/CD Pipeline))  --> id4[[Ansible Applies Changes]] --> id5([Infrastructure Updated]);
 ```
 
-## Suggested Training Flow
-
-### Module	Topic	Hands-On Exercise
-
-1. Why Automate?	Compare manual vs automated server setup
-2. Intro to Ansible	Install Ansible, run ping module
-3. Ansible Basics	Create a playbook to install Nginx
-4. Infrastructure as Code	Store playbooks in Git
-5. Real-World Scenario	Deploy a multi-tier app using Ansible
-6. Wrap-Up	Review benefits and next steps
-
+---
 ## Recommended Tools
 
-+ Ansible → Core automation tool
-+ Git → Version control for playbooks
-+ Podman/Docker → For local test environments
-+ VS Code → Editing YAML files with syntax highlighting
+|      |        |
+|------|--------|
+| Ansible | Core automation tool |
+| Git | Version control for playbooks |
+| Podman/Docker | For local test environments |
+| vim, VS Code | Editing YAML files with syntax highlighting |
 
+---
 ## Summary
 
 Automation with Ansible and IaC transforms the way we manage infrastructure:
@@ -282,18 +283,5 @@ Automation with Ansible and IaC transforms the way we manage infrastructure:
 The result is faster development cycles, scalable infrastructure, and reduced risk.
 
 > [!TIP]
-> Key takeaway: Treat infrastructure like code, automate everything possible,\
+> Key takeaway: Treat infrastructure like code, automate everything possible,
 > and use Ansible to enforce consistency and reliability across your environments.
-
-
-
-
-
-
-
-
-
-
-
-
-
