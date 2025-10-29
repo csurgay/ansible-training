@@ -86,7 +86,7 @@ The sample Playbook below installs and starts an nginx service and tests it from
 
 You can use blank lines and comments anywhere to increase readability. Intendation however are handled rigorously: children have to be indented more than parents and siblings have to be intended exactly the same (much like in Python).
 
-The Playbook below is saved e.g. in the file `playbook.yml`. 
+The Playbook below is saved e.g. in the file `sample_playbook.yml`. 
 
 ```
 ---
@@ -125,12 +125,13 @@ The Playbook below is saved e.g. in the file `playbook.yml`.
 
 Playbooks are run then with the command:
 
-`ansible-playbook -i ./myinventrory.ini playbook.yml`
+`ansible-playbook -i ./myinventrory.ini sample_playbook.yml`
 
 Verbosity of output can be increased using the usual `-v`, `-vv`, `-vvv`, `-vvvv` options.
 
 If you just want to check the syntax of your Playbook, use the `---syntax-check` option:  
 `ansible-playbook -i ./inventory-file ---syntax-check playbook.yml`
+
 
 
 
