@@ -115,3 +115,27 @@ in two Tasks as follows:
       ansible.builtin.debug:
         var: result_uptime.stdout_lines
 ```
+
+---
+### Shell module in Playbook
+
+It the next Playbook we need the `ansible.builtin.shell` module because output redirection is not executed by `command`, it requires the bash shell parsing.
+
+```yaml
+# Usage of shell module in bash parsing is required (e.g. pipes, redirections, etc.)
+---
+- name: Listing files
+  hosts: all
+  become: true
+  gather_facts: false
+
+  tasks:
+
+    - name: Listing
+      ansible.builtin.shell: "ls -la /etc/ssh/ > /tmp/sshdir.lst"
+      register: result_listing
+
+    - name: Print result
+      ansible.builtin.debug:
+        var: result_listing.stdout_lines
+```
