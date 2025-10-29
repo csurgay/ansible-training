@@ -119,7 +119,7 @@ in two Tasks as follows:
 ---
 ### Shell module in Playbook
 
-It the next Playbook we need the `ansible.builtin.shell` module because output redirection is not executed by `command`, it requires the bash shell parsing.
+It the next Playbook we need the `ansible.builtin.shell` module because output redirection is not executed by `command`, it requires the bash shell parsing. Note that this Playbook has the same structure and will use the same inventory and config file because it is located in the same Ansible project directory.
 
 ```yaml
 # Usage of shell module in bash parsing is required (e.g. pipes, redirections, etc.)
