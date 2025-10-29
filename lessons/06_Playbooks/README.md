@@ -56,7 +56,7 @@ A minimal config file for a simple playbook could be:
 ```yaml
 [defaults]
 interpreter_python=/usr/bin/python3
-stdout_callback=yaml
+result_format=yaml
 ```
 
 ---
@@ -90,47 +90,57 @@ The Playbook below is saved e.g. in the file `sample_playbook.yml`.
 
 ```
 ---
-# This is a comment in the sample Playbook
+# Comment: Sample Playbook of two Plays
 
-- name: First Play of this Playbook
+- name: 1st Play. Install and start nginx
   hosts: webservers
   become: true
   gather_facts: false
 
   tasks:
-    - name: First Task is to install nginx
+    - name: 1st Task. Install nginx
       ansible.builtin.package:
         name: nginx
         state: latest
 
-    - name: Second Task is to start nginx
+    - name: 2nd Task. Start nginx
       ansible.builtin.systemd:
         name: nginx
         state: started
         enabled: true
 
-- name: Second Play of this Playbook
+- name: 2nd Play. Check return code 200
   hosts: localhost
   become: false
   gather_facts: false
 
   tasks:
-    - name: Test nginx on one webserver
-      ansible.builtin.command:
-        cmd: curl http://webserver:80
+    - name: Test nginx status code
+      ansible.builtin.uri:
+        url: "http://{{ item }}:80"
+      loop: "{{ groups['webservers'] }}"
+      register: result_curl
+    - ansible.builtin.debug:
+        var: result_curl
 ```
 
 ---
 ### Running a Playbook
 
 Playbooks are run then with the command:
-
-`ansible-playbook -i ./myinventrory.ini sample_playbook.yml`
+```bash
+ansible-playbook -i ./myinventrory.ini sample_playbook.yml
+```
 
 Verbosity of output can be increased using the usual `-v`, `-vv`, `-vvv`, `-vvvv` options.
 
 If you just want to check the syntax of your Playbook, use the `---syntax-check` option:  
-`ansible-playbook -i ./inventory-file ---syntax-check playbook.yml`
+`ansible-playbook -i ./myinventory.ini --syntax-check sample_playbook.yml`
+
+If you just want Ansible to check what would be changed on Managed Hosts:  
+`ansible-playbook -i ./myinventory.ini --check sample_playbook.yml`
+
+
 
 
 
