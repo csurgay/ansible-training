@@ -1,0 +1,30 @@
+---
+# This is a comment in the sample Playbook
+
+- name: First Play of this Playbook
+  hosts: webservers
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: First Task is to install nginx
+      ansible.builtin.package:
+        name: nginx
+        state: latest
+
+    - name: Second Task is to start nginx
+      ansible.builtin.systemd:
+        name: nginx
+        state: started
+        enabled: true
+
+- name: Second Play of this Playbook
+  hosts: localhost
+  become: false
+  gather_facts: false
+
+  tasks:
+    - name: Test nginx on one webserver
+      ansible.builtin.command:
+        cmd: curl http://webserver:80
+
