@@ -3,15 +3,11 @@
 ### In this section the following subjects will be covered:
 
 1. Why Do We Automate?
-2. Introduction to Ansible
-3. Infrastructure as Code (IaC)
-4. Combining Automation + Ansible + IaC
-5. Benefits Summary
-6. Next Steps for Learners
-7. Visual Workflow
-8. Suggested Training Flow
-9. Recommended Tools
-10. Summary
+1. Introduction to Ansible
+1. Your First Playbook
+1. Infrastructure as Code (IaC)
+1. GitOps: Ansible + IaC + Git
+1. Summary
 
 ---
 ## Why Do We Automate?
@@ -182,15 +178,13 @@ Examples of things you can manage with IaC:
 + Load balancers
 + Databases
 
-### Why IaC Matters
+### Benefits
 
-#### Benefits
-
-Version Control	Store infrastructure definitions in Git like application code.
-Collaboration	Teams can review changes via pull requests before applying them.
-Reproducibility	Build identical environments across dev, test, and production.
-Disaster Recovery	Quickly rebuild environments from code if something fails.
-Documentation	The code itself becomes the documentation.
+| Version Control | Store infrastructure definitions in Git like application code |
+| Collaboration | Teams can review changes via pull requests before applying them |
+| Reproducibility | Build identical environments across dev, test, and production |
+| Disaster Recovery | Quickly rebuild environments from code if something fails |
+| Documentation | The code itself becomes the documentation |
 
 ### IaC Workflow Example
 
@@ -199,28 +193,15 @@ Documentation	The code itself becomes the documentation.
 1. CI/CD pipeline runs the playbook automatically.
 1. Infrastructure is deployed consistently across all environments.
 
-### Example IaC Comparison
-
-#### Step	Manual	With IaC (Ansible)
-
-Create server	CLI or cloud console	Code in a playbook
-Configure firewall	SSH + firewall-cmd	Automated task
-Install web server	SSH + dnf install	Automated task
-Document steps	Wiki page	Code is the documentation
-Repeat for 10 servers	10x manual work	Run once, scale to 10
-
-## Combining Automation + Ansible + IaC
-
-### When you use Ansible for IaC, you get a powerful, unified approach:
+---
+## GitOps: Ansible + IaC + Git
 
 + Infrastructure is defined as YAML playbooks.
 + Configurations are automated and repeatable.
 + All changes are version-controlled.
 + The process can be integrated with CI/CD pipelines.
 
-### Common Use Cases
-
-#### Use Case	Example
+### Use Case Example
 
 Server provisioning	Deploy 50 cloud VMs on AWS in minutes
 Configuration management	Ensure every server has the correct users, packages, and services
@@ -228,29 +209,19 @@ Application deployment	Zero-downtime rolling updates of a web application
 Security compliance	Enforce password policies, firewall rules, and auditing settings
 Disaster recovery	Quickly rebuild production from code
 
----
-## Benefits Summary
-
-### Ansible benefits
+### BitOps benefits
 
 |     |          |
 |-----|----------|
+| **Single truth** | Master blueprint of your entire infrastructure in Playbooks |
 | **Speed** | Deploy in minutes instead of hours or days |
 | **Consistency** | Identical environments every time |
+| **Reuse** | Write once, use 1000 times across planes, datacenters |
 | **Auditability** | Track who changed what and when via Git |
 | **Scalability** | Manage 10 or 10,000 servers the same way |
 | **Collaboration** | Infrastructure changes reviewed like software code |
 | **Resilience** | Recover from failures by re-applying playbooks |
-
----
-## GitOps
-
-- Single point of truth
-- Observability, maintainability
-- Reuse across planes, datacenters
-- Automate entire infrastructure
-- Version control of CMDB
-- Audited co-operative modifications
+| **Version control** | Earlier versions and branches at your fingertip |
 
 <img src="https://csurgay.com/ansible/gitops.png" width="600">
 
@@ -261,8 +232,7 @@ flowchart TD;
   id1[Write Playbook] --> id2[(Commit to Git)] --> id3((CI/CD Pipeline))  --> id4[[Ansible Applies Changes]] --> id5([Infrastructure Updated]);
 ```
 
----
-## Recommended Tools
+### Recommended Tools
 
 |      |        |
 |------|--------|
@@ -285,3 +255,4 @@ The result is faster development cycles, scalable infrastructure, and reduced ri
 > [!TIP]
 > Key takeaway: Treat infrastructure like code, automate everything possible,
 > and use Ansible to enforce consistency and reliability across your environments.
+
