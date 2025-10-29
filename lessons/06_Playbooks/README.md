@@ -128,13 +128,18 @@ The Playbook below is saved e.g. in the file `sample_playbook.yml`.
 ### Running a Playbook
 
 Playbooks are run then with the command:
-
-`ansible-playbook -i ./myinventrory.ini sample_playbook.yml`
+```bash
+ansible-playbook -i ./myinventrory.ini sample_playbook.yml
+```
 
 Verbosity of output can be increased using the usual `-v`, `-vv`, `-vvv`, `-vvvv` options.
 
 If you just want to check the syntax of your Playbook, use the `---syntax-check` option:  
-`ansible-playbook -i ./inventory-file ---syntax-check playbook.yml`
+`ansible-playbook -i ./myinventory.ini --syntax-check sample_playbook.yml`
+
+If you just want Ansible to check what would be changed on Managed Hosts:  
+`ansible-playbook -i ./myinventory.ini --check sample_playbook.yml`
+
 
 
 
