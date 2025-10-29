@@ -3,5 +3,5 @@
     str: "{{ item.item }} state: {{ item.stdout }}"
   no_log: true
 - ansible.builtin.debug:
-    var: "{{ str }}"
+    var: str
 
