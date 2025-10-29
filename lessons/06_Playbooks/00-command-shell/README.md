@@ -1,4 +1,4 @@
-# Command shell
+# Command, Shell
 
 ### In this lesson the following subjects are covered
 
@@ -74,7 +74,7 @@ So far we have:
   become: true
   gather_facts: false
   tasks:
-`
+```
 
 Under tasks you enlist all modules of this Play to be executed on the Managed Hosts.
 
