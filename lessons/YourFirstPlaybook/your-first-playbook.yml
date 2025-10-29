@@ -1,0 +1,19 @@
+---
+- name: Install and configure web server
+  hosts: host1, host2
+  become: yes
+  # run with --ask-become-pass (-K)
+
+  tasks:
+
+    - name: Install Nginx
+      ansible.builtin.dnf:
+        name: nginx
+        state: present
+
+    - name: Start and enable Nginx
+      ansible.builtin.systemd:
+        name: nginx
+        state: started
+        enabled: true
+
