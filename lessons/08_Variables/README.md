@@ -323,7 +323,7 @@ another: 1234
 1. Role vars
 1. Task vars
 1. Include_vars
-1. Registered vars and set_facts
+1. Registered vars and set_fact
 1. Role params
 1. Runtime extra vars (--extra-vars "var1=John var2=123")
 
@@ -353,7 +353,7 @@ ansible_project/
 |   ├─ Task **vars**
 |   ├─ Include **vars**
 |   ├─ Registered **vars**
-|   └─ set_facts **vars**
+|   └─ set_fact **vars**
 ├─ playbook2.yml
 └─ roles/ - **role_params**
    ├─ mariadb/
@@ -476,4 +476,5 @@ appserver ansible_host=host3
         name: "{{ packagename }}"
         state: present
 ```
+
 
