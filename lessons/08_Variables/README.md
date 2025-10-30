@@ -9,6 +9,7 @@
 1. Nested (complex) variables
 1. Variable Precedence
 1. Magic variables
+1. Connection variables
 1. Prompt variables
 
 ---
@@ -392,6 +393,51 @@ ansible host1     -m debug -a 'var=inventory_hostname'
 ```
 
 ---
+### Connection variables
+
+Connection variables are placed into inventory to control how Ansible connect to hosts individually. Some of them also have default values, even without explicit definition.
+
+#### Most used Connection variables:
+
+| Magic variable | Description |
+|----------------|-------------|
+| **`ansible_hostname`** | The actual name of the host (not neccessarily the inventory alias inventory_hostname, which is the default value) |
+| **`ansible_port`** | Might not be 22 for some hosts, but has no default value unless defined |
+| **`ansible_user`** | Define this if host is connected to with some other user |
+| **`ansible_become`** | Same as --become for the host in the inventory, no default value |
+| **`ansible_become_user`** | Same as --become-user for the host in the inventory, no default value |
+
+#### Sample Inventory usage
+
+```yaml
+[testnode]
+localhost
+
+[application]
+frontend ansible_host=host1 ansible_user=bob ansible_become=true
+backend ansible_host=host2
+appserver ansible_host=host3
+```
+
+#### Sample Playbook usage
+```yaml
+# Playbook to illustrate inventory_hostname vs. ansible_hostname
+---
+- name: inventory_hostname vs. ansible_hostname
+  hosts: all
+  become: false
+  gather_facts: false
+
+  tasks:
+
+    - name: Print hostnames
+      ansible.builtin.debug:
+        msg: |
+          {{ inventory_hostname }} is {{ ansible_host }}:{{ ansible_port | default('22') }}
+          {{ ansible_user }} {{ ansible_connection }}
+```
+
+---
 ### Prompt variables
 
 ```
@@ -420,6 +466,7 @@ ansible host1     -m debug -a 'var=inventory_hostname'
         name: "{{ packagename }}"
         state: present
 ```
+
 
 
 
