@@ -24,7 +24,7 @@
 
 #### Define
 
-```
+```yaml
 my_var: 123
 other: "string with spaces"
 path_variable: /etc/ansible/hosts
@@ -39,7 +39,7 @@ dictionary:
 
 #### Reference (Jinja2 syntax)
 
-```
+```yaml
 message: Value of other is {{ other }}.
 quoted_if_starts_with: "{{ my_var }}"
 list_item: "{{ list_var[0] }}"
@@ -56,7 +56,7 @@ str: "{{ dictionary['name'] }}:{{ dictionary['born'] }}"
 
 Output of an Ansible Task can saved into variables (registering into variables). The `register: <var>` keyword is used. These newly created variables can later be tested for the success or the result of a Task's execution.
 
-```
+```yaml
 - name: Illustration of register
   ansible.builtin.command:
     cmd: date
@@ -118,7 +118,9 @@ Precedence from lowest to highest:
 - child group
 - host
 
-```
+#### world_inventory
+
+```yaml
 washington
 
 [france]
@@ -155,7 +157,11 @@ myvar: all_lowest
 
 #### In yaml format
 
-`ansible-inventory -i ./world_inventory --list --yaml`
+```bash
+ansible-inventory -i ./world_inventory --list --yaml`
+```
+
+#### outputs
 
 ```
 all:
@@ -190,7 +196,11 @@ all:
 
 #### In JSON format
 
-`ansible-inventory -i ./world_inventory --list`
+```bash
+ansible-inventory -i ./world_inventory --list`
+```
+
+#### outputs
 
 ```
 {
@@ -266,7 +276,7 @@ all:
 
 #### Play variables
 
-```
+```yaml
 ---
 - name: Play variable illustration
   hosts: all
@@ -278,7 +288,7 @@ all:
 
 #### Included variables
 
-```
+```yaml
 ---
 - name: Include vars_files illustration
   hosts: all
@@ -292,7 +302,7 @@ all:
 
 #### Format of var_files
 
-```
+```yaml
 ---
 # Variables for use in multiple Plays
 myvariable: "Reusable string"
@@ -383,7 +393,7 @@ Magic variables are automatically set by Ansible and can be used to get informat
 
 #### Usage examples
 
-```
+```bash
 ansible host1     -m debug -a 'var=hostvars["host2"]'
 ansible host2     -m debug -a 'var=hostvars'
 ansible all       -m debug -a 'var=hostvars.host3.ansible_version.string'
@@ -440,7 +450,7 @@ appserver ansible_host=host3
 ---
 ### Prompt variables
 
-```
+```yaml
 ---
 - name: Prompt variables
   hosts: host1
@@ -466,18 +476,3 @@ appserver ansible_host=host3
         name: "{{ packagename }}"
         state: present
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
