@@ -1,0 +1,13 @@
+# Playbook to illustrate inventory_hostname vs. ansible_hostname
+---
+- name: inventory_hostname vs. ansible_hostname
+  hosts: all
+  become: false
+  gather_facts: false
+
+  tasks:
+
+    - name: Print hostnames
+      ansible.builtin.debug:
+        msg: "{{ inventory_hostname }}: {{ ansible_host }}"
+
