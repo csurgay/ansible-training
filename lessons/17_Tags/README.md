@@ -9,8 +9,8 @@
 1. Skip tags
 1. `always` and `never`
 1. Advanced tag usage
-1. Best practices for using tags in Ansible
-1. Ansible tags in real-world examples
+1. Best Practice
+1. Examples
 
 ---
 ## Understanding Ansible tags?
@@ -629,13 +629,6 @@ This version keeps all your examples but simplifies the wording and focuses on p
 ---
 ## Best Practice
 
-| Best Practice Category | Guidelines |
-|------------------------|------------|
-| **Consistency** | - **Follow naming conventions:** Use clear prefixes like `install_`, `configure_`, `uninstall_`, or `deploy_` so tags are easy to understand. <br> - **Group related tasks:** Tag related tasks together (e.g., all database tasks with `data_setup`) to make running a group of tasks easier. |
-| **Documentation** | - **Add comments:** Explain unclear tasks or roles with comments. <br> - **Create a tag reference document:** Maintain a separate list of all tags and their purpose for team consistency. <br> - **Follow tag usage guidelines:** Establish team rules for structuring and applying tags, including examples and scenarios. |
-| **Avoid Overusing Tags** | - **Limit tags per task:** Use only 2-3 tags per task when necessary. <br> - **Use tags only when needed:** Not every task requires a tag; only tag tasks that may run independently. <br> - **Avoid redundant tags:** Ensure each tag is unique and avoid duplicates. <br> - **Review existing tags:** Periodically check tags to remove irrelevant or stale ones. |
-
-
 | Best Practice Category | Guidelines | Good Tag Example | Bad Tag Example |
 |------------------------|------------|-----------------|----------------|
 | **Consistency** | - Follow naming conventions for clarity.<br>- Group related tasks under one tag. | `install_apache`, `configure_db` | `task1`, `setup` |
@@ -643,4 +636,229 @@ This version keeps all your examples but simplifies the wording and focuses on p
 | **Avoid Overusing Tags** | - Limit tags per task (2-3 max).<br>- Only tag tasks that can run independently.<br>- Avoid duplicate or redundant tags.<br>- Periodically review tags. | `install_web, webserver` | `install_web, setup_web, deploy_web` |
 | **Reusability** | - Use tags to group tasks that might be reused in multiple scenarios.<br>- Make tags descriptive enough to indicate purpose. | `database_setup`, `webserver_tasks` | `misc_task`, `do_stuff` |
 | **Control Execution** | - Use tags to run or skip tasks selectively without affecting other tasks.<br>- Combine with `--tags` or `--skip-tags` for precise control. | `ansible-playbook site.yml --tags "webserver"` | Running the full playbook every time without tags |
+
+---
+## Examples
+
+Ansible tags let you run specific tasks, roles, or plays without executing the entire playbook. Here are some practical use cases.
+
+#### Example 1: Database Maintenance
+
+Use tags to manage database tasks independently:
+```yaml
+- name: Database Maintenance
+  hosts: db_servers
+  tasks:
+    - name: Backup database
+      command: /usr/local/bin/db_backup.sh
+      tags: 
+        - backup
+
+    - name: Update database schema
+      command: /usr/local/bin/db_update.sh
+      tags: 
+        - update
+
+    - name: Restart database service
+      service:
+        name: postgresql
+        state: restarted
+      tags: 
+        - restart
+```
+
+#### Commands:
+```bash
+ansible-playbook db_maintenance.yml --tags "backup"
+ansible-playbook db_maintenance.yml --tags "update"
+ansible-playbook db_maintenance.yml --tags "restart"
+```
+
+#### Example 2: Application Deployment to Different Environments
+
+Control deployments to dev, staging, or production using tags:
+```yaml
+- name: App Deployment
+  hosts: all
+  tasks:
+    - name: Install dependencies
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - python3-pip
+        - git
+      tags: 
+        - install
+        - dev
+        - staging
+        - prod
+
+    - name: Deploy app in dev
+      git:
+        repo: 'https://github.com/app/dev_app.git'
+        dest: /var/www/myapp
+      tags: 
+        - deploy
+        - dev
+
+    - name: Deploy app in staging
+      git:
+        repo: 'https://github.com/app/stage_app.git'
+        dest: /var/www/myapp
+      tags: 
+        - deploy
+        - staging
+
+    - name: Deploy app in prod
+      git:
+        repo: 'https://github.com/app/prod_app.git'
+        dest: /var/www/myapp
+      tags: 
+        - deploy
+        - prod
+
+    - name: Start app service
+      service:
+        name: myapp
+        state: started
+      tags: 
+        - dev
+        - staging
+        - prod
+```
+
+#### Commands:
+```bash
+ansible-playbook app.yml --tags "install,deploy,dev"
+ansible-playbook app.yml --tags "install,deploy,staging"
+ansible-playbook app.yml --tags "install,deploy,prod"
+```
+
+#### Example 3: Rolling Updates in High-Availability Environments
+
+Tags help control rolling updates to minimize downtime:
+```yaml
+- name: Rolling Update for Web Servers
+  hosts: web_servers
+  serial: 1
+  tasks:
+    - name: Take server out of load balancer
+      command: /usr/local/bin/remove_from_lb.sh
+      tags: 
+        - lb_remove
+
+    - name: Update application code
+      git:
+        repo: 'https://github.com/app/myapp.git'
+        dest: /var/www/myapp
+      tags: 
+        - update_code
+
+    - name: Restart web server
+      service:
+        name: apache2
+        state: restarted
+      tags: 
+        - restart
+
+    - name: Add server back to load balancer
+      command: /usr/local/bin/add_to_lb.sh
+      tags: 
+        - lb_add
+```
+
+#### Commands:
+```bash
+ansible-playbook rolling_update.yml --tags "lb_remove"
+ansible-playbook rolling_update.yml --tags "update_code"
+ansible-playbook rolling_update.yml --tags "restart"
+```
+
+#### Example 4: Managing Multiple Services
+
+Use tags to manage web servers, application servers, and databases in one playbook:
+```yaml
+- name: Managing Multi-Service
+  hosts: all
+  tasks:
+    - name: Install web server
+      apt:
+        name: apache2
+        state: present
+      tags: 
+        - install
+        - webserver
+
+    - name: Install app server
+      apt:
+        name: tomcat
+        state: present
+      tags: 
+        - install
+        - appserver
+
+    - name: Install db server
+      apt:
+        name: postgresql
+        state: present
+      tags: 
+        - install
+        - dbserver
+
+    - name: Configure web server
+      template:
+        src: apache.conf.j2
+        dest: /etc/apache2/apache2.conf
+      tags: 
+        - configure
+        - webserver
+
+    - name: Configure app server
+      template:
+        src: tomcat.conf.j2
+        dest: /etc/tomcat/tomcat.conf
+      tags: 
+        - configure
+        - appserver
+
+    - name: Configure db server
+      template:
+        src: postgresql.conf.j2
+        dest: /etc/postgresql/postgresql.conf
+      tags: 
+        - configure
+        - dbserver
+
+    - name: Start web server service
+      service:
+        name: apache2
+        state: started
+      tags: 
+        - start
+        - webserver
+
+    - name: Start app server service
+      service:
+        name: tomcat
+        state: started
+      tags: 
+        - start
+        - appserver
+
+    - name: Start db server service
+      service:
+        name: postgresql
+        state: started
+      tags: 
+        - start
+        - dbserver
+```
+
+#### Commands:
+```bash
+ansible-playbook multi_service.yml --tags "install,configure,webserver"
+ansible-playbook multi_service.yml --tags "start,appserver"
+ansible-playbook multi_service.yml --tags "install,configure,start,dbserver"
+```
 
