@@ -1,4 +1,4 @@
-[Feedback])https://forms.gle/FY1BRdVvQ9VJmYCb6)
+[Feedback](https://forms.gle/FY1BRdVvQ9VJmYCb6)
 
 | Day | Session | Topics |
 |-----|---------|--------|
