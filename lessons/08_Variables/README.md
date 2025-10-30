@@ -413,7 +413,7 @@ Connection variables are placed into inventory to control how Ansible connect to
 |----------------|-------------|
 | **`ansible_hostname`** | The actual name of the host (not neccessarily the inventory alias inventory_hostname, which is the default value) |
 | **`ansible_port`** | Might not be 22 for some hosts, but has no default value unless defined |
-| **`ansible_user`** | Define this if host is connected to with some other user |
+| **`ansible_user`** | Define this if host is connected to with some other user, no default user |
 | **`ansible_become`** | Same as --become for the host in the inventory, no default value |
 | **`ansible_become_user`** | Same as --become-user for the host in the inventory, no default value |
 
@@ -476,5 +476,6 @@ appserver ansible_host=host3
         name: "{{ packagename }}"
         state: present
 ```
+
 
 
