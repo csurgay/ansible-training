@@ -469,10 +469,11 @@ appserver ansible_host=host3
 
     - name: Print a message
       ansible.builtin.debug:
-        msg: 'Logging in as {{ username }}'
+        msg: 'Username:{{ username }} Password:{{ password }} <- bad practice'
 
     - name: Install packagename
       ansible.builtin.dnf:
         name: "{{ packagename }}"
         state: present
 ```
+
