@@ -1,5 +1,5 @@
-[testing]
-testnode ansible_host=localhost
+[testnode]
+localhost
 
 [application]
 frontend ansible_host=host1
