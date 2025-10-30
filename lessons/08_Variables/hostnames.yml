@@ -9,5 +9,7 @@
 
     - name: Print hostnames
       ansible.builtin.debug:
-        msg: "{{ inventory_hostname }}: {{ ansible_host }}"
+        msg: |
+          {{ inventory_hostname }} is {{ ansible_host }}:{{ ansible_port | default('22') }}
+          {{ ansible_user }} {{ ansible_connection }}
 
