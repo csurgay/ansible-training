@@ -1,3 +1,5 @@
+[Feedback])https://forms.gle/FY1BRdVvQ9VJmYCb6)
+
 | Day | Session | Topics |
 |-----|---------|--------|
 | 1 | 1	| Why automate, what is Ansible, architecture, infrastructure as code, installing Ansible and ssh keys, ad-hoc commands |
