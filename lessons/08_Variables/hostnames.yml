@@ -11,5 +11,5 @@
       ansible.builtin.debug:
         msg: |
           {{ inventory_hostname }} is {{ ansible_host }}:{{ ansible_port | default('22') }}
-          {{ ansible_user }} {{ ansible_connection }}
+          {{ ansible_user | default('n/a') }} {{ ansible_connection }}
 
