@@ -2,41 +2,41 @@
 
 #### In this section the following subjects will be covered
 
-1. Understanding Ansible tags
-1. How to use tags
-1. List all tags
-1. Multiple tags
-1. Skip tags
+1. Understanding Ansible Tags
+1. How to use Tags
+1. List all Tags
+1. Multiple Tags
+1. Skip Tags
 1. `always` and `never`
-1. Advanced tag usage
+1. Advanced Tag usage
 1. Best Practice
 1. Examples
 
 ---
 ## Understanding Ansible tags?
 
-Ansible tags let you control exactly which tasks, roles, or plays run in a playbook. You add tags in the YAML playbook file and assign them to a task or a role. When you run ansible-playbook with the --tags option, only the tasks with those tags will run, and everything else will be skipped.
+Ansible tags let you control exactly which Tasks, Roles, or Plays run in a Playbook. You add tags in the YAML Playbook file and assign them to a Task or a Role. When you run `ansible-playbook` with the `--tags` option, only the tasks with those tags will run, and everything else will be skipped.
 
-This is useful when you don’t want to run the entire playbook but only certain parts. It helps prevent unwanted changes or disruptions in your systems.
+This is useful when you don’t want to run the entire Playbook but only certain parts. It helps prevent unwanted changes or disruptions in your systems.
 
-Why not just use conditionals? Conditionals only run a task if a specific condition is true. Tags give you more control because you can run the task directly from the command line, no matter the conditions.
+Why not just use conditionals? Conditionals only run a Task if a specific condition is true. Tags give you more control because you can run the task directly from the command line, no matter the conditions.
 
 #### Benefits of Using Tags
 
-Easier debugging – If something is not working, you can add a tag to the task you want to test. Running only that tag helps you find the problem without executing the whole playbook.
-
-Flexible execution – Tags allow you to skip tasks that might cause issues during a particular run.
-
-Reuse tasks – You can run the same tasks or roles in different situations by using tags, making your playbooks more efficient.
+|            |              |
+|------------|--------------|
+| Easier debugging | If something is not working, you can add a tag to the Task you want to test. Running only that tag helps you find the problem without executing the whole Playbook |
+| Flexible execution | Tags allow you to skip Tasks that might cause issues during a particular run |
+| Reuse Tasks | You can run the same Tasks or Roles in different situations by using tags, making your playbooks more efficient |
 
 ---
 ## Usage of Tags
 
-Now that we understand why tags are useful, let’s look at some examples. You can add tags to tasks, roles, or plays in your playbook.
+You can add tags to Tasks, Roles, or Plays in your Playbook.
 
 #### Adding a Tag to a Task
 
-In this example, we add tags to tasks that install and start the Apache web server:
+In this example, we add tags to Tasks that install and start the Apache webserver:
 
 ```yaml
 ---
@@ -56,13 +56,13 @@ In this example, we add tags to tasks that install and start the Apache web serv
       tags: start_service
 ```
 
-#### To run only the Install Apache task, use:
+#### To run only the Install Apache Task, use:
 
 ```bash
 ansible-playbook playbook.yml --tags "install_apache"
 ```
 
-#### To run only the Start Apache task, use:
+#### To run only the Start Apache Task, use:
 
 ```bash
 ansible-playbook playbook.yml --tags "start_service"
@@ -70,7 +70,7 @@ ansible-playbook playbook.yml --tags "start_service"
 
 #### Adding a Tag to a Role
 
-Tags work the same way for roles. Here’s an example:
+Tags work the same way for Roles:
 
 ```yaml
 ---
@@ -84,19 +84,19 @@ Tags work the same way for roles. Here’s an example:
       tags: tomcat
 ```
 
-#### To run only the Tomcat role and skip the standard Linux package role, use:
+#### To run only the Tomcat Role and skip the standard Linux package Role, use:
 ```bash
 ansible-playbook playbook.yml --tags "tomcat"
 ```
 
 ---
-## List all tags
+## List all Tags
 
-When your playbook has many tasks or roles, it can be hard to know which tags are used where. Listing all tags helps you see which tasks, roles, or plays can be run or skipped individually.
+When your Playbook has many tTsks or Roles, it can be hard to know which tags are used where. Listing all tags helps you see which Tasks, Roles, or Plays can be run or skipped individually.
 
-You can do this using the --list-tags option with the ansible-playbook command.
+You can do this using the `--list-tags˙` option with the `ansible-playbook` command.
 
-#### Example playbook:
+#### Example Playbook:
 ```yaml
 ---
 - name: Apache Setup
@@ -124,12 +124,12 @@ You can do this using the --list-tags option with the ansible-playbook command.
         - configure
 ```
 
-#### To list all the tags in this playbook, run:
+#### To list all the Tags in this Playbook, run:
 ```bash
 ansible-playbook apache-playbook.yml --list-tags
 ```
 
-#### The output will show all the tasks and their tags, for example:
+#### The output will show all the Tasks and their Tags, for example:
 ```
 playbook: apache_playbook.yml
 
@@ -139,14 +139,14 @@ playbook: apache_playbook.yml
     task #3: Configure Apache    TAGS: [configure]
 ```
 
-This makes it easy to know which tags you can run or skip when executing your playbook.
+This makes it easy to know which tags you can run or skip when executing your Playbook.
 
 ---
-## Multiple tags
+## Multiple Tags
 
-You can assign more than one tag to tasks, roles, or plays in a playbook. This makes your playbook more flexible and gives you better control over what runs.
+You can assign more than one tag to Tasks, Roles, or Plays in a Playbook. This makes your Playbook more flexible and gives you better control over what runs.
 
-Multiple tags are useful when tasks belong to different groups. For example, you might want some tasks to be part of a “web server” group and others part of a “database” group, while still keeping tags for specific actions like install, start, or configure.
+Multiple tags are useful when Tasks belong to different groups. For example, you might want some Tasks to be part of a `webserver` group and others part of a `database` group, while still keeping tags for specific actions like install, start, or configure.
 
 #### Example: Grouping Tasks with Multiple Tags
 ```yaml
@@ -203,32 +203,32 @@ Multiple tags are useful when tasks belong to different groups. For example, you
         - database
 ```
 
-#### Run all install tasks:
+#### Run all install Tasks:
 ```bash
 ansible-playbook myapp.yml --tags "install"
 ```
 
-#### Run only web server tasks:
+#### Run only webserver Tasks:
 ```bash
 ansible-playbook myapp.yml --tags "webserver"
 ```
 
-#### Run only database tasks:
+#### Run only database Tasks:
 ```bash
 ansible-playbook myapp.yml --tags "database"
 ```
 
-#### You can also skip certain tags when running a playbook:
+#### You can also skip certain Tags when running a Playbook:
 ```bash
 ansible-playbook example_playbook.yml --skip-tags "configure"
 ```
 
-This allows you to run only the tasks you need without affecting others.
+This allows you to run only the Tasks you need without affecting others.
 
 ---
-## Skip tags
+## Skip Tags
 
-Sometimes you may want to skip certain tasks while letting the rest of your playbook run. By using the --skip-tags option, you can omit specific tasks during execution.
+Sometimes you may want to skip certain Tasks while letting the rest of your Playbook run. By using the `--skip-tags` option, you can omit specific Tasks during execution.
 
 #### Example: Skipping a Task During Deployment
 
@@ -258,7 +258,7 @@ ansible-playbook update_config.yml --skip-tags "restart_service"
 
 #### Example: Skipping Tasks in Specific Environments
 
-Tags can also help when deploying to different environments (dev, QA, UAT, prod). You can skip certain tasks in non-development environments:
+Tags can also help when deploying to different environments (dev, QA, UAT, prod). You can skip certain Tasks in non-development environments:
 ```yaml
 ---
 - name: App Deployment
@@ -317,27 +317,27 @@ uat.app.com
 prod.app.com
 ```
 
-#### To run the playbook only in non-dev environments while skipping certain tasks:
+#### To run the Playbook only in non-dev environments while skipping certain Tasks:
 ```bash
 ansible-playbook manage_app.yml --limit production --skip-tags "skip_in_production"
 ansible-playbook manage_app.yml --limit qa --skip-tags "skip_in_production"
 ansible-playbook manage_app.yml --limit uat --skip-tags "skip_in_production"
 ```
 
-The --skip-tags flag gives you flexibility to control exactly which tasks run in each environment.
+The `--skip-tags` flag gives you flexibility to control exactly which Tasks run in each environment.
 
 ---
 ## `always` and `never`
 
 Ansible has two special tags that help keep your playbooks consistent and safe:
 
-always: This tag ensures a task runs every time, no matter what other tags are used on the command line. Use it for critical checks, environment setup, or cleanup tasks that must always run.
+`always`: This tag ensures a Task runs every time, no matter what other tags are used on the command line. Use it for critical checks, environment setup, or cleanup Tasks that must always run.
 
-never: This tag ensures a task never runs, regardless of other tags. It is useful for deprecated tasks or for temporarily disabling tasks during testing or debugging.
+`never`: This tag ensures a Task never runs, regardless of other tags. It is useful for deprecated Tasks or for temporarily disabling Tasks during testing or debugging.
 
 #### Example: Always Run Cleanup Tasks
 
-This playbook deploys the application and config, but always deletes temporary files, no matter which tag is used:
+This Playbook deploys the application and config, but always deletes temporary files, no matter which tag is used:
 ```yaml
 ---
 - name: App Deployment
@@ -364,7 +364,7 @@ This playbook deploys the application and config, but always deletes temporary f
 
 #### Example: Never Run Deprecated Tasks
 
-If a task is deprecated, you can use the never tag to prevent it from running, even if someone uses its tag:
+If a Task is deprecated, you can use the `never` tag to prevent it from running, even if someone uses its tag:
 ```yaml
 ---
 - name: Update Database Schema
@@ -387,7 +387,7 @@ If a task is deprecated, you can use the never tag to prevent it from running, e
 
 #### Example: Using Always and Never Together
 
-You can use always and never in the same playbook without conflicts:
+You can use `always` and `never` in the same Playbook without conflicts:
 ```yaml
 ---
 - name: Deploy Application
@@ -414,16 +414,16 @@ You can use always and never in the same playbook without conflicts:
       tags: always
 ```
 
-This ensures that important tasks always run, and deprecated tasks never run, giving you more control and stability in your playbook.
+This ensures that important Tasks always run, and deprecated Tasks never run, giving you more control and stability in your Playbook.
 
 ---
 ## Advanced tag usage
 
-Ansible tags can be used in more advanced ways with variables, facts, roles, and imports to make your playbooks more flexible and efficient.
+Ansible tags can be used in more advanced ways with variables, Facts, Roles, and imports to make your Playbooks more flexible and efficient.
 
 #### Using Tags with Variables
 
-You can assign tag values through variables so that all your tag management is centralized instead of scattered across the playbook.
+You can assign tag values through variables so that all your tag management is centralized instead of scattered across the Playbook.
 ```yaml
 ---
 - name: Playbook with Tags and Variables
@@ -501,7 +501,7 @@ You can also trigger variables only when their associated tag is used. For examp
 
 #### Using Tags with Facts
 
-Ansible facts are system details collected from managed nodes. By default, facts are gathered at the start of every playbook, but this can slow down execution. You can use tags to gather facts only when needed.
+Ansible Facts are system details collected from Managed Hosts. By default, Facts are gathered at the start of every Playbook, but this can slow down execution. You can use tags to gather Facts only when needed.
 ```yaml
 ---
 - name: Gather facts with tags
@@ -529,7 +529,7 @@ Ansible facts are system details collected from managed nodes. By default, facts
         - install_apache
 ```
 
-#### You can also conditionally gather facts for specific environments:
+#### You can also conditionally gather Facts for specific environments:
 ```yaml
 ---
 - name: Gather facts in non-production
@@ -564,7 +564,7 @@ ansible-playbook deployment_playbook.yml --tags "gather_facts_non_prod,deploy_ap
 
 #### Using Tags with Roles and Imports
 
-You can also tag roles and imported tasks to control exactly which parts of a playbook are executed.
+You can also tag Roles and imported Tasks to control exactly which parts of a Playbook are executed.
 ```yaml
 ---
 - name: Deploy Application
@@ -588,7 +588,7 @@ You can also tag roles and imported tasks to control exactly which parts of a pl
       tags: database_tasks
 ```
 
-#### Example of imported standard tasks:
+#### Example of imported standard Tasks:
 ```yaml
 ---
 - name: Install additional common utilities
@@ -619,28 +619,26 @@ You can also tag roles and imported tasks to control exactly which parts of a pl
     upgrade: dist
 ```
 
-#### To run a webserver deployment with its additional tasks, use:
+#### To run a webserver deployment with its additional Tasks, use:
 ```bash
 ansible-playbook deploy_application.yml --tags "webserver,standard_tasks,webserver_tasks"
 ```
-
-This version keeps all your examples but simplifies the wording and focuses on practical usage.
 
 ---
 ## Best Practice
 
 | Best Practice Category | Guidelines | Good Tag Example | Bad Tag Example |
 |------------------------|------------|-----------------|----------------|
-| **Consistency** | - Follow naming conventions for clarity.<br>- Group related tasks under one tag. | `install_apache`, `configure_db` | `task1`, `setup` |
-| **Documentation** | - Add comments explaining unclear tasks.<br>- Maintain a tag reference document.<br>- Follow team guidelines for tag usage. | `# Tag used to install web server`<br>`deploy_app` | No comments or scattered tag definitions |
-| **Avoid Overusing Tags** | - Limit tags per task (2-3 max).<br>- Only tag tasks that can run independently.<br>- Avoid duplicate or redundant tags.<br>- Periodically review tags. | `install_web, webserver` | `install_web, setup_web, deploy_web` |
-| **Reusability** | - Use tags to group tasks that might be reused in multiple scenarios.<br>- Make tags descriptive enough to indicate purpose. | `database_setup`, `webserver_tasks` | `misc_task`, `do_stuff` |
-| **Control Execution** | - Use tags to run or skip tasks selectively without affecting other tasks.<br>- Combine with `--tags` or `--skip-tags` for precise control. | `ansible-playbook site.yml --tags "webserver"` | Running the full playbook every time without tags |
+| **Consistency** | - Follow naming conventions for clarity.<br>- Group related Tasks under one tag. | `install_apache`, `configure_db` | `task1`, `setup` |
+| **Documentation** | - Add comments explaining unclear Tasks.<br>- Maintain a tag reference document.<br>- Follow team guidelines for tag usage. | `# Tag used to install web server`<br>`deploy_app` | No comments or scattered tag definitions |
+| **Avoid Overusing Tags** | - Limit tags per Task (2-3 max).<br>- Only tag Tasks that can run independently.<br>- Avoid duplicate or redundant tags.<br>- Periodically review tags. | `install_web, webserver` | `install_web, setup_web, deploy_web` |
+| **Reusability** | - Use tags to group Tasks that might be reused in multiple scenarios.<br>- Make tags descriptive enough to indicate purpose. | `database_setup`, `webserver_tasks` | `misc_task`, `do_stuff` |
+| **Control Execution** | - Use tags to run or skip Tasks selectively without affecting other Tasks.<br>- Combine with `--tags` or `--skip-tags` for precise control. | `ansible-playbook site.yml --tags "webserver"` | Running the full Playbook every time without tags |
 
 ---
 ## Examples
 
-Ansible tags let you run specific tasks, roles, or plays without executing the entire playbook. Here are some practical use cases.
+Ansible tags let you run specific Tasks, Roles, or Plays without executing the entire Playbook. Here are some practical use cases.
 
 #### Example 1: Database Maintenance
 
@@ -861,4 +859,5 @@ ansible-playbook multi_service.yml --tags "install,configure,webserver"
 ansible-playbook multi_service.yml --tags "start,appserver"
 ansible-playbook multi_service.yml --tags "install,configure,start,dbserver"
 ```
+
 
