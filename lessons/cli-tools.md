@@ -53,3 +53,32 @@ A few typical uses of the other CLI tools:
 - `ansible-pull -U https://github.com/user/myansible myplaybook.yml`
 - `ansible-vault view --vault-id=@prompt mysecret.yml`
 
+---
+## Additional CLI tools
+
+#### ansible-galaxy
+
+We used `ansible-galaxy` to init empty Roles boilerplate directory structure. Try:
+
+```bash
+ansible-galaxy
+ansible-galaxy role
+ansible-galaxy role --help
+ansible-galaxy role list
+ansible-galaxy role search selinux
+ansible-galaxy role search ntp
+ansible-galaxy role search linux-system-roles
+
+ansible-galaxy collection list
+```
+
+#### ansible-lint
+
+Try:
+
+```bash
+sudo dnf install ansible-lint
+ansible-lint --help
+ansible-lint <playbook file>
+ansible-lint <playbook project directory>
+```
