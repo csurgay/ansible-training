@@ -57,10 +57,10 @@ mv vsftpd.yml ftpclients.yml roles/vsftpd-role/tasks/
 ## Remove from these files all Playbook details and handlers to become Tasklists
 
 ```yaml
- - name: latest version of lftp is installed
-    ansible.builtin.dnf:
-      name: lftp
-      state: latest
+- name: latest version of lftp is installed
+  ansible.builtin.dnf:
+    name: lftp
+    state: latest
 ```
 
 ```yaml
