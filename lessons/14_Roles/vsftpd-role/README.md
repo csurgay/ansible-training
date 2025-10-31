@@ -132,7 +132,8 @@ mv vsftpd.yml ftpclients.yml roles/vsftpd-role/tasks/
         cmd: |
           lftp -u devops,devops host2<<EOF
           cd /tmp
-          get /etc/hosts
+          get -e /etc/hosts
+# -e for deleteing file before copy to make this test idempotent
           bye
           EOF
       register: result_lftp
