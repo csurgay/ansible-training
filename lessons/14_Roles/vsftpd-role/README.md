@@ -35,7 +35,7 @@ mv templates/vsftpd.conf.j2 roles/vsftpd-role/templates/
 rmdir templates/
 ```
 
-## Place site.yml into roles/vasftpd/tasks directory as main.yml
+## Place site.yml into roles/vsftpd/tasks directory as main.yml
 mv site.yml roles/vsftpd-role/tasks/main.yml
 
 ## Transform this new tasks/main.yml into Role format
@@ -152,7 +152,7 @@ mv vsftpd.yml ftpclients.yml roles/vsftpd-role/tasks/
         msg: "{{ result_cat.stdout }}"
 ```
 
-## Complete meta info in roles/vasftpd-role/meta/main.yml
+## Complete meta info in roles/vsftpd-role/meta/main.yml
 
 ```yaml
 galaxy_info:
