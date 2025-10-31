@@ -1,5 +1,5 @@
 
-# Section xx: Ansible Best Practice
+# Section 15: Ansible Best Practice
 
 ### In this section the following subjects will be covered
 
