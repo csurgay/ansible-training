@@ -69,6 +69,11 @@ ansible-galaxy role search selinux
 ansible-galaxy role search ntp
 ansible-galaxy role search linux-system-roles
 
+sudo dnf install linux-system-roles
+(same as rhel-system-roles)
+ansible-galaxy role list
+ls -la /usr/share/ansible/roles
+
 ansible-galaxy collection list
 ```
 
