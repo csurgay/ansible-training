@@ -1,6 +1,6 @@
 # Section 16: Kubernetes with Ansible
 
-### In this section the following subject will be covered
+### In this section the following subject will be covered:
 
 1. Setup Kubernetes Toolset
 1. Namespaces Creation
