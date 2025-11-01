@@ -1,7 +1,7 @@
 # Section 8. Variables
 
 ---
-### In this section the following subjects will be covered
+### In this section the following subjects will be covered:
 
 1. Variable names
 1. Usage
@@ -476,6 +476,7 @@ appserver ansible_host=host3
         name: "{{ packagename }}"
         state: present
 ```
+
 
 
 
