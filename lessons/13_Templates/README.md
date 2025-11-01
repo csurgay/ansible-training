@@ -4,22 +4,21 @@
 
 1. Templates
 2. Jinja2
-
+3. Examples
 
 ---
 ## Templates
 
-Ansible templating lets you automatically create text-based files (like configuration files) that can change depending on variables and system facts. The main goal is to make managing configurations easier and more consistent across multiple systems.
+Ansible templating lets you automatically create text-based files (like configuration files) that can change depending on variables and system Facts. The main goal is to make managing configurations easier and more consistent across multiple systems.
 
-If you have several similar environments with slightly different settings, you don’t need to create or edit each configuration file by hand. Instead, you can create one template and let Ansible fill in the details for each system using variables and facts. This avoids duplicate files and reduces mistakes.
+If you have several similar environments with slightly different settings, you don’t need to create or edit each configuration file by hand. Instead, you can create one template and let Ansible fill in the details for each system using variables and Facts. This avoids duplicate files and reduces mistakes.
 
 When updates are needed, you only change the template once, and Ansible will generate new files for all systems.
 
-By default, Ansible uses the Jinja2 templating engine to create dynamic content.
-
-
 ---
-## Templating with Jinja2
+## Jinja2
+
+By default, Ansible uses the Jinja2 templating engine to create dynamic content.
 
 Jinja2 is a powerful Python-based template engine that’s also used in web frameworks like Flask and Django. It allows you to mix plain text with special syntax to include variables, conditions, and loops in your files.
 
@@ -195,3 +194,4 @@ server {
 Run the playbook, then log into your server to check the file `/etc/nginx/sites-available/default`. 
 
 You’ll see the configuration file generated from your template — confirming that the templating and deployment worked perfectly.
+
