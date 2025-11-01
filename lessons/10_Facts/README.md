@@ -1,7 +1,6 @@
 # Section 10. Facts
 
----
-### In this section the following subjects will be covered
+### In this section the following subjects will be covered:
 
 1. Ansible Facts
 1. Custom Facts
@@ -521,4 +520,5 @@ host1 | SUCCESS => {
    {{ hostvars[host]['ansible_facts']['eth0']['ipv4']['address'] }}
 {% endfor %}
 ```
+
 
