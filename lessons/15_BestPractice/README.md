@@ -1,7 +1,7 @@
 
 # Section 15: Ansible Best Practice
 
-### In this section the following subjects will be covered
+### In this section the following subjects will be covered:
 
 1. General Principles
 1. Recommended Project Structure
