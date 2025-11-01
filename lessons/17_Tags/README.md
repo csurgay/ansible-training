@@ -1,6 +1,6 @@
 # Section 17: Tags
 
-#### In this section the following subjects will be covered
+#### In this section the following subjects will be covered:
 
 1. Understanding Ansible Tags
 1. How to use Tags
@@ -859,5 +859,6 @@ ansible-playbook multi_service.yml --tags "install,configure,webserver"
 ansible-playbook multi_service.yml --tags "start,appserver"
 ansible-playbook multi_service.yml --tags "install,configure,start,dbserver"
 ```
+
 
 
