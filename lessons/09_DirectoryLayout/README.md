@@ -1,7 +1,7 @@
 # Section 9. DirectoryLayout
 
 ---
-### In this section the following subjects will be covered
+### In this section the following subjects will be covered:
 
 1. Recommended Layout
 1. Alternative Layout
@@ -91,3 +91,4 @@ roles/
     monitoring/
     fooapp/
 ```
+
