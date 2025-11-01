@@ -1,6 +1,6 @@
 # Section 13: Templates
 
-### In this section the following subjects will be covered
+### In this section the following subjects will be covered:
 
 1. Templates
 2. Jinja2
@@ -194,4 +194,5 @@ server {
 Run the playbook, then log into your server to check the file `/etc/nginx/sites-available/default`. 
 
 You’ll see the configuration file generated from your template — confirming that the templating and deployment worked perfectly.
+
 
