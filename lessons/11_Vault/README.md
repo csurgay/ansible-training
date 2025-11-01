@@ -1,7 +1,6 @@
 # Section 11. Vault
 
----
-### In this section the following subjects will be covered
+### In this section the following subjects will be covered:
 
 1. Introduction to Secrets
 1. Vault Usage
@@ -69,5 +68,6 @@ In Playbook the variables from Vault can be used as usual by `vars_files: mysecr
       # no_log: true # would prevents open secret being logged
 
 ```
+
 
 
