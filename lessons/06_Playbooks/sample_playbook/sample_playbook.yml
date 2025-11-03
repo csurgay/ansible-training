@@ -18,6 +18,11 @@
         state: started
         enabled: true
 
+    - name: 3nd Task. Open port 80
+      ansible.builtin.firewalld:
+        service: http
+        state: enabled
+
 - name: 2nd Play. Check return code 200
   hosts: localhost
   become: false
