@@ -10,9 +10,9 @@
 | Training Lab | Fully automated setup and real playbook exercises |
 | Versions | Ansible core 2.18, Python 3.13, Jinja 3.1, Podman 5.4, Git 2.51, Fedora 42, Linux 6.14 |
 | Date Created | 2025-09-01 |
-| Last Modified | 2025-11-01 |
+| Last Modified | 2026-08-31 |
 | Contact | csurgay@gmail.com |
-| Author | Father of three, Red Hat Certified Engineer, Red Hat Certified Instructor |
+| Author | Automation Architect, Father of three, Red Hat Certified Engineer, Red Hat Certified Instructor |
 
 In the first complete zero-to-rhce **Containerized Ansible Traning Lab** there are lightweight containers for both the Ansible Control Node, and the dozens of Managed Host Linux servers. This is new to earlier Labs, where heavyweight VMs were used and only a few fix hosts were available to be managed by exercises. This containerized approach allows for a **high degree of flexibility**. Both the Control Node and Managed Hosts can be preconfigured for the execrcises learning goals. Recontainerization is seamless for participants and all the benefits of containerization contribute to a **steeper learning curve**. These benefits are exclusive environments for different exercise subjects, encapsulation of required dependencies, portability on operating systems, isolated exercise testing, easier management.
 
