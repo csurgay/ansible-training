@@ -2,7 +2,7 @@
 
 |           |            |
 |-----------|------------|
-| Purpose | Single host full Ansible training lab (lessons and exercises) |
+| Purpose | Containerized (single host) full Ansible training lab (lessons and exercises) |
 | Audience | Future DevOps engineers new to Ansible |
 | Prerequisites | Linux, any scripting experience |
 | Control Node | Containerized Ansible execution environment on a host or VM |
